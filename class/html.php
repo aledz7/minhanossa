@@ -104,7 +104,7 @@ if($HTMLInstanciada == '') {
 		function campo($tipo, $nome, $valor) {
 			?>
             <input type="<?=$tipo;?>" name="<?=$nome;?>" id="<?=$nome;?>" value="<?=$valor;?>">
-            <?
+            <?php
 		}
 		
 		function menuAdmin($id) { 
@@ -117,7 +117,7 @@ if($HTMLInstanciada == '') {
               <span>Cadastros de Newsletter</span>
             </a>
         </li>
-        <?  
+        <?php  
 		}
 		
 		if(is_numeric($id)) {
@@ -145,11 +145,11 @@ if($HTMLInstanciada == '') {
 					if($tipo == 'cor') { 
 						?>
                         <div style="padding-top:10px;"><?php echo $label;?></div>
-                        <?
+                        <?php
 					} elseif($tipo == 'checkbox') { 
 					?>
                         <input name="<?=$nomeCampo?>" <?php if($dadosSelect == $valor) { echo 'checked'; } ?> type="checkbox" id="<?=$nomeCampo?>" value="<?php echo $valor;?>">
-                        <?
+                        <?php
 					} else {
 						echo $label;
 					}?></label>
@@ -157,7 +157,7 @@ if($HTMLInstanciada == '') {
                   <?php 
 				  if($tipo == 'checkbox') { ?>
                   	<label style="padding-top:8px; margin-bottom:0px;" for="<?=$nomeCampo?>"><?php echo $label; ?></label>
-				  <? 
+				  <?php 
 				  } ?>
                   
 				  <?php if($tipo == '' or $tipo == 'input') { ?>
@@ -193,11 +193,11 @@ if($HTMLInstanciada == '') {
                   <?php if($tipo == 'botoesEnviar') { ?>
                   <button class="btn btn-primary mr10" type="submit">Confimar</button>
                   <button class="btn btn-default" type="button" onClick="history.back();">Voltar</button>
-                  <? } ?>
+                  <?php } ?>
                   
                 </div>
               </div>
-            <?
+            <?php
 		}
 	}
 	

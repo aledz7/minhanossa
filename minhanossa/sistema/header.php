@@ -14,7 +14,7 @@ $totalRows_rs_usuario_header = mysql_num_rows($rs_usuario_header);
 ?>
 <script>
 function marcaPonto(tipo) {
-	document.getElementById('enviaColuna').src='cartao_ponto.php?id='+tipo+'&idLogado=<?=$_SESSION['dadosUser']['id'];?>&nomeLogado=<?=$_SESSION['dadosUser']['nome'];?>';
+	document.getElementById('enviaColuna').src='cartao_ponto.php?id='+tipo+'&idLogado=<?php echo $_SESSION['dadosUser']['id'];?>&nomeLogado=<?php echo $_SESSION['dadosUser']['nome'];?>';
 }
 </script>
   <div class="header">

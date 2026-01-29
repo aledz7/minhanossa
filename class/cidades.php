@@ -87,7 +87,7 @@ if($CidadesInstanciada == '') {
 					}
 					?>
 			</select>
-        <?
+        <?php
 		}
 	}
 	

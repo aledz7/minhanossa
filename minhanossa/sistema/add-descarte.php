@@ -3,7 +3,7 @@ include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 if((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "formAddCLiente")) {	
 	  $insertSQL = sprintf("INSERT INTO tbl_descarte (id_produto, id_vendedor, data_descarte, forma_descarte) VALUES (%s, %s, %s, %s)",
@@ -148,7 +148,7 @@ body,td,th {
                                 <div class="col-md-2">
                                     Vendedor<br>
                                     <div class="input-prepend">
-                                        <select name="id_vendedor" style="height:32px; width:184px;" onChange="this.value = <?=$_SESSION['dadosUser']['id'];?>" >
+                                        <select name="id_vendedor" style="height:32px; width:184px;" onChange="this.value = <?php echo $_SESSION['dadosUser']['id'];?>" >
                        					<?php do{?>
                             				<option value="<?php echo $row_rs_vendedores['id'];?>" <?php if($row_rs_vendedores['id'] == $_SESSION['dadosUser']['id']) { echo 'selected'; } ?> /><?php echo $row_rs_vendedores['nome'];?>
                        					<?php }while($row_rs_vendedores = mysql_fetch_assoc($rs_vendedores));?>         

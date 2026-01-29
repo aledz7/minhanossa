@@ -1,6 +1,6 @@
 ﻿<?php 
 include('Connections/conexao.php');
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 include('restrito.php');
 include('funcoes.php');
@@ -43,7 +43,7 @@ $totalRows_rs_editar_contas_receber = mysql_num_rows($rs_editar_contas_receber);
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Adicionar Conta a <?=($row_rs_editar_contas_receber['tipo'] == 'D') ? 'Pagar' : 'Receber';?></title>
+<title>Adicionar Conta a <?php echo ($row_rs_editar_contas_receber['tipo'] == 'D') ? 'Pagar' : 'Receber';?></title>
 
 <link rel="stylesheet" href="css/style.default.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap-fileupload.min.css" type="text/css" />
@@ -91,14 +91,14 @@ $totalRows_rs_editar_contas_receber = mysql_num_rows($rs_editar_contas_receber);
         
         <ul class="breadcrumbs">
             <li><a href="."><i class="iconfa-home"></i></a> <span class="separator"></span></li>
-            <li><a href="">Conta a <?=($row_rs_editar_contas_receber['tipo'] == 'D') ? 'Pagar' : 'Receber';?></a> <span class="separator"></span></li>
-            <li>Gerenciar Conta a <?=($row_rs_editar_contas_receber['tipo'] == 'D') ? 'Pagar' : 'Receber';?></li>
+            <li><a href="">Conta a <?php echo ($row_rs_editar_contas_receber['tipo'] == 'D') ? 'Pagar' : 'Receber';?></a> <span class="separator"></span></li>
+            <li>Gerenciar Conta a <?php echo ($row_rs_editar_contas_receber['tipo'] == 'D') ? 'Pagar' : 'Receber';?></li>
         </ul>
         <div class="maincontent">
             <div class="maincontentinner">
             
             <div class="widget">
-            <h4 class="widgettitle"><span class="iconfa-edit"></span>Gereciar Conta a <?=($row_rs_editar_contas_receber['tipo'] == 'D') ? 'Pagar' : 'Receber';?></h4>
+            <h4 class="widgettitle"><span class="iconfa-edit"></span>Gereciar Conta a <?php echo ($row_rs_editar_contas_receber['tipo'] == 'D') ? 'Pagar' : 'Receber';?></h4>
             <div class="widgetcontent">
            
            

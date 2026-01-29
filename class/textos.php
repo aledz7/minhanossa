@@ -92,11 +92,11 @@ if($TextosInstanciada == '') {
 			$desc_textos = $this->rsDados($id);
 			if($desc_textos->foto <> '') { ?>
           		<img src="img_noticias/<?=$desc_textos->foto;?>" style="max-width:40%; float:left; margin-right:25px;" alt="<?=$_GET['nome'];?>">
-          	<? } ?>
+          	<?php } ?>
 			<div class="row">
 		  	<?php echo $desc_textos->textos; ?>
 		  	</div>
-		  	<? 
+		  	<?php 
 		  	include('class/fotos.php');
 			$fotos = Fotos::getInstance(Conexao::getInstance());
 		
@@ -106,7 +106,7 @@ if($TextosInstanciada == '') {
 		  	foreach($rs_fotos as $item) { ?>
           		<a href="img_noticias/<?=$item->foto;?>" id="zoom" rel="textos" class="col-md-3" style="margin-bottom:20px;" ><img src="img_noticias/<?php
           		echo cortaImagemSemFundo($item->foto, 'img_noticias', 640, 430, $palavra_chave_foto); ?>" alt="<?=$item->descricao?>"></a>
-          	<? }
+          	<?php }
 			include('ferramentas/redes-sociais.php');
 		}
 		

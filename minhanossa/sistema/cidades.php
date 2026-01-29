@@ -25,7 +25,7 @@ $row = mysql_num_rows($sql);
 //VERIFICA SE VOLTOU ALGO 
 if($row) {                
    //XML
-   $xml  = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
+   $xml  = "<?php xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
    $xml .= "<cidades>\n";               
    
    //PERCORRE ARRAY            
@@ -79,6 +79,6 @@ do {
 ?>
 </select>
 </div>
-<?
+<?php
 mysql_free_result($rs_cidades);
 ?>

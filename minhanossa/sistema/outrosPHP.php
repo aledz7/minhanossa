@@ -1,16 +1,16 @@
 <?php 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 include('../Connections/conexao.php');
 include('funcoes.php');
 
 //// EXCLUSÃO + EXCUIR FOTO PRINCIPAL + FOTOS DO CONTROLE DE FOTOS
-if($_GET[acao] == 'ExcluirRegistroFotoMaisControle') {
+if($_GET['acao'] == 'ExcluirRegistroFotoMaisControle') {
 	// deleta foto
-	unlink($_GET[foto]);
+	unlink($_GET['foto']);
 
 	/// deleta controle de fotos.
 	mysql_select_db($database_conexao, $conexao);
-	$query_rs_fotosControleProds = "SELECT foto FROM tbl_fotos WHERE id_galeria = '$_GET[id]' and tipo = '$_GET[NomeControle]'";
+	$query_rs_fotosControleProds = "SELECT foto FROM tbl_fotos WHERE id_galeria = '$_GET['id']' and tipo = '$_GET['NomeControle']'";
 	$rs_fotosControleProds = mysql_query($query_rs_fotosControleProds, $conexao) or die(mysql_error());
 	$row_rs_fotosControleProds = mysql_fetch_assoc($rs_fotosControleProds);
 	$totalRows_rs_fotosControleProds = mysql_num_rows($rs_fotosControleProds);
@@ -20,7 +20,7 @@ if($_GET[acao] == 'ExcluirRegistroFotoMaisControle') {
 	} while ($row_rs_fotosControleProds = mysql_fetch_assoc($rs_fotosControleProds));
 
 	/// deleta produto.
-	$deleteSQL = sprintf("DELETE FROM $_GET[tbl] WHERE id=%s",
+	$deleteSQL = sprintf("DELETE FROM $_GET['tbl'] WHERE id=%s",
                        GetSQLValueString($_GET['id'], "int"));
 	mysql_select_db($database_conexao, $conexao);
 	$Result1 = mysql_query($deleteSQL, $conexao) or die(mysql_error());	
@@ -30,9 +30,9 @@ if($_GET[acao] == 'ExcluirRegistroFotoMaisControle') {
 }
 
 
-if($_GET[acao] == 'esqueciSenha') {
+if($_GET['acao'] == 'esqueciSenha') {
 	mysql_select_db($database_conexao, $conexao);
-	$query_rs_email = "SELECT * FROM tbl_admin WHERE email = '$_GET[email]'";
+	$query_rs_email = "SELECT * FROM tbl_admin WHERE email = '$_GET['email']'";
 	$rs_email = mysql_query($query_rs_email, $conexao) or die(mysql_error());
 	$row_rs_email = mysql_fetch_assoc($rs_email);
 	$totalRows_rs_email = mysql_num_rows($rs_email);
@@ -44,7 +44,7 @@ if($_GET[acao] == 'esqueciSenha') {
 		exit;
 	} else {
 		/// Envia senha para o email do usuário
-		@ mail($_GET[email],"Recuperação de Senha","Olá conforme solicitado informamos que sua senha para acesso ao painel de controle é: $row_rs_email[senha]
+		@ mail($_GET['email'],"Recuperação de Senha","Olá conforme solicitado informamos que sua senha para acesso ao painel de controle é: $row_rs_email[senha]
 		Qualquer dúvida nao deixe de entrar em contato conosco.
 		
 		
@@ -108,14 +108,14 @@ if($_POST['acao'] == 'login') {
 
 
 
-if($_GET[acao] <> 'Login' and $_GET[acao] <> 'esqueciSenha') {
+if($_GET['acao'] <> 'Login' and $_GET['acao'] <> 'esqueciSenha') {
 	//include('restrito.php');
 	//// EXCLUSÃO DE REGISTROS
-	if($_GET[acao] == 'excluirRegistro') {
+	if($_GET['acao'] == 'excluirRegistro') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		// deleta registro
-		$deleteSQL = sprintf("DELETE FROM $_GET[tbl] WHERE id=%s", GetSQLValueString($_GET['id'], "int"));
+		$deleteSQL = sprintf("DELETE FROM $_GET['tbl'] WHERE id=%s", GetSQLValueString($_GET['id'], "int"));
 		$Result1 = mysql_query($deleteSQL, $conexao) or die(mysql_error());	
 		
 		echo '{"erro":"N"}';

@@ -110,11 +110,11 @@ body,td,th {
                             <li class="filesearch">
                             		<div class="input-prepend">
                                       <span class="add-on">Data Retirada</span>
-                                      <input id="dataSaida" type="text" name="dataSaida" class="input-small datepicker" style="padding:5px;" value="<?=$_GET['dataSaida'];?>" />                                    
+                                      <input id="dataSaida" type="text" name="dataSaida" class="input-small datepicker" style="padding:5px;" value="<?php echo $_GET['dataSaida'];?>" />                                    
                                       </div>
                                       <div class="input-prepend">
                                       <span class="add-on">Data Devolu&ccedil;&atilde;o</span>
-                                      <input id="dataRetorno" type="text" name="dataRetorno" class="input-small datepicker" style="padding:5px;" value="<?=$_GET['dataRetorno'];?>" />                                    
+                                      <input id="dataRetorno" type="text" name="dataRetorno" class="input-small datepicker" style="padding:5px;" value="<?php echo $_GET['dataRetorno'];?>" />                                    
                                       </div>
                                    
                                   
@@ -126,14 +126,14 @@ body,td,th {
                                       <select name="id_produto" id="id_produto" style="height:32px;" >
                                       	<option value=""></option>
 										<?php do { ?>
-                                        <option value="<?=$row_rs_produtos['id'];?>" <?php if($row_rs_produtos['id'] == $_GET['id_produto']) { echo 'selected'; } ?>><?=$row_rs_produtos['nome'];?></option>
-                                        <? } while($row_rs_produtos = mysql_fetch_assoc($rs_produtos)); ?>
+                                        <option value="<?php echo $row_rs_produtos['id'];?>" <?php if($row_rs_produtos['id'] == $_GET['id_produto']) { echo 'selected'; } ?>><?php echo $row_rs_produtos['nome'];?></option>
+                                        <?php } while($row_rs_produtos = mysql_fetch_assoc($rs_produtos)); ?>
                                       </select>
                                    </div>
                                       
                                        <div class="input-prepend">
                                       <span class="add-on">C&oacute;digo</span>
-                                      <input id="buscaCodigo" type="text" name="buscaCodigo" class="input-small" style="padding:5px;" value="<?=$_GET['buscaCodigo'];?>" />                                    
+                                      <input id="buscaCodigo" type="text" name="buscaCodigo" class="input-small" style="padding:5px;" value="<?php echo $_GET['buscaCodigo'];?>" />                                    
                                       </div>
                                 
                             </li>
@@ -185,11 +185,11 @@ $totalRows_produto = mysql_num_rows($rs_produto);
               
             </tbody>
           </table>
-          <? 
+          <?php 
 		  } else { 
 		  	?>
             <div align="center" style="margin-bottom:27px; font-size:15px; color:#00724C">Produto / Traje sem historico.</div>
-            <?
+            <?php
 		  }
 		  ?>
           

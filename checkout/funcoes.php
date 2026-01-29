@@ -137,7 +137,7 @@ function buscaGenericad($inputCampo, $campoId, $targetParent, $tituloBusca, $tit
 	<input name="<?=$inputCampo;?>" ondblclick="<?=$onClick;?>" placeholder="C&oacute;digo" type="text" class="txtbox55px" id="<?=$inputCampo;?>" autocomplete="off" onkeyup="clickDados<?=$inputCampo;?>(); " value="<?=$_GET['idAtual'];?>" autofocus value="<?=$_GET[$inputCampo];?>" />
 	<input type="hidden" name="digitadoBusGen" id="digitadoBusGen<?=$inputCampo;?>" value="" />
     <span id="desc_<?=$inputCampo;?>"><?=$_GET['label'];?></span>
-    <a href="javascript:;" onclick="<?=$onClick;?>" title="Buscar <? echo $tituloBusca;?>"><img src="images/Search.png" width="19" style="margin-bottom:-3px;" /></a>
+    <a href="javascript:;" onclick="<?=$onClick;?>" title="Buscar <?php echo $tituloBusca;?>"><img src="images/Search.png" width="19" style="margin-bottom:-3px;" /></a>
     <iframe id="enviaBuscaGenerica<?=$inputCampo;?>" name="enviaBuscaGenerica<?=$inputCampo;?>" src="" style="width:0px;height:0px;border:0px;"></iframe>
 <?
 }

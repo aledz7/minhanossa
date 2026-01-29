@@ -48,9 +48,9 @@ if($totalRows_rs_lista_espera > 0) { ?>
 alert('Esse produto tem reserva registrada para este período.');
 <?php } ?>
 /*parent.document.getElementById('valor_unitario_produto<?//=$_GET['nItem'];?>').value='<?//=number_format($row_rs_itens_produtos['valor_aluguel'],2,',','.');?>';*/
-parent.document.getElementById('pontuacao<?=$_GET['nItem'];?>').value='<?=$row_rs_itens_produtos['pontuacao'];?>';
-parent.document.getElementById('valorVenda<?=$_GET['nItem'];?>').value='<?=number_format($row_rs_itens_produtos['valor_venda'],2,',','.');?>';
-parent.document.getElementById('numeracao<?=$_GET['nItem'];?>').value='<?=$row_rs_itens_produtos['numeracao'];?>';
-parent.document.getElementById('id_cor<?=$_GET['nItem'];?>').value='<?=$row_rs_itens_produtos['id_cor'];?>';
-parent.document.getElementById('valor_total_produto<?=$_GET['nItem'];?>').value=parent.number_format(<?=$row_rs_itens_produtos['valor_aluguel'];?>*parent.document.getElementById('quantidade_produto<?=$_GET['nItem'];?>').value,2,',','.');
+parent.document.getElementById('pontuacao<?php echo $_GET['nItem'];?>').value='<?php echo $row_rs_itens_produtos['pontuacao'];?>';
+parent.document.getElementById('valorVenda<?php echo $_GET['nItem'];?>').value='<?php echo number_format($row_rs_itens_produtos['valor_venda'],2,',','.');?>';
+parent.document.getElementById('numeracao<?php echo $_GET['nItem'];?>').value='<?php echo $row_rs_itens_produtos['numeracao'];?>';
+parent.document.getElementById('id_cor<?php echo $_GET['nItem'];?>').value='<?php echo $row_rs_itens_produtos['id_cor'];?>';
+parent.document.getElementById('valor_total_produto<?php echo $_GET['nItem'];?>').value=parent.number_format(<?php echo $row_rs_itens_produtos['valor_aluguel'];?>*parent.document.getElementById('quantidade_produto<?php echo $_GET['nItem'];?>').value,2,',','.');
 </script>

@@ -3,7 +3,7 @@ include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 mysql_select_db($database_conexao, $conexao);
 $query_rs_ordem_servico = "
@@ -39,21 +39,21 @@ $totalRows_rs_ordem_servico = mysql_num_rows($rs_ordem_servico);
 <body>
 <table width="100%" style="border:solid 1px #CCCCCC" border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="50%" height="50" style="padding-left:8px;" ><strong><?=$row_rs_ordem_servico['nomeLoja'];?></strong></td>
-    <td width="50%" align="right" valign="top"  style="padding-top:5px; padding-bottom:5px; padding-right:5px;"><?=$row_rs_ordem_servico['logradouroLoja'];?> <br />
-     <?=$row_rs_ordem_servico['cidadeLoja'];?> / <?=$row_rs_ordem_servico['estadoLoja'];?> - Fone: <?=$row_rs_ordem_servico['telefoneLoja'];?><br />
-      <?=$row_rs_ordem_servico['cnpjLoja'];?></td>
+    <td width="50%" height="50" style="padding-left:8px;" ><strong><?php echo $row_rs_ordem_servico['nomeLoja'];?></strong></td>
+    <td width="50%" align="right" valign="top"  style="padding-top:5px; padding-bottom:5px; padding-right:5px;"><?php echo $row_rs_ordem_servico['logradouroLoja'];?> <br />
+     <?php echo $row_rs_ordem_servico['cidadeLoja'];?> / <?php echo $row_rs_ordem_servico['estadoLoja'];?> - Fone: <?php echo $row_rs_ordem_servico['telefoneLoja'];?><br />
+      <?php echo $row_rs_ordem_servico['cnpjLoja'];?></td>
   </tr>
 </table>
 <div align="center" style="font-family:Arial, Helvetica, sans-serif; margin:5px; font-weight:bold; letter-spacing:1px;"> ORDEM DE SERVI&Ccedil;O Nº.
-  <?=$_GET['id'];?>
+  <?php echo $_GET['id'];?>
 </div>
 <table width="100%"  border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td style="padding-bottom:6px;" class="preto_arial_12" ><strong>SERVI&Ccedil;OS:</strong></td>
   </tr>
   <tr>
-    <td  style="border:solid 1px #CCCCCC; padding:5px"><?=$row_rs_ordem_servico['servico'];?></td>
+    <td  style="border:solid 1px #CCCCCC; padding:5px"><?php echo $row_rs_ordem_servico['servico'];?></td>
   </tr>
 </table>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -61,11 +61,11 @@ $totalRows_rs_ordem_servico = mysql_num_rows($rs_ordem_servico);
     <td colspan="4">&nbsp;</td>
   </tr>
   <tr>
-    <td colspan="4" >Data de Entrada: <?=formataData($row_rs_ordem_servico['data_entrada']);?></td>
+    <td colspan="4" >Data de Entrada: <?php echo formataData($row_rs_ordem_servico['data_entrada']);?></td>
   </tr>
   <tr>
    
-    <td colspan="4" >Data de Saída: <?=formataData($row_rs_ordem_servico['data_saida']);?></td>
+    <td colspan="4" >Data de Saída: <?php echo formataData($row_rs_ordem_servico['data_saida']);?></td>
   </tr>
   <tr>
     <td width="22%" height="140" class="preto_arial_12">&nbsp;</td>

@@ -3,7 +3,7 @@ include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 mysql_select_db($database_conexao, $conexao);
 $query_rs_cat_produto = "SELECT * FROM tbl_categoria ORDER BY categoria ASC";
@@ -37,7 +37,7 @@ if((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "formAddCLiente")) {
 	mysql_select_db($database_conexao, $conexao);
 	$Result1 = mysql_query($deleteSQL, $conexao) or die(mysql_error());	
 		
-	for($i = 0 ; $i < count($_POST[nome_produto]);$i++){
+	for($i = 0 ; $i < count($_POST['nome_produto']);$i++){
 		
 		
 		$insertSQL = sprintf("INSERT INTO tbl_item (nome_produto, quantidade_produto, valor_unitario_produto, desconto_produto, valor_total_produto, id_lavanderia, data_prova, data_retirada, data_devolucao, retirado_em, devolvido_em, busto, cintura, quadril, corpo, saia, paleto, comprimento, manga, camisa, colete, tamanho, colarinho, calca, barra, cintura_homem, sapato, comentario_item, id_cliente) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
@@ -140,7 +140,7 @@ body,td,th {
 
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="load.js"></script>
-<? include('dialog-jquery/inc-abre-janela.php');?>
+<?php include('dialog-jquery/inc-abre-janela.php');?>
 
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-migrate-1.1.1.min.js"></script>
@@ -223,7 +223,7 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
                                <?php /*?> <div class="col-md-2">
                                     Data do Evento<br>
                                     <div class="input-prepend">
-                                      <input type="date" name="data_evento" value="<?=$row_rs_ordem_servico['data_evento'];?>" style="width:130px;" class="input-xlarge" />
+                                      <input type="date" name="data_evento" value="<?php echo $row_rs_ordem_servico['data_evento'];?>" style="width:130px;" class="input-xlarge" />
                                     <span class="add-on"><i class="icon-edit"></i></span>
                                     </div>
                                 </div><?php */?>
@@ -231,7 +231,7 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
                                 <div class="col-md-2">
                                     Data da Saída<br>
                                     <div class="input-prepend">
-                                    	<input type="date" name="data_retirada" value="<?=$row_rs_ordem_servico['data_retirada'];?>" style="width:130px;" class="input-xlarge" />
+                                    	<input type="date" name="data_retirada" value="<?php echo $row_rs_ordem_servico['data_retirada'];?>" style="width:130px;" class="input-xlarge" />
                                 		<span class="add-on"><i class="icon-edit"></i></span>
                                     </div>
                                 </div>
@@ -239,7 +239,7 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
                                 <div class="col-md-2">
                                     Data da Devolução<br>
                                     <div class="input-prepend">
-                                    	<input type="date" name="data_devolucao" value="<?=$row_rs_ordem_servico['data_devolucao'];?>" style="width:130px;" class="input-xlarge" />
+                                    	<input type="date" name="data_devolucao" value="<?php echo $row_rs_ordem_servico['data_devolucao'];?>" style="width:130px;" class="input-xlarge" />
                                 		<span class="add-on"><i class="icon-edit"></i></span>
                                     </div>
                                 </div>
@@ -275,7 +275,7 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
                               <div class="col-md-12">
                                     Observações<br>
                                     <div>
-                                    	<textarea name="servico" id="servico" cols="30" rows="5" style="width:97%"><?=$row_rs_ordem_servico['servico'];?></textarea>
+                                    	<textarea name="servico" id="servico" cols="30" rows="5" style="width:97%"><?php echo $row_rs_ordem_servico['servico'];?></textarea>
                                     </div>
                                 </div>
                             
@@ -320,13 +320,13 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
                       	<div class="col-md-12" align="right">
                         	 <a href="javascript:;" onClick="document.getElementById('formAddCLiente').submit();" class="btn btn-mini btn-success"> <i class="iconfa-ok"></i>&nbsp; Salvar</a>
                              
-                             <a href="javascript:;" class="btn btn-primary btn-mini" onClick="MM_openBrWindow('imprimir-lavanderia.php?id=<?=$row_rs_ordem_servico['id'];?>','imprimirOS','status=yes,width=850,height=450')"> <i class="icon-ok"></i> &nbsp; Imprimir  </a>
+                             <a href="javascript:;" class="btn btn-primary btn-mini" onClick="MM_openBrWindow('imprimir-lavanderia.php?id=<?php echo $row_rs_ordem_servico['id'];?>','imprimirOS','status=yes,width=850,height=450')"> <i class="icon-ok"></i> &nbsp; Imprimir  </a>
                              
                              <a href="javascript:;" onClick="history.back();" class="btn btn-danger btn-mini"> <i class="iconfa-remove"></i>&nbsp; Cancelar</a>
                         </div>
                       </div>
                    <input type="hidden" name="MM_insert" id="MM_insert" value="formAddCLiente">
-                   <input type="hidden" name="id" value="<?=$row_rs_ordem_servico['id'];?>">
+                   <input type="hidden" name="id" value="<?php echo $row_rs_ordem_servico['id'];?>">
                 </form>
            
             </div><!--widgetcontent-->

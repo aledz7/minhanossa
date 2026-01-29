@@ -2,7 +2,7 @@
 include('Connections/conexao.php'); 
 include('funcoes.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 mysql_select_db($database_conexao, $conexao);
 $query_rs_itens_produtos = "SELECT * FROM tbl_lista_espera ORDER BY nome ASC";
@@ -103,7 +103,7 @@ if(basename($_SERVER['SCRIPT_NAME']) == 'editar-lavanderia.php'){
 <table width="100%" border="0" style="margin-bottom:10px;">
   <tbody>
     <tr>
-      <td colspan="4" style="border-bottom:1px solid #9E9E9E;"><strong>Item <?=($i+1);?>:</strong></td>
+      <td colspan="4" style="border-bottom:1px solid #9E9E9E;"><strong>Item <?php echo ($i+1);?>:</strong></td>
     </tr>
     <tr>
       <td width="100%" colspan="4" ><div class="row">
@@ -117,29 +117,29 @@ if(basename($_SERVER['SCRIPT_NAME']) == 'editar-lavanderia.php'){
             
             <div class="col-md-2"> Qtde<br>
               <div class="input-prepend">
-                <input type="text" name="quantidade_produto[]" onKeyUp="calcTotalProd(<?=$i;?>)" id="quantidade_produto<?=$i;?>" class="input-xxsmall" value="<?=($row_rs_editar_item['quantidade_produto'] <> '') ? $row_rs_editar_item['quantidade_produto'] : 1;?>">
+                <input type="text" name="quantidade_produto[]" onKeyUp="calcTotalProd(<?php echo $i;?>)" id="quantidade_produto<?php echo $i;?>" class="input-xxsmall" value="<?php echo ($row_rs_editar_item['quantidade_produto'] <> '') ? $row_rs_editar_item['quantidade_produto'] : 1;?>">
               </div>
             </div>
             <?php //if(basename($_SERVER['SCRIPT_NAME']) <> 'add-lavanderia.php' or basename($_SERVER['SCRIPT_NAME']) <> 'editar-lavanderia.php'){?>
             <div class="col-md-2"> Pontua&ccedil;&atilde;o<br>
               <div class="input-prepend">
-                <input type="text" name="pontuacao[]" onKeyUp="calcTotalPontuacao(<?=$i;?>)" id="pontuacao<?=$i;?>" value="<?=$row_rs_editar_item['Pontuacao'];?>" class="input-xxsmall">
+                <input type="text" name="pontuacao[]" onKeyUp="calcTotalPontuacao(<?php echo $i;?>)" id="pontuacao<?php echo $i;?>" value="<?php echo $row_rs_editar_item['Pontuacao'];?>" class="input-xxsmall">
                </div>
             </div>
             <div class="col-md-2"> Valor Venda<br>
               <div class="input-prepend">
-                <input type="text" onKeyUp="calcTotalProd(<?=$i;?>)" id="valorVenda<?=$i;?>" value="<?php echo number_format($row_rs_editar_item['valorVenda'],2,',','.');?>" class="input-xxsmall">
+                <input type="text" onKeyUp="calcTotalProd(<?php echo $i;?>)" id="valorVenda<?php echo $i;?>" value="<?php echo number_format($row_rs_editar_item['valorVenda'],2,',','.');?>" class="input-xxsmall">
                </div>
             </div>
             <?php //}?>
             <div class="col-md-2"> Tamanho<br>
               <div class="input-prepend">
-                <input type="text" name="numeracao[]" id="numeracao<?=$i;?>" class="input-xxsmall" value="<?=$row_rs_editar_item['numeracao'];?>">
+                <input type="text" name="numeracao[]" id="numeracao<?php echo $i;?>" class="input-xxsmall" value="<?php echo $row_rs_editar_item['numeracao'];?>">
               </div>
             </div>
             <div class="col-md-1"> Cor<br>
               <div class="input-prepend">
-                <input type="text" name="id_cor[]" id="id_cor<?=$i;?>" class="input-xxsmall" value="<?=$row_rs_editar_item['nomeCor'];?>">
+                <input type="text" name="id_cor[]" id="id_cor<?php echo $i;?>" class="input-xxsmall" value="<?php echo $row_rs_editar_item['nomeCor'];?>">
               </div>
             </div>
           </div>
@@ -153,7 +153,7 @@ if(basename($_SERVER['SCRIPT_NAME']) == 'editar-lavanderia.php'){
          
             <div class="col-md-2"> Devolvido em<br>
               <div class="input-prepend">
-                <input type="date" name="devolvido_em[]" id="devolvido_em<?=$i;?>" class="input-xxsmall" value="<?=$row_rs_editar_item['devolvido_em'];?>">
+                <input type="date" name="devolvido_em[]" id="devolvido_em<?php echo $i;?>" class="input-xxsmall" value="<?php echo $row_rs_editar_item['devolvido_em'];?>">
                 <span class="add-on"><i class="icon-calendar"></i></span> </div>
             </div>
           </div>
@@ -165,7 +165,7 @@ if(basename($_SERVER['SCRIPT_NAME']) == 'editar-lavanderia.php'){
 </table>
 <?php $somaPontos += $row_rs_editar_item['Pontuacao'];?>
 <?php  $somavalor += $row_rs_editar_item['valorVenda'];?>
-<? } ?>
+<?php } ?>
 <?php if(basename($_SERVER['SCRIPT_NAME']) == 'add_contrato.php'){?>
 <input type="" name="somaPontos" value="<?php echo $somaPontos;?>">
 <?php }?>

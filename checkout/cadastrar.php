@@ -4,7 +4,7 @@ $estados = Estados::getInstance(Conexao::getInstance());
 ?>
 <!doctype html>
 <html class="no-js" lang="">
-<? include('head.php'); ?>
+<?php include('head.php'); ?>
 <body>
 <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -12,7 +12,7 @@ $estados = Estados::getInstance(Conexao::getInstance());
 <!-- Add your site or application content here --> 
 <!-- start header_area
 		============================================ -->
-<? include('header.php') ?>
+<?php include('header.php') ?>
 <!-- end header_area
 		============================================ -->
 <section class="collapse_area">
@@ -113,7 +113,7 @@ $estados = Estados::getInstance(Conexao::getInstance());
     </div>
   </div>
 </section>
-<? include('footer.php'); ?>
+<?php include('footer.php'); ?>
 
 <!-- end footer-address
 		============================================ --> 

@@ -3,7 +3,7 @@ include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 $editFormAction = $_SERVER['PHP_SELF'];
 if(isset($_SERVER['QUERY_STRING'])) {
@@ -274,7 +274,7 @@ body,td,th {
                         </div>
                       </div>
                    <input type="hidden" name="MM_insert" id="MM_insert" value="formAddCLiente">
-                   <input type="hidden" name="acao" value="<?=$_GET['acao'];?>">
+                   <input type="hidden" name="acao" value="<?php echo $_GET['acao'];?>">
                 </form>
            
             </div><!--widgetcontent-->

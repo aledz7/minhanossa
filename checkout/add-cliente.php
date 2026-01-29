@@ -1,4 +1,4 @@
-﻿<? 
+﻿<?php 
 include('Connections/conexao.php');
 include('funcoes.php');
 
@@ -7,7 +7,7 @@ $clientes = Clientes::getInstance(Conexao::getInstance());
 
 $clientes->editar("area-cliente.php");
 
-if($_POST[tipo] == 'clientes') {
+if($_POST['tipo'] == 'clientes') {
 	
 	$insertSQL = sprintf("INSERT INTO tbl_cliente (nome, sexo, cpf, data_de_nascimento, telefone, email, senha, endereco, cep, bairro, id_cidade, id_estado, complemento, ativo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['nome'], "text"),

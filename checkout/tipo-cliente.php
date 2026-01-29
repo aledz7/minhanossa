@@ -48,7 +48,7 @@ if($_GET['tipo'] == 'fisica' ) {
        <input class="email" type="date" required="" name="data_de_nascimento" id="data_de_nascimento" value="<?php echo $descDados->data_de_nascimento ?>">
       </div> 
   
-<? 
+<?php 
 } 
 
 if($_GET['tipo'] == 'juridica' ) {
@@ -81,6 +81,6 @@ if($_GET['tipo'] == 'juridica' ) {
       </div>
       
 
-<? 
+<?php 
 } 
 ?>

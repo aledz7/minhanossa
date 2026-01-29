@@ -1,5 +1,5 @@
 <?php 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 include('Connections/conexao.php');
 include('funcoes.php');
@@ -17,7 +17,7 @@ $clientes->restrito();
 
 <!doctype html>
 <html class="no-js" lang="">
-  <? include('head.php') ?>
+  <?php include('head.php') ?>
 <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -25,7 +25,7 @@ $clientes->restrito();
         <!-- Add your site or application content here -->
         <!-- start header_area
 		============================================ -->
-         <? include('header.php'); ?>
+         <?php include('header.php'); ?>
         <!-- end header_area
 		============================================ -->
         <!-- start main_shop_area
@@ -52,7 +52,7 @@ $clientes->restrito();
          <div class="main_shop_all">
           <div class="container">
            <div class="row">
-            <? //include('inc-coluna.php'); ?>
+            <?php //include('inc-coluna.php'); ?>
            
           <div class="col-md-12 col-sm-12 col-xs-12">
            <div class="row">
@@ -62,16 +62,16 @@ $clientes->restrito();
                <div role="tabpanel" class="tab-pane active" id="home">
                 <div class="row">
                  <div class="shop-tab">
-              <? 
+              <?php 
 			   $produtos->add_filtro('lista_desejos');
 				$rsProdutos = $produtos->rsDados('', $_GET['ordem'], '', $_GET['id-cat']);
 				 if(count($rsProdutos) > 0) { ?>
-                  <? foreach($rsProdutos as $item) { ?>
+                  <?php foreach($rsProdutos as $item) { ?>
                   <div class="col-md-3 col-sm-6" >
                    <div class="single-product">
-                    <? if($item->promocao == 'S') { ?>
+                    <?php if($item->promocao == 'S') { ?>
                      <span class="sale-text">Oferta!</span>
-                    <? } ?>
+                    <?php } ?>
                      <div class="product-img" style="text-align:center;">
                       <!--<a href="<?php/* echo str_replace(array('[id]', '[nome]'),array($item->id, $item->nome),$pagProdutos);?>">
                        <img class="primary-image" src="../img_noticias/<?php echo $item->foto */?>" alt=""  />
@@ -90,11 +90,11 @@ $clientes->restrito();
 						   <span class="special-price">
 							  Pontos totais <?php echo $somapontos;?>
 						   </span>
-						   <? if($item->promocao == 'S') { ?>
+						   <?php if($item->promocao == 'S') { ?>
 						   <span class="old-price">
 							   Pontos totais <?php echo $somapontos;?>
 						   </span>
-                      	<? } ?>
+                      	<?php } ?>
                       </div>
 					*/?>
                       <h2 class="product-name">
@@ -103,10 +103,10 @@ $clientes->restrito();
                        </a>
                       </h2>
 					
-					  <?php// print_r($item);?>
+					  <?php // print_r($item);?>
 						 
                       <!--<div class="product-icon">
-                       <a href="<?php// echo str_replace(array('[id]', '[nome]'),array($item->id, $item->nome),$pagProdutos);?>" class="add-text-cart">
+                       <a href="<?php // echo str_replace(array('[id]', '[nome]'),array($item->id, $item->nome),$pagProdutos);?>" class="add-text-cart">
                         <i class="fa fa-shopping-cart"></i> 
                          Comprar
                        </a>
@@ -121,10 +121,10 @@ $clientes->restrito();
                      </div>
                     </div>
                    </div>
-                  <? } ?>
-                  <? } else { ?>
+                  <?php } ?>
+                  <?php } else { ?>
                    Não foi possível retornar um resultado.
-                  <? } ?>
+                  <?php } ?>
                   </div>
                  </div>
                 </div>
@@ -138,7 +138,7 @@ $clientes->restrito();
         </div>
         </section>
 
-	<? include('footer.php'); ?>
+	<?php include('footer.php'); ?>
 
 	<div id="toTop">
 		<i class="fa fa-chevron-up"></i>

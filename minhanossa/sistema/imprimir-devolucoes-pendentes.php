@@ -51,7 +51,7 @@ $totalRows_rs_provas = mysql_num_rows($rs_provas);
 
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="load.js"></script>
-<? include('dialog-jquery/inc-abre-janela.php');?>
+<?php include('dialog-jquery/inc-abre-janela.php');?>
 
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-migrate-1.1.1.min.js"></script>
@@ -122,7 +122,7 @@ $totalRows_rs_nome_cliente = mysql_num_rows($rs_nome_cliente);
               
             </tbody>
           </table>
-          <? 
+          <?php 
 		  } else { 
 		  	$HTML->nenhumRegistro();
 		  }

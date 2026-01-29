@@ -22,7 +22,7 @@ mysql_select_db($database_conexao, $conexao);
                                 <div class="col-md-2">
                                     Qtde<br>
                                     <div class="input-prepend">
-                                    <input type="text" name="quantidade_produto[]" id="quantidade_produto<?=$i;?>" class="input-small" value="<?=$row_rs_editar_adverso['quantidade_produto'];?>">
+                                    <input type="text" name="quantidade_produto[]" id="quantidade_produto<?php echo $i;?>" class="input-small" value="<?php echo $row_rs_editar_adverso['quantidade_produto'];?>">
                                     	
                                 		
                                     </div>
@@ -31,7 +31,7 @@ mysql_select_db($database_conexao, $conexao);
                                 <div class="col-md-2">
                                     Valor Unitário<br>
                                     <div class="input-prepend">
-                                    <input type="text" name="valor_unitario_produto[]" id="valor_unitario_produto<?=$i;?>" value="<?=$row_rs_editar_adverso['valor_unitario_produto'];?>" class="input-small">
+                                    <input type="text" name="valor_unitario_produto[]" id="valor_unitario_produto<?php echo $i;?>" value="<?php echo $row_rs_editar_adverso['valor_unitario_produto'];?>" class="input-small">
                                     
                                     	<span class="add-on"><i class="fa fa-usd" aria-hidden="true"></i></span>
                                     </div>
@@ -39,7 +39,7 @@ mysql_select_db($database_conexao, $conexao);
                                 <div class="col-md-2">
                                     Desconto<br>
                                     <div class="input-prepend">
-                                    <input type="text" name="desconto_produto[]" id="desconto_produto<?=$i;?>" class="input-small" value="<?=$row_rs_editar_adverso['desconto_produto'];?>">
+                                    <input type="text" name="desconto_produto[]" id="desconto_produto<?php echo $i;?>" class="input-small" value="<?php echo $row_rs_editar_adverso['desconto_produto'];?>">
                                     	
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@ mysql_select_db($database_conexao, $conexao);
                                 <div class="col-md-1">
                                     Valor Total<br>
                                     <div class="input-prepend">
-                                    <input type="text" name="valor_total_produto[]" id="valor_total_produto<?=$i;?>" value="<?=$row_rs_editar_adverso['valor_total_produto'];?>" class="input-small">
+                                    <input type="text" name="valor_total_produto[]" id="valor_total_produto<?php echo $i;?>" value="<?php echo $row_rs_editar_adverso['valor_total_produto'];?>" class="input-small">
                                     	<span class="add-on"><i class="fa fa-usd" aria-hidden="true"></i></span>
                                     </div>
                                 </div>

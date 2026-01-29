@@ -3,7 +3,7 @@ include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
 
-if($_GET[acao] == 'excluir') {
+if($_GET['acao'] == 'excluir') {
 	mysql_select_db($database_conexao, $conexao);
 	$deleteSQL = sprintf("DELETE FROM tbl_descarte WHERE id=%s",
                        GetSQLValueString($_GET['id'], "int"));
@@ -127,7 +127,7 @@ body,td,th {
                             <li class="filesearch">
                             		<div class="input-prepend">
                                       <span class="add-on">Data de Descarte</span>
-                                      <input id="dataDescarte" type="text" name="dataDescarte" class="input-small datepicker" style="padding:5px;" value="<?=$_GET['dataDescarte'];?>" />                                    </div>
+                                      <input id="dataDescarte" type="text" name="dataDescarte" class="input-small datepicker" style="padding:5px;" value="<?php echo $_GET['dataDescarte'];?>" />                                    </div>
                                    
                               
                                    <div class="input-prepend">
@@ -137,8 +137,8 @@ body,td,th {
                                       <select name="id_produto" id="id_produto" style="height:32px;" >
                                       	<option value=""></option>
 										             <?php do { ?>
-                                        <option value="<?=$row_rs_produtos['id'];?>" <?php if($row_rs_produtos['id'] == $_GET['id_produto']) { echo 'selected'; } ?>><?=utf8_decode($row_rs_produtos['nome']);?></option>
-                                        <? } while($row_rs_produtos = mysql_fetch_assoc($rs_produtos)); ?>
+                                        <option value="<?php echo $row_rs_produtos['id'];?>" <?php if($row_rs_produtos['id'] == $_GET['id_produto']) { echo 'selected'; } ?>><?php echo utf8_decode($row_rs_produtos['nome']);?></option>
+                                        <?php } while($row_rs_produtos = mysql_fetch_assoc($rs_produtos)); ?>
                                       </select>
                                    </div>
                             </li>

@@ -53,7 +53,7 @@ if($ProdutosInstanciada == '') {
 			?>
             <input type="hidden" name="acao" value="comprar">
           	<input type="hidden" name="id" value="<?=$id_produto;?>">
-          	<?
+          	<?php
 		}
 		
 		function rsDados($id='', $orderBy='', $limite='', $id_categoria='', $promocao='', $id_sub_categoria='', $id_op_especificacao='') {
@@ -274,7 +274,7 @@ if($ProdutosInstanciada == '') {
 		function tem_variacao($id_produto='') {
 			?>
             <input type="hidden" name="sistema_variacao" value="presente">
-            <?
+            <?php
 			/// FILTROS
 			$nCampos = 0;
 			
@@ -392,7 +392,7 @@ if($ProdutosInstanciada == '') {
 							echo number_format($item->por,2,',','.');
 							?></td>
                         </tr>
-                        <? } ?>
+                        <?php } ?>
                       </tbody>
                     </table>
 					<?php
@@ -401,7 +401,7 @@ if($ProdutosInstanciada == '') {
 			}
 			?>
             <input type="hidden" name="sistema_variacao" value="presente">
-            <?
+            <?php
 			
 		}
 		
@@ -412,7 +412,7 @@ if($ProdutosInstanciada == '') {
                 <option value="vDecrescente" <?php if($_GET['ordenar'] == 'vDecrescente') { echo 'selected'; } ?>>Valor Decrescente</option>
                 <option value="mais_vendidos" <?php if($_GET['ordenar'] == 'mais_vendidos') { echo 'selected'; } ?>>Mais Vendidos</option>
               </select>
-        <?
+        <?php
 		}
 		
 		

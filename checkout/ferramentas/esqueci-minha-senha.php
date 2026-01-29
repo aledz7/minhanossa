@@ -3,7 +3,7 @@ require_once('../../Connections/conexao.php');
 require_once('../funcoes.php');
 
 
-if($_POST[email] <> '') {
+if($_POST['email'] <> '') {
 	
 	function validaEmail($email) {
 		$conta = "^[a-zA-Z0-9\._-]+@";
@@ -33,7 +33,7 @@ if($_POST[email] <> '') {
 	$totalRows_rs_config = mysql_num_rows($rs_config);
 	
 	mysql_select_db($database_conexao, $conexao);
-	$query_rs_email = "SELECT * FROM tbl_users WHERE email = '$_POST[email]'";
+	$query_rs_email = "SELECT * FROM tbl_users WHERE email = '$_POST['email']'";
 	$rs_email = mysql_query($query_rs_email, $conexao) or die(mysql_error());
 	$row_rs_email = mysql_fetch_assoc($rs_email);
 	$totalRows_rs_email = mysql_num_rows($rs_email);

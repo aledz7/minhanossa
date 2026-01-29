@@ -193,7 +193,7 @@ $totalRows_rs_transf_bancaria = mysql_num_rows($rs_transf_bancaria);
 					  echo number_format($row_rs_pedidos['valor_c_acrecimo'],2,',','.'); ?>
                   </div></TD>
                   <TD width="12%"><div align="center" class="style11">R$:
-                    <? 
+                    <?php 
 					  $total = $row_rs_pedidos['valor_c_acrecimo']*$row_rs_pedidos['qtd'];
 					  echo number_format($total,2,',','.');
 					  $subtotal = $subtotal+$total;
@@ -229,7 +229,7 @@ $totalRows_rs_transf_bancaria = mysql_num_rows($rs_transf_bancaria);
                         <?=number_format($subtotal-valorCalculavel($row_rs_compra['desconto']),2,',','.');?>
   &nbsp; </strong></div></td>
                     </tr>
-                    <? } ?>
+                    <?php } ?>
                 </table>
                 
                 </td>

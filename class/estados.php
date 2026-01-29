@@ -81,7 +81,7 @@ if($EstadosInstanciada == '') {
 					}
 					?>
 			</select>
-        <?
+        <?php
 		}
 	}
 	

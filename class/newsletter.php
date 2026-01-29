@@ -114,7 +114,7 @@ if($NewsletterInstanciada == '') {
 		function hidden_add() {
 			?>
             <input type="hidden" name="acao" value="addNewsletter">
-            <?
+            <?php
 		}
 		
 		function editar() {

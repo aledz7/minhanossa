@@ -121,12 +121,12 @@ body,td,th {
                             <li class="filesearch">
                             		<div class="input-prepend">
                                       <span class="add-on">Data de In&iacute;cio</span>
-                                      <input id="dataInicio" type="text" name="dataInicio" class="input-small datepicker" style="padding:5px;" value="<?=$_GET['dataInicio'];?>" />                                    </div>
+                                      <input id="dataInicio" type="text" name="dataInicio" class="input-small datepicker" style="padding:5px;" value="<?php echo $_GET['dataInicio'];?>" />                                    </div>
                                    
                                    
                                    <div class="input-prepend">
                                       <span class="add-on">Data Final</span>
-                                      <input id="dataFim" value="<?=$_GET['dataFim'];?>" style="padding:5px;" type="text" name="dataFim" class="input-small datepicker" />                                    </div>
+                                      <input id="dataFim" value="<?php echo $_GET['dataFim'];?>" style="padding:5px;" type="text" name="dataFim" class="input-small datepicker" />                                    </div>
                                    
                                    
                                    <div class="input-prepend">
@@ -136,8 +136,8 @@ body,td,th {
                                       <select name="id_vendedor" id="id_vendedor" style="height:32px;" >
                                       	<option value=""></option>
 										<?php do { ?>
-                                        <option value="<?=$row_rs_vendedores['id'];?>" <?php if($row_rs_vendedores['id'] == $_GET['id_vendedor']) { echo 'selected'; } ?>><?=$row_rs_vendedores['nome'];?></option>
-                                        <? } while($row_rs_vendedores = mysql_fetch_assoc($rs_vendedores)); ?>
+                                        <option value="<?php echo $row_rs_vendedores['id'];?>" <?php if($row_rs_vendedores['id'] == $_GET['id_vendedor']) { echo 'selected'; } ?>><?php echo $row_rs_vendedores['nome'];?></option>
+                                        <?php } while($row_rs_vendedores = mysql_fetch_assoc($rs_vendedores)); ?>
                                       </select>
                                    </div>
                                       
@@ -188,17 +188,17 @@ body,td,th {
             <?php }while($row_rs_comissoes = mysql_fetch_assoc($rs_comissoes)); ?>
              <tr>
                 <td colspan="3" style="text-align:right"><strong>Total:</strong>&nbsp;</td>
-                <td style="text-align:center"><?=number_format($totaComissao,2,',','.');?></td>
-                <td style="text-align:center"><?=number_format($totalVenda,2,',','.');?></td>
+                <td style="text-align:center"><?php echo number_format($totaComissao,2,',','.');?></td>
+                <td style="text-align:center"><?php echo number_format($totalVenda,2,',','.');?></td>
                 <td style="text-align:center">&nbsp;</td>
               </tr>
-              <?
+              <?php
 			}
 			?>
               
             </tbody>
           </table>
-          <? 
+          <?php 
 		  } else { 
 		  	$HTML->nenhumRegistro();
 		  }

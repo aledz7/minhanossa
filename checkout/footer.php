@@ -77,15 +77,15 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1") || ($_POST[
                   </div>
                   <div class="footer-static-content">
                     <ul>
-                      <? if($_SESSION['MM_Username'] <> '') { ?>
+                      <?php if($_SESSION['MM_Username'] <> '') { ?>
                       <li> <a href="area-cliente.php">Meus Dados</a> </li>
                       <li> <a href="area-cliente.php">Meus Pedidos</a> </li>
                       <li> <a href="logout.php">Sair</a> </li>
-                      <? } else { ?>
+                      <?php } else { ?>
                       <li> <a href="cadastrar.php">Cadastrar</a> </li>
                       <li> <a href="carrinho.php">Ver carrinho</a> </li>
                       <li> <a href="login.php">Fazer Login</a> </li>
-                      <? } ?>
+                      <?php } ?>
                     </ul>
                   </div>
                 </div>
@@ -129,7 +129,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1") || ($_POST[
                 <div class="footer-static-content">
                   <?php if($infoSite->logo <> '') { ?>
                   <img src="../img_noticias/<?php echo $infoSite->logo ?>" width="60%" alt="">
-                  <?  } ?>
+                  <?php  } ?>
                   <p class="phone"> E-mail: <?php echo $infoSite->email; ?><br>
                     Telefone: <?php echo $infoSite->telefone; ?> </p>
                 </div>

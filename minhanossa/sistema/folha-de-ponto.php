@@ -29,7 +29,7 @@ include('rs-ponto.php');
 
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="load.js"></script>
-<? include('dialog-jquery/inc-abre-janela.php');?>
+<?php include('dialog-jquery/inc-abre-janela.php');?>
 
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-migrate-1.1.1.min.js"></script>
@@ -96,12 +96,12 @@ body,td,th {
                             <li class="filesearch">
                             		<div class="input-prepend">
                                       <span class="add-on">Data de In&iacute;cio</span>
-                                      <input id="dataInicio" type="text" name="dataInicio" class="input-small datepicker" style="padding:5px;" value="<?=$_GET['dataInicio'];?>" />                                    </div>
+                                      <input id="dataInicio" type="text" name="dataInicio" class="input-small datepicker" style="padding:5px;" value="<?php echo $_GET['dataInicio'];?>" />                                    </div>
                                    
                                    
                                    <div class="input-prepend">
                                       <span class="add-on">Data Final</span>
-                                      <input id="dataFim" value="<?=$_GET['dataFim'];?>" style="padding:5px;" type="text" name="dataFim" class="input-small datepicker" />                                    </div>
+                                      <input id="dataFim" value="<?php echo $_GET['dataFim'];?>" style="padding:5px;" type="text" name="dataFim" class="input-small datepicker" />                                    </div>
                                    
                                    
                                    <div class="input-prepend">
@@ -111,8 +111,8 @@ body,td,th {
                                       <select name="id_vendedor" id="id_vendedor" style="height:32px;" >
                                       	<option value=""></option>
 										<?php do { ?>
-                                        <option value="<?=$row_rs_vendedores['id'];?>" <?php if($row_rs_vendedores['id'] == $_GET['id_vendedor']) { echo 'selected'; } ?>><?=$row_rs_vendedores['nome'];?></option>
-                                        <? } while($row_rs_vendedores = mysql_fetch_assoc($rs_vendedores)); ?>
+                                        <option value="<?php echo $row_rs_vendedores['id'];?>" <?php if($row_rs_vendedores['id'] == $_GET['id_vendedor']) { echo 'selected'; } ?>><?php echo $row_rs_vendedores['nome'];?></option>
+                                        <?php } while($row_rs_vendedores = mysql_fetch_assoc($rs_vendedores)); ?>
                                       </select>
                                    </div>
                                       
@@ -122,8 +122,8 @@ body,td,th {
                             <li class="left newfilebtn"><a href="javascript:;" onClick="document.getElementById('formProvas').submit()" class="btn btn-primary"  style="padding:4px; margin-left:10px;">Pesquisar</a></li>
                             
                             <?php if($_GET['dataInicio'] <> '' and $_GET['dataFim'] <> '' and $_GET['id_vendedor'] <> '') { ?>
-                            <li class="left newfilebtn"><a href="javascript:;" onClick="abreJanelaJquery('imprimir-folha-de-ponto.php?&<?=$_SERVER['QUERY_STRING'];?>&imprimir=S', 'Imprimir Folha de Ponto', '', '950px', '500', rand(1,9999))" class="btn btn-primary"  style="padding:4px; margin-left:10px;">Imprimir</a></li>
-      <? } ?>                      
+                            <li class="left newfilebtn"><a href="javascript:;" onClick="abreJanelaJquery('imprimir-folha-de-ponto.php?&<?php echo $_SERVER['QUERY_STRING'];?>&imprimir=S', 'Imprimir Folha de Ponto', '', '950px', '500', rand(1,9999))" class="btn btn-primary"  style="padding:4px; margin-left:10px;">Imprimir</a></li>
+      <?php } ?>                      
                         </ul>
             </form>
                         <span class="clearall"></span>
@@ -167,13 +167,13 @@ body,td,th {
              
             <?php }while($row_rs_ponto = mysql_fetch_assoc($rs_ponto)); ?>
              
-              <?
+              <?php
 			}
 			?>
               
             </tbody>
           </table>
-          <? 
+          <?php 
 		  } else { 
 		  	$HTML->nenhumRegistro("Nenhum registro encontrado. Por favor, realize uma busca.");
 		  }

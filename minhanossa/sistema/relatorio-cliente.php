@@ -142,7 +142,7 @@ body,td,th {
                 <li class="filesearch">
                     <div class="input-prepend">
                     <span class="add-on">Palavra-Chave</span>
-                    <input id="busca" type="text" name="busca" class="input-small" style="padding:5px; width:200px;" value="<?=$_GET['busca'];?>" /> 
+                    <input id="busca" type="text" name="busca" class="input-small" style="padding:5px; width:200px;" value="<?php echo $_GET['busca'];?>" /> 
                     </div>
                                   
                 </li>

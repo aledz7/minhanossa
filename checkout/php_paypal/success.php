@@ -45,7 +45,7 @@
                <td width="20%" bgcolor="#EEEEEE"><table width="100%" border="0" cellspacing="3" cellpadding="3">
                      <tr align="left" valign="top"> 
                         <td width="20%" nowrap bgcolor="#EEEEEE" class="texto_preto">Order Number:</td>
-                        <td width="80%" bgcolor="#EEEEEE"><?=$_GET[tx]?></td>
+                        <td width="80%" bgcolor="#EEEEEE"><?=$_GET['tx']?></td>
                      </tr>
               </table></td>
             </tr>

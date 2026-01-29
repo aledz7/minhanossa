@@ -43,11 +43,11 @@ $totalRows_rs_pedidos_header = mysql_num_rows($rs_pedidos_header);
           <div class="english">
             <ul>
               <li> <a href="contato.php"> <i class="fa fa-headphones"></i>&nbsp;SAC </a> </li>
-              <? if($_SESSION['MM_Username'] <> '') { ?>
+              <?php if($_SESSION['MM_Username'] <> '') { ?>
               <li> <a href="area-cliente.php"> <i class="fa fa-user"></i>&nbsp;MINHA CONTA </a> </li>
-              <? } else { ?>
+              <?php } else { ?>
               <li> <a href="login.php"> <i class="fa fa-user"></i>&nbsp;LOGIN | CADASTRE-SE </a> </li>
-              <? } ?>
+              <?php } ?>
             </ul>
           </div>
         </div>
@@ -64,9 +64,9 @@ $totalRows_rs_pedidos_header = mysql_num_rows($rs_pedidos_header);
             <nav>
               <ul>
                 <li class="active1"> <a href="../">Home</a> </li>
-                <? do { ?>
+                <?php do { ?>
                   <li > <a href="<?php echo str_replace(array('[id]', '[nome]'),array($row_rs_menu_categoria_header['id'], $row_rs_menu_categoria_header['name']),$pagCategorias);?>" style="text-transform:none !important;"> <?php echo utf8_encode($row_rs_menu_categoria_header['name']) ?> </a> </li>
-                  <? } while($row_rs_menu_categoria_header = mysql_fetch_assoc($rs_menu_categoria_header)); ?>
+                  <?php } while($row_rs_menu_categoria_header = mysql_fetch_assoc($rs_menu_categoria_header)); ?>
               </ul>
             </nav>
           </div>
@@ -94,11 +94,11 @@ $totalRows_rs_pedidos_header = mysql_num_rows($rs_pedidos_header);
                 <?php /*?><div class="select-wrapper">
                                             <select class="select" name="categoria" id="categoria">
                                              <option value="">Categorias</option>
-                                              <? do { ?>
+                                              <?php do { ?>
                                               <option value="<?php echo $row_rs_categoria_header['id'] ?>">
                                                <?php echo $row_rs_categoria_header['name'] ?>
                                               </option>
-                                              <? } while($row_rs_categoria_header = mysql_fetch_assoc($rs_categoria_header)); ?>
+                                              <?php } while($row_rs_categoria_header = mysql_fetch_assoc($rs_categoria_header)); ?>
                                               </select>
                                         </div><?php */?>
                 <input class="input-text" type="text" id="busca" name="busca" placeholder="O que Você Precisa?" onKeyPress="return submitenter(this,event)">

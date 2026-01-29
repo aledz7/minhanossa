@@ -3,7 +3,7 @@ include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 $currentPage = 'news.php';
 
@@ -27,7 +27,7 @@ $totalRows_rs_cliente = mysql_num_rows($rs_cliente);
 
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="load.js"></script>
-<? include('dialog-jquery/inc-abre-janela.php');?>
+<?php include('dialog-jquery/inc-abre-janela.php');?>
 
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-migrate-1.1.1.min.js"></script>

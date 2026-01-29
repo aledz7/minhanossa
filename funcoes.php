@@ -1,4 +1,4 @@
-<?
+<?php
 if (!function_exists("verificaIncludeFuncoes")) {
 function verificaIncludeFuncoes() {}
 
@@ -96,7 +96,7 @@ $rs_status = mysql_query($query_rs_status, $conexao) or die(mysql_error());
 $row_rs_status = mysql_fetch_assoc($rs_status);
 $totalRows_rs_status = mysql_num_rows($rs_status);
 
-return ($row_rs_status[status]); }
+return ($row_rs_status['status']); }
 
 
 function fundoZebra() {
@@ -123,7 +123,7 @@ function timestamp($data) { //  DATA BR
 
 
 function buscaGenericad($inputCampo, $campoId, $targetParent, $tituloBusca, $tituloBanco, $javascript, $tabelas, $concatCampos, $where) { 
-	$_SESSION[javascript_.$inputCampo] = $javascript;
+	$_SESSION['javascript_'.$inputCampo] = $javascript;
 	$gets = "targetParent=".$targetParent."&inputCampo=".$inputCampo."&tituloBanco=".$tituloBanco."&tabelas=".$tabelas."&campoId=".$campoId."&concatCampos=".$concatCampos."&where=".urlencode($where);
 	$onClick = $targetParent."abreJanelaJquery('select-busca-generica.php?$gets', 'Busca de ".$tituloBusca."', '', '450px', '200', ".$targetParent."rand(1,9999))";
 	?>
@@ -149,7 +149,7 @@ function buscaGenericad($inputCampo, $campoId, $targetParent, $tituloBusca, $tit
 	<input name="<?=$inputCampo;?>" ondblclick="<?=$onClick;?>" placeholder="C&oacute;digo" type="text" class="txtbox55px" id="<?=$inputCampo;?>" autocomplete="off" onkeyup="clickDados<?=$inputCampo;?>(); " value="<?=$_GET['idAtual'];?>" autofocus value="<?=$_GET[$inputCampo];?>" />
 	<input type="hidden" name="digitadoBusGen" id="digitadoBusGen<?=$inputCampo;?>" value="" />
     <span id="desc_<?=$inputCampo;?>"><?=$_GET['label'];?></span>
-    <a href="javascript:;" onclick="<?=$onClick;?>" title="Buscar <? echo $tituloBusca;?>"><img src="images/Search.png" width="19" style="margin-bottom:-3px;" /></a>
+    <a href="javascript:;" onclick="<?=$onClick;?>" title="Buscar <?php echo $tituloBusca;?>"><img src="images/Search.png" width="19" style="margin-bottom:-3px;" /></a>
     <iframe id="enviaBuscaGenerica<?=$inputCampo;?>" name="enviaBuscaGenerica<?=$inputCampo;?>" src="" style="width:0px;height:0px;border:0px;"></iframe>
 <?
 }
@@ -258,21 +258,21 @@ function upload($campo, $pasta, $array) {
 	$tmp = (float)$usec + (float)$sec;	
 	
 	if($array == 'N' and $array != '0') {
-		if($_FILES[$campo][name]) {
+		if($_FILES[$campo]['name']) {
 			$file = $_FILES[$campo];
-			$file[name];
-			$ext = substr($file[name],strrpos($file[name],"."));
-			copy($file[tmp_name],$pasta."/$tmp-$campo-$array$ext");
+			$file['name'];
+			$ext = substr($file['name'],strrpos($file['name'],"."));
+			copy($file['tmp_name'],$pasta."/$tmp-$campo-$array$ext");
 			return("$tmp-$campo-$array$ext"); 
 		} else { 
 			return($_POST[$campo.'_Atual']); 
 		} // hidden com a foto _Atual.
 	} else {
-		if($_FILES[$campo][name][$array]) {
+		if($_FILES[$campo]['name'][$array]) {
 			$file = $_FILES[$campo];
-			$file[name][$array];
-			$ext = substr($file[name][$array],strrpos($file[name][$array],"."));
-			copy($file[tmp_name][$array],$pasta."/$tmp-$campo-$array$ext");
+			$file['name'][$array];
+			$ext = substr($file['name'][$array],strrpos($file['name'][$array],"."));
+			copy($file['tmp_name'][$array],$pasta."/$tmp-$campo-$array$ext");
 			return("$tmp-$campo-$array$ext"); 
 		} else { 
 			return($_POST[$campo.'_Atual'][$array]); 

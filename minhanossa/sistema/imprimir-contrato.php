@@ -90,7 +90,7 @@ if($_GET['qtdPago'] == '') {
       <td width="22%"><?php echo $row_rs_contrato['nomeLoja'];?></td>
       <td width="36%">Data do Contrato: <?php echo formataData($row_rs_contrato['data_contrato']);?> <?php echo substr($row_rs_contrato['data_contrato'],11,5);?></td>
       <td width="27%">Fone: <?php echo $row_rs_contrato['telLoja'];?></td>
-      <td width="15%" align="right">Contrato nº.: <?=$_GET['id'];?></td>
+      <td width="15%" align="right">Contrato nº.: <?php echo $_GET['id'];?></td>
     </tr>
   </tbody>
 </table>
@@ -126,11 +126,11 @@ localizada na: <?php echo $row_rs_contrato['logradouroLoja'];?>,
     </tr>
 	<?php do { ?>
       <tr>
-      <td height="28"><?=$row_rs_itens['nome_produto'];?></td>
-      <td><?=$row_rs_itens['nomeProduto'];?></td>
-      <td><?=$row_rs_itens['quantidade_produto'];?></td>
-      <td><?=number_format($row_rs_itens['valor_unitario_produto'],2,',','.');?></td>
-      <td><?=number_format($row_rs_itens['desconto_produto'],2,',','.');?></td>
+      <td height="28"><?php echo $row_rs_itens['nome_produto'];?></td>
+      <td><?php echo $row_rs_itens['nomeProduto'];?></td>
+      <td><?php echo $row_rs_itens['quantidade_produto'];?></td>
+      <td><?php echo number_format($row_rs_itens['valor_unitario_produto'],2,',','.');?></td>
+      <td><?php echo number_format($row_rs_itens['desconto_produto'],2,',','.');?></td>
       <td align="right"><?php $subtotal = $row_rs_itens['valor_total_produto']-$row_rs_itens['desconto_produto']; 
 	  	echo number_format($subtotal,2,',','.');
 		$total += $subtotal;
@@ -150,7 +150,7 @@ localizada na: <?php echo $row_rs_contrato['logradouroLoja'];?>,
 	?>
     <tr>
       <td height="28" colspan="5" align="right"><strong>Total:&nbsp;</strong></td>
-      <td align="right"><strong><?=number_format($total,2,',','.');?></strong></td>
+      <td align="right"><strong><?php echo number_format($total,2,',','.');?></strong></td>
     </tr>
     <tr>
           <td height="" colspan="6" style="border-top:#B0B0B0 solid 1px;"></td>
@@ -173,12 +173,12 @@ localizada na: <?php echo $row_rs_contrato['logradouroLoja'];?>,
     </tr>
 	<?php do { ?>
       <tr>
-      <td height="28"><?=$row_rs_itens['nome_produto'];?></td>
-      <td><?=$row_rs_itens['nomeProduto'];?></td>
-      <td><?=formataData($row_rs_contrato['data_evento']);?></td>
-      <td><?=formataData($row_rs_itens['data_prova']);?></td>
-      <td><?=formataData($row_rs_itens['data_retirada']);?></td>
-      <td><?=formataData($row_rs_itens['data_devolucao']);?></td>
+      <td height="28"><?php echo $row_rs_itens['nome_produto'];?></td>
+      <td><?php echo $row_rs_itens['nomeProduto'];?></td>
+      <td><?php echo formataData($row_rs_contrato['data_evento']);?></td>
+      <td><?php echo formataData($row_rs_itens['data_prova']);?></td>
+      <td><?php echo formataData($row_rs_itens['data_retirada']);?></td>
+      <td><?php echo formataData($row_rs_itens['data_devolucao']);?></td>
     </tr>
     <tr>
           <td height="" colspan="6" style="border-top:#B0B0B0 solid 1px;"></td>
@@ -190,7 +190,7 @@ localizada na: <?php echo $row_rs_contrato['logradouroLoja'];?>,
 <div style="font-weight:bold; margin-bottom:8px; margin-top:15px;">Observações Adicionais:</div>
 <div style="font-weight:bold; margin-bottom:8px; text-align:center">DO PREÇO E DAS CONDIÇÕES DE PAGAMENTO</div>
 
-<div style="margin-bottom:8px; ">A presente locação será remunerada pela quantia total de <span style="font-weight:bold;">R$ <?=number_format($total,2,',','.');?></span>, pelo período informado de acordo com cada item locado e informado neste contrato</div>
+<div style="margin-bottom:8px; ">A presente locação será remunerada pela quantia total de <span style="font-weight:bold;">R$ <?php echo number_format($total,2,',','.');?></span>, pelo período informado de acordo com cada item locado e informado neste contrato</div>
 
 <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top:20px;">
   <tbody>
@@ -206,10 +206,10 @@ localizada na: <?php echo $row_rs_contrato['logradouroLoja'];?>,
     </tr>
 	<?php do { ?>
       <tr>
-      <td height="28"><?=formataData($row_rs_pagamentos['data_pagamento']);?></td>
-      <td><?=$row_rs_pagamentos['formaPagamento'];?></td>
-      <td><?=$row_rs_pagamentos['parcelas'];?></td>
-      <td><?=number_format($row_rs_pagamentos['valor_pagamento'],2,',','.');?></td>
+      <td height="28"><?php echo formataData($row_rs_pagamentos['data_pagamento']);?></td>
+      <td><?php echo $row_rs_pagamentos['formaPagamento'];?></td>
+      <td><?php echo $row_rs_pagamentos['parcelas'];?></td>
+      <td><?php echo number_format($row_rs_pagamentos['valor_pagamento'],2,',','.');?></td>
       <td align="right">PAGO</td>
       </tr>
     <tr>
@@ -218,7 +218,7 @@ localizada na: <?php echo $row_rs_contrato['logradouroLoja'];?>,
     <?php }while($row_rs_pagamentos = mysql_fetch_assoc($rs_pagamentos)); ?>
     <tr>
       <td height="28" colspan="4" align="right"><strong>Total Pago:&nbsp;</strong></td>
-      <td align="right"><strong><?=number_format($total,2,',','.');?></strong></td>
+      <td align="right"><strong><?php echo number_format($total,2,',','.');?></strong></td>
     </tr>
     <tr>
           <td height="" colspan="5" style="border-top:#B0B0B0 solid 1px;"></td>
@@ -226,7 +226,7 @@ localizada na: <?php echo $row_rs_contrato['logradouroLoja'];?>,
   </tbody>
 </table>
 
-<div style="margin-bottom:8px; margin-top:15px;"><?=$row_rs_contratoClausula['clausula']?></div>
+<div style="margin-bottom:8px; margin-top:15px;"><?php echo $row_rs_contratoClausula['clausula']?></div>
 
 <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top:20px;">
   <tbody>

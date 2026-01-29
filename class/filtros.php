@@ -30,7 +30,7 @@ if($FiltrosInstanciada == '') {
 					}
 					?>
 			</select>
-        <?
+        <?php
 		}
 	}
 	

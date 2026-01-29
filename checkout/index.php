@@ -89,7 +89,7 @@ $conteudos = Conteudos::getInstance(Conexao::getInstance());
 ?>
 <!doctype html>
 <html class="no-js" lang="pt-BR">
-    <? include('head.php'); ?>
+    <?php include('head.php'); ?>
 <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -97,7 +97,7 @@ $conteudos = Conteudos::getInstance(Conexao::getInstance());
         <!-- Add your site or application content here -->
         <!-- start header_area
 		============================================ -->
-        <? include('header.php'); ?>
+        <?php include('header.php'); ?>
         <!-- end header_area
 		============================================ -->
         <!-- main slider -->
@@ -140,7 +140,7 @@ $conteudos = Conteudos::getInstance(Conexao::getInstance());
                             <img class="primary-img" src="../img_noticias/<?php echo $item->foto ?>" alt="" />
                        
                         </div>
-                     <? } ; ?>
+                     <?php } ; ?>
                     </div>
                     <!-- SLIDE DE MARCAS --><?php */?>
 
@@ -163,7 +163,7 @@ $conteudos = Conteudos::getInstance(Conexao::getInstance());
                                 <div class="row">
                                  <div class="shop-tab">
                                  
-                                  <? do { ?>
+                                  <?php do { ?>
                                   <div class=" col-md-3">
                                    <div class="single-product">
                                     <div class="product-img">
@@ -205,7 +205,7 @@ $conteudos = Conteudos::getInstance(Conexao::getInstance());
                                     </div>
                                    </div>
                                   </div>
-                                  <? } while($row_rs_novidades = mysql_fetch_assoc($rs_novidades)); ?>
+                                  <?php } while($row_rs_novidades = mysql_fetch_assoc($rs_novidades)); ?>
                             </div>
                         </div>				
                     </div>
@@ -228,7 +228,7 @@ $conteudos = Conteudos::getInstance(Conexao::getInstance());
        </div>
       </div>
 
-    <? do { ?>
+    <?php do { ?>
       <div class=" col-md-3">
        <div class="single-product">
         <div class="product-img">
@@ -270,7 +270,7 @@ $conteudos = Conteudos::getInstance(Conexao::getInstance());
         </div>
        </div>
       </div>        
-    <? } while($row_rs_mais_vendido = mysql_fetch_assoc($rs_mais_vendido)); ?>
+    <?php } while($row_rs_mais_vendido = mysql_fetch_assoc($rs_mais_vendido)); ?>
                                         
 
                                             <!-- ADS -->
@@ -282,7 +282,7 @@ $conteudos = Conteudos::getInstance(Conexao::getInstance());
 		============================================ -->
         <!-- end footer-address
 		============================================ -->
-        <? include('footer.php'); ?>
+        <?php include('footer.php'); ?>
         <!-- end footer-address
 		============================================ -->
         <!-- start scrollUp

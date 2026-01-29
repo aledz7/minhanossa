@@ -96,7 +96,7 @@ body,td,th {
                             <li class="filesearch">
                             		<div class="input-prepend">
                                       <span class="add-on">Palavra-Chave</span>
-                                      <input id="busca" type="text" name="busca" class="input-small" style="padding:5px; width:200px;" value="<?=$_GET['busca'];?>" />                                    </div>
+                                      <input id="busca" type="text" name="busca" class="input-small" style="padding:5px; width:200px;" value="<?php echo $_GET['busca'];?>" />                                    </div>
                                   
                             </li>
                             <li class="left newfilebtn"><a href="javascript:;" onClick="document.getElementById('formProvas').submit()" class="btn btn-primary"  style="padding:4px; margin-left:10px;">Pesquisar</a></li>	
@@ -155,9 +155,9 @@ body,td,th {
               
             </tbody>
           </table>
-          <? } else { ?>
+          <?php } else { ?>
           <div align="center" style="font-size:15px;">Nenhum registro encontrado.</div>
-          <? } ?>
+          <?php } ?>
         </div>
         <!--widgetcontent-<?php
 mysql_free_result($rs_cliente);

@@ -3,7 +3,7 @@ include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 $currentPage = 'contrato_cadastro.php';
 
@@ -90,7 +90,7 @@ $totalRows_rs_cliente = mysql_num_rows($rs_cliente);
 
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="load.js"></script>
-<? include('dialog-jquery/inc-abre-janela.php');?>
+<?php include('dialog-jquery/inc-abre-janela.php');?>
 
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-migrate-1.1.1.min.js"></script>
@@ -163,20 +163,20 @@ body,td,th {
 
                 <div class="input-prepend">
                   <span class="add-on">Data Retirada (De)</span>
-                  <input id="dataSaidaDe" type="text" name="dataSaidaDe" class="input-small datepicker" style="padding:5px;" value="<?=$_GET['dataSaidaDe'];?>" />                                    
+                  <input id="dataSaidaDe" type="text" name="dataSaidaDe" class="input-small datepicker" style="padding:5px;" value="<?php echo $_GET['dataSaidaDe'];?>" />                                    
                 </div>
                 <div class="input-prepend">
                   <span class="add-on">Data Retirada (AtÃ©)</span>
-                  <input id="dataSaidaAte" type="text" name="dataSaidaAte" class="input-small datepicker" style="padding:5px;" value="<?=$_GET['dataSaidaAte'];?>" />                                    
+                  <input id="dataSaidaAte" type="text" name="dataSaidaAte" class="input-small datepicker" style="padding:5px;" value="<?php echo $_GET['dataSaidaAte'];?>" />                                    
                 </div>
                 <div class="input-prepend">
                   <span class="add-on">Data Devolu&ccedil;&atilde;o</span>
-                  <input id="dataRetorno" type="text" name="dataRetorno" class="input-small datepicker" style="padding:5px;" value="<?=$_GET['dataRetorno'];?>" />                                    
+                  <input id="dataRetorno" type="text" name="dataRetorno" class="input-small datepicker" style="padding:5px;" value="<?php echo $_GET['dataRetorno'];?>" />                                    
                 </div>
 								
 								    <div class="input-prepend">
                                       <span class="add-on">C&oacute;digo</span>
-                                      <input id="buscaCodigo" type="text" name="buscaCodigo" class="input-small" style="padding:5px;" value="<?=$_GET['buscaCodigo'];?>" />                                    
+                                      <input id="buscaCodigo" type="text" name="buscaCodigo" class="input-small" style="padding:5px;" value="<?php echo $_GET['buscaCodigo'];?>" />                                    
                                       </div>
 								
                             		<div class="input-prepend">
@@ -300,7 +300,7 @@ $somavalor += $row_rs_editar_item['valorVenda'];
 	?>
                 </td>
 				  
-				  <td style="text-align:center"><?=number_format($valor,2,',','.')?></td>
+				  <td style="text-align:center"><?php echo number_format($valor,2,',','.')?></td>
 				  
                 <td colspan="2" class="centeralign">
                     <a href="editar_contrato.php?id=<?php echo $row_rs_contrato['id'];?>"class="btn btn-primary btn-mini"> <i class="icon-pencil"></i> &nbsp; Gerenciar
@@ -326,8 +326,8 @@ $somavalor += $row_rs_editar_item['valorVenda'];
                   <tr>
                     <td> 
 <span class="BuscaTexto1">P&aacute;ginas de resultados:</span><span class="texto1 style1">
-<?
-$pag = $_GET[pageNum_rs_contratos];
+<?php
+$pag = $_GET['pageNum_rs_contratos'];
 
 $totalPages_rs_contratos++;
 for ($i=0; $i< $totalPages_rs_contratos; $i=$i+1)
@@ -335,7 +335,7 @@ for ($i=0; $i< $totalPages_rs_contratos; $i=$i+1)
 $a=$a+1; 
 if ($n==$i) 
 {
-echo "<A href=?pageNum_rs_contratos=".$_GET['pageNum_rs_contratos='].'0'."&totalRows_rs_contratos=".$totalRows_rs_contratos."&tipo=".$_GET[tipo]."&dataInicio=".$_GET[dataInicio]."&dataFim=".$_GET[dataFim]."&id_produto=".$_GET[id_produto]."&id_cliente=".$_GET[id_cliente]." style='color:rgba(0,0,0,1.00)'><B>".$a."</B></A><strong>&nbsp;&nbsp;| </strong>";
+echo "<A href=?pageNum_rs_contratos=".$_GET['pageNum_rs_contratos='].'0'."&totalRows_rs_contratos=".$totalRows_rs_contratos."&tipo=".$_GET['tipo']."&dataInicio=".$_GET['dataInicio']."&dataFim=".$_GET['dataFim']."&id_produto=".$_GET['id_produto']."&id_cliente=".$_GET['id_cliente']." style='color:rgba(0,0,0,1.00)'><B>".$a."</B></A><strong>&nbsp;&nbsp;| </strong>";
 }
 else
 {
@@ -347,7 +347,7 @@ if($pag == $p) {
 	$estilo = "style='color:rgba(0,0,0,1.00)'"; 
 }
 
-echo "<A href=?pageNum_rs_contratos=".$_GET['pageNum_rs_contratos='].$p."&totalRows_rs_contratos=".$totalRows_rs_contratos."&tipo=".$_GET[tipo]."&dataInicio=".$_GET[dataInicio]."&dataFim=".$_GET[dataFim]."&id_produto=".$_GET[id_produto]."&id_cliente=".$_GET[id_cliente]." {$estilo}><b> ".$a." </b></A>&nbsp;|";
+echo "<A href=?pageNum_rs_contratos=".$_GET['pageNum_rs_contratos='].$p."&totalRows_rs_contratos=".$totalRows_rs_contratos."&tipo=".$_GET['tipo']."&dataInicio=".$_GET['dataInicio']."&dataFim=".$_GET['dataFim']."&id_produto=".$_GET['id_produto']."&id_cliente=".$_GET['id_cliente']." {$estilo}><b> ".$a." </b></A>&nbsp;|";
 }
 }
 $totalPages_rs_contratos--;

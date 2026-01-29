@@ -47,7 +47,7 @@ $totalRows_rs_resultado = mysql_num_rows($rs_resultado);
 ?>
 <!doctype html>
 <html class="no-js" lang="">
-    <? include('head.php'); ?>
+    <?php include('head.php'); ?>
     <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -55,7 +55,7 @@ $totalRows_rs_resultado = mysql_num_rows($rs_resultado);
         <!-- Add your site or application content here -->
         <!-- start header_area
 		============================================ -->
-         <? include('header.php'); ?>
+         <?php include('header.php'); ?>
         <!-- end header_area
 		============================================ -->
         <!-- start main_shop_area
@@ -82,7 +82,7 @@ $totalRows_rs_resultado = mysql_num_rows($rs_resultado);
             <div class="main_shop_all">
                 <div class="container">
                     <div class="row">
-                        <? include('inc-coluna.php'); ?>
+                        <?php include('inc-coluna.php'); ?>
                         
                         <div class="col-md-9 col-sm-9 col-xs-12">
                          <div class="row">
@@ -91,14 +91,14 @@ $totalRows_rs_resultado = mysql_num_rows($rs_resultado);
                             <div class="tab-content">
                              <div role="tabpanel" class="tab-pane active" id="profile">
                               <div class="row">
-                              <? if($totalRows_rs_resultado > 0){ ?>
-                               <? do { ?>
+                              <?php if($totalRows_rs_resultado > 0){ ?>
+                               <?php do { ?>
                                <div class="li-item">
                                 <div class="col-md-4 col-sm-4">
                                  <div class="single-product">
-                                 <? if($row_rs_resultado['promocao'] == 'S') { ?>
+                                 <?php if($row_rs_resultado['promocao'] == 'S') { ?>
                                    <span class="sale-text">Oferta!</span>
-                                 <? } ?>
+                                 <?php } ?>
                                    <div class="product-img">
                                     <a href="desc-produtos.php?id-produto=<?php echo $row_rs_resultado['id'] ?>">
                                      <img class="primary-image" alt="" src="imagens/<?php echo $row_rs_resultado['foto'] ?>">
@@ -144,10 +144,10 @@ $totalRows_rs_resultado = mysql_num_rows($rs_resultado);
                                  </div>
                                 </div>
                                </div>
-                               <? } while($row_rs_resultado = mysql_fetch_assoc($rs_resultado)); ?>
-                               <? } else { ?>
+                               <?php } while($row_rs_resultado = mysql_fetch_assoc($rs_resultado)); ?>
+                               <?php } else { ?>
                                 Não foi possível retornar um produto para a palavra-chave usada "<?php echo $_GET['txtProduto']?>".
-                               <? } ?>
+                               <?php } ?>
                               </div>	
                              </div>
                             </div>
@@ -161,7 +161,7 @@ $totalRows_rs_resultado = mysql_num_rows($rs_resultado);
             </div>
         </section>
 
-		<? include('footer.php') ?>
+		<?php include('footer.php') ?>
         	        
         <!-- end footer-address
 		============================================ -->

@@ -35,7 +35,7 @@ $totalRows_rs_contas = mysql_num_rows($rs_contas);
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Financeiro > Contas > <?=($_GET['tipo'] == 'D') ? 'Pagar' : 'Receber';?></title>
+<title>Financeiro > Contas > <?php echo ($_GET['tipo'] == 'D') ? 'Pagar' : 'Receber';?></title>
 
 <link rel="stylesheet" href="css/style.default.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap-fileupload.min.css" type="text/css" />
@@ -76,12 +76,12 @@ body,td,th {
 <div class="rightpanel">
   <ul class="breadcrumbs">
     <li><a href="."><i class="iconfa-home"></i></a> <span class="separator"></span></li>
-    <li><a href="contas_receber.php">Contas a <?=($_GET['tipo'] == 'D') ? 'Pagar' : 'Receber';?></a></li>
+    <li><a href="contas_receber.php">Contas a <?php echo ($_GET['tipo'] == 'D') ? 'Pagar' : 'Receber';?></a></li>
     
   </ul>
   <div class="pageheader">
   
-    	<a href="add_contas.php?tipo=<?=$_GET['tipo'];?>" class="btn btn-primary btn-mini searchbar"> <i class="icon-plus"></i> &nbsp; Novo</a>
+    	<a href="add_contas.php?tipo=<?php echo $_GET['tipo'];?>" class="btn btn-primary btn-mini searchbar"> <i class="icon-plus"></i> &nbsp; Novo</a>
     
     <!--<form action="results.html" method="post" class="searchbar" />
                 <input type="text" name="keyword" placeholder="To search type and hit enter..." />
@@ -89,7 +89,7 @@ body,td,th {
     <div class="pageicon"><span class="iconfa-edit"></span></div>
     <div class="pagetitle" >
       <h5>Financeiro</h5>
-      <h1>Contas a <?=($_GET['tipo'] == 'D') ? 'Pagar' : 'Receber';?></h1>
+      <h1>Contas a <?php echo ($_GET['tipo'] == 'D') ? 'Pagar' : 'Receber';?></h1>
     </div>
     
     
@@ -99,7 +99,7 @@ body,td,th {
   <div class="maincontent">
     <div class="maincontentinner">
       <div class="widget">
-        <h4 class="widgettitle"><span class="iconfa-shopping-cart"></span>Contas a <?=($_GET['tipo'] == 'D') ? 'Pagar' : 'Receber';?></h4>
+        <h4 class="widgettitle"><span class="iconfa-shopping-cart"></span>Contas a <?php echo ($_GET['tipo'] == 'D') ? 'Pagar' : 'Receber';?></h4>
         <div class="widgetcontent">
         
           <div class="mediamgr_head">
@@ -108,12 +108,12 @@ body,td,th {
                             <li class="filesearch">
                             		<div class="input-prepend">
                                       <span class="add-on">Data de In&iacute;cio</span>
-                                      <input id="dataInicio" type="text" name="dataInicio" class="input-small datepicker" style="padding:5px;" value="<?=$_GET['dataInicio'];?>" />                                    </div>
+                                      <input id="dataInicio" type="text" name="dataInicio" class="input-small datepicker" style="padding:5px;" value="<?php echo $_GET['dataInicio'];?>" />                                    </div>
                                    
                                    
                                    <div class="input-prepend">
                                       <span class="add-on">Data Final</span>
-                                      <input id="dataFim" value="<?=$_GET['dataFim'];?>" style="padding:5px;" type="text" name="dataFim" class="input-small datepicker" />                                    </div>
+                                      <input id="dataFim" value="<?php echo $_GET['dataFim'];?>" style="padding:5px;" type="text" name="dataFim" class="input-small datepicker" />                                    </div>
                                    
                                    
                                    <div class="input-prepend">
@@ -128,7 +128,7 @@ body,td,th {
                             </li>
                             <li class="left newfilebtn"><a href="javascript:;" onClick="document.getElementById('formProvas').submit()" class="btn btn-primary"  style="padding:4px; margin-left:10px;">Pesquisar</a></li>
                         </ul>
-                        <input type="hidden" name="tipo" value="<?=$_GET['tipo'];?>">
+                        <input type="hidden" name="tipo" value="<?php echo $_GET['tipo'];?>">
             </form>
                         <span class="clearall"></span>
                     </div>
@@ -160,7 +160,7 @@ body,td,th {
                     <a href="editar_contas.php?id=<?php echo $row_rs_contas['id'];?>"class="btn btn-primary btn-mini"> <i class="icon-pencil"></i> &nbsp; Editar
                     
                     </a>
-                	<a href="sql_excluir.php?id=<?php echo $row_rs_contas['id']; ?>&acao=excluirContas&tipo=<?=$_GET['tipo'];?>" class="btn btn-danger btn-mini" style="margin-left:7px;"> <i class="iconfa-remove"></i> Excluir
+                	<a href="sql_excluir.php?id=<?php echo $row_rs_contas['id']; ?>&acao=excluirContas&tipo=<?php echo $_GET['tipo'];?>" class="btn btn-danger btn-mini" style="margin-left:7px;"> <i class="iconfa-remove"></i> Excluir
                     </a>
 				</td>
                 </tr>
@@ -186,7 +186,7 @@ body,td,th {
               
             </tbody>
           </table>
-          <? } else { 
+          <?php } else { 
 		  		$HTML->nenhumRegistro();
 		   } ?>
         </div>

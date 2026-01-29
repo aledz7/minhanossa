@@ -2,7 +2,7 @@
 include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 
 mysql_select_db($database_conexao, $conexao);
@@ -51,7 +51,7 @@ if((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "formEditcontrato")) 
 	mysql_select_db($database_conexao, $conexao);
 	$Result1 = mysql_query($deleteSQL, $conexao) or die(mysql_error());	
 		
-	for($i = 0 ; $i < count($_POST[nome_produto]);$i++){
+	for($i = 0 ; $i < count($_POST['nome_produto']);$i++){
 		
 		
 		$insertSQL = sprintf("INSERT INTO tbl_item (nome_produto, quantidade_produto, valor_unitario_produto, desconto_produto, valor_total_produto, id_contrato, data_prova, data_retirada, data_devolucao, retirado_em, devolvido_em, busto, cintura, quadril, corpo, saia, paleto, comprimento, manga, camisa, colete, tamanho, colarinho, calca, barra, cintura_homem, sapato, comentario_item, id_cliente) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
@@ -107,7 +107,7 @@ if((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "formEditcontrato")) 
 	mysql_select_db($database_conexao, $conexao);
 	$Result1 = mysql_query($deleteSQL, $conexao) or die(mysql_error());	
 		
-	for($o = 0 ; $o < count($_POST[valor_pagamento]);$o++){			
+	for($o = 0 ; $o < count($_POST['valor_pagamento']);$o++){			
 		$insertSQL = sprintf("INSERT INTO tbl_pagamento (data_pagamento, forma_pagamento, parcelas, valor_pagamento, id_contrato, id_cliente) VALUES (%s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['data_pagamento'][$o], "text"),
                        GetSQLValueString($_POST['forma_pagamento'][$o], "text"),
@@ -203,7 +203,7 @@ $totalRows_rs_contrato = mysql_num_rows($rs_contrato);
 
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="load.js"></script>
-<? include('dialog-jquery/inc-abre-janela.php');?>
+<?php include('dialog-jquery/inc-abre-janela.php');?>
 
 <script src="js/number_format.js"></script>
 <script src="js/outras-funcoes.js"></script>

@@ -3,7 +3,7 @@
 include('Connections/conexao.php');
 include('funcoes.php');
 
-	if($_GET[acao] == 'excluirUsuario') {
+	if($_GET['acao'] == 'excluirUsuario') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_admin WHERE id=%s",
@@ -18,7 +18,7 @@ include('funcoes.php');
 	";
 	}
 
-if($_GET[acao] == 'excluiracervo') {
+if($_GET['acao'] == 'excluiracervo') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_acervo WHERE id=%s",
@@ -33,7 +33,7 @@ if($_GET[acao] == 'excluiracervo') {
 	";
 	}
 
-	if($_GET[acao] == 'excluirProduto') {
+	if($_GET['acao'] == 'excluirProduto') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_produto WHERE id=%s",
@@ -47,7 +47,7 @@ if($_GET[acao] == 'excluiracervo') {
 	</script>
 	";
 	}
-	if($_GET[acao] == 'excluirLoja') {
+	if($_GET['acao'] == 'excluirLoja') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_loja WHERE id=%s",
@@ -63,7 +63,7 @@ if($_GET[acao] == 'excluiracervo') {
 	}
 
 
-	if($_GET[acao] == 'excluirCats') {
+	if($_GET['acao'] == 'excluirCats') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_cats WHERE id=%s",
@@ -83,7 +83,7 @@ if($_GET[acao] == 'excluiracervo') {
 
 
 
-	if($_GET[acao] == 'excluirCliente') {
+	if($_GET['acao'] == 'excluirCliente') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_cliente WHERE id=%s",
@@ -99,7 +99,7 @@ if($_GET[acao] == 'excluiracervo') {
 	}
 	
 	
-	if($_GET[acao] == 'excluirFornecedor') {
+	if($_GET['acao'] == 'excluirFornecedor') {
 		mysql_select_db($database_conexao, $conexao);
 		$deleteSQL = sprintf("DELETE FROM tbl_fornecedores WHERE id=%s",
                        GetSQLValueString($_GET['id'], "int"));
@@ -112,7 +112,7 @@ if($_GET[acao] == 'excluiracervo') {
 				exit;
 	}
 	
-	if($_GET[acao] == 'excluirContrato') {
+	if($_GET['acao'] == 'excluirContrato') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_contrato WHERE id=%s",
@@ -125,7 +125,7 @@ if($_GET[acao] == 'excluiracervo') {
 			</script>";
 			exit;
 	}
-	if($_GET[acao] == 'excluirCatProduto') {
+	if($_GET['acao'] == 'excluirCatProduto') {
 		mysql_select_db($database_conexao, $conexao);
 
 		$deleteSQL = sprintf("DELETE FROM tbl_subcategorias WHERE id_categoria=%s",
@@ -144,7 +144,7 @@ if($_GET[acao] == 'excluiracervo') {
 	</script>
 	";
 	}
-	if($_GET[acao] == 'excluirContas') {
+	if($_GET['acao'] == 'excluirContas') {
 		mysql_select_db($database_conexao, $conexao);
 		$deleteSQL = sprintf("DELETE FROM tbl_contas WHERE id=%s",
                        GetSQLValueString($_GET['id'], "int"));
@@ -156,7 +156,7 @@ if($_GET[acao] == 'excluiracervo') {
 				</script>";
 				exit;
 	}
-	if($_GET[acao] == 'excluirContasReceber') {
+	if($_GET['acao'] == 'excluirContasReceber') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_contas_receber WHERE id=%s",
@@ -171,7 +171,7 @@ if($_GET[acao] == 'excluiracervo') {
 	";
 	}
         
-        if($_GET[acao] == 'excluirPlano') {
+        if($_GET['acao'] == 'excluirPlano') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_plano WHERE id=%s",
@@ -186,7 +186,7 @@ if($_GET[acao] == 'excluiracervo') {
 	";
 	}
 
-if($_GET[acao] == 'excluirMarca') {
+if($_GET['acao'] == 'excluirMarca') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_marcas WHERE id=%s",
@@ -204,7 +204,7 @@ if($_GET[acao] == 'excluirMarca') {
 
 
 
-if($_GET[acao] == 'excluirFotos') {
+if($_GET['acao'] == 'excluirFotos') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_home WHERE id=%s",
@@ -223,7 +223,7 @@ if($_GET[acao] == 'excluirFotos') {
 
 
 
-if($_GET[acao] == 'excluirPecas') {
+if($_GET['acao'] == 'excluirPecas') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_pecas WHERE id=%s",
@@ -238,7 +238,7 @@ if($_GET[acao] == 'excluirPecas') {
 	";
 	}
         
-        if($_GET[acao] == 'excluirColecaoProduto') {
+        if($_GET['acao'] == 'excluirColecaoProduto') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_colecao WHERE id=%s",
@@ -252,7 +252,7 @@ if($_GET[acao] == 'excluirPecas') {
 	</script>
 	";
 	}
-        if($_GET[acao] == 'excluirCores') {
+        if($_GET['acao'] == 'excluirCores') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_cores WHERE id=%s",
@@ -267,7 +267,7 @@ if($_GET[acao] == 'excluirPecas') {
 	";
 	}
         
-        if($_GET[acao] == 'excluirComposicao') {
+        if($_GET['acao'] == 'excluirComposicao') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_composicoes WHERE id=%s",
@@ -281,7 +281,7 @@ if($_GET[acao] == 'excluirPecas') {
 	</script>
 	";
 	}
-        if($_GET[acao] == 'excluirFormaPagamento') {
+        if($_GET['acao'] == 'excluirFormaPagamento') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_forma_pagamento WHERE id=%s",
@@ -295,7 +295,7 @@ if($_GET[acao] == 'excluirPecas') {
 	</script>
 	";
 	}
-        if($_GET[acao] == 'excluirCartaoPresente') {
+        if($_GET['acao'] == 'excluirCartaoPresente') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_cartao_presente WHERE id=%s",
@@ -310,7 +310,7 @@ if($_GET[acao] == 'excluirPecas') {
 	";
 	}
 
-	if($_GET[acao] == 'excluirBlog') {
+	if($_GET['acao'] == 'excluirBlog') {
 		mysql_select_db($database_conexao, $conexao);
 		
 		$deleteSQL = sprintf("DELETE FROM tbl_blog WHERE id=%s",

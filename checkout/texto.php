@@ -39,7 +39,7 @@ $totalRows_rs_texto = mysql_num_rows($rs_texto);
 ?>
 <!doctype html>
 <html class="no-js" lang="">
-    <? include('head.php') ?>
+    <?php include('head.php') ?>
     <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -47,7 +47,7 @@ $totalRows_rs_texto = mysql_num_rows($rs_texto);
         <!-- Add your site or application content here -->
         <!-- start header_area
 		============================================ -->
-        <? include('header.php'); ?>
+        <?php include('header.php'); ?>
         <!-- end header_area
 		============================================ -->
         <!-- start main_shop_area
@@ -91,7 +91,7 @@ $totalRows_rs_texto = mysql_num_rows($rs_texto);
             </div>
         </section>
 
-        <? include('footer.php'); ?>
+        <?php include('footer.php'); ?>
         
         <!-- end footer-address
 		============================================ -->

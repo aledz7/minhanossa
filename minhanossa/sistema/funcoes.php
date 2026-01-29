@@ -1,4 +1,4 @@
-<?
+<?php
 $dadosSite['titulo'] = 'MINHA NOSSA';
 $dadosSite['email'] = 'contato@minhanossa.net.br';
 
@@ -180,35 +180,35 @@ function buscaGenericad($inputCampo, $campoId, $targetParent, $tituloBusca, $tit
 		$inputId = $inputCampo;
 	}
 
-	$_SESSION[javascript_.$inputId] = $javascript;
+	$_SESSION['javascript_'.$inputId] = $javascript;
 	$gets = "targetParent=".$targetParent."&inputCampo=".$inputId."&tituloBanco=".$tituloBanco."&tabelas=".$tabelas."&campoId=".$campoId."&concatCampos=".$concatCampos."&where=".urlencode($where);
 	$onClick = $targetParent."abreJanelaJquery('select-busca-generica.php?$gets', 'Busca de ".$tituloBusca."', '', '450px', '200', ".$targetParent."rand(1,9999))";
 	?>
     <script>
 	var tempoDados = '';
 	
-	function pegaDadosBGen<?=$inputId;?>() {
-		if(document.getElementById('<?=$inputId;?>').value != document.getElementById('digitadoBusGen<?=$inputId;?>').value && document.getElementById('<?=$inputId;?>').value != '') {
-			document.getElementById('enviaBuscaGenerica<?=$inputId;?>').src='select-busca-generica.php?busca=***&id=' + document.getElementById('<?=$inputId;?>').value + '&<?=$gets;?>';
-			document.getElementById('digitadoBusGen<?=$inputId;?>').value = document.getElementById('<?=$inputId;?>').value;
+	function pegaDadosBGen<?php echo $inputId;?>() {
+		if(document.getElementById('<?php echo $inputId;?>').value != document.getElementById('digitadoBusGen<?php echo $inputId;?>').value && document.getElementById('<?php echo $inputId;?>').value != '') {
+			document.getElementById('enviaBuscaGenerica<?php echo $inputId;?>').src='select-busca-generica.php?busca=***&id=' + document.getElementById('<?php echo $inputId;?>').value + '&<?php echo $gets;?>';
+			document.getElementById('digitadoBusGen<?php echo $inputId;?>').value = document.getElementById('<?php echo $inputId;?>').value;
 		}
 	}
 	
-	function clickDados<?=$inputId;?>() {
-		document.getElementById('desc_<?=$inputId;?>').innerHTML='<img src="images/loading2.gif" width="16" height="11" />';
-		if(document.getElementById('<?=$inputId;?>').value == '') {
-			document.getElementById('desc_<?=$inputId;?>').innerHTML='';
+	function clickDados<?php echo $inputId;?>() {
+		document.getElementById('desc_<?php echo $inputId;?>').innerHTML='<img src="images/loading2.gif" width="16" height="11" />';
+		if(document.getElementById('<?php echo $inputId;?>').value == '') {
+			document.getElementById('desc_<?php echo $inputId;?>').innerHTML='';
 		}
-		tempoDados<?=$inputId;?> = window.setTimeout(pegaDadosBGen<?=$inputId;?>, 1000);
+		tempoDados<?php echo $inputId;?> = window.setTimeout(pegaDadosBGen<?php echo $inputId;?>, 1000);
 	}
 	
 	</script>
-	<input name="<?=$inputCampo;?>" ondblclick="<?=$onClick;?>" placeholder="C&oacute;digo" type="text" class="txtbox55px" id="<?=$inputId;?>" autocomplete="off" onkeyup="clickDados<?=$inputId;?>(); " value="<?=$_GET['idAtual'];?>" style="width:60px; margin-bottom:2px; text-align:center;" />
-	<input type="hidden" name="digitadoBusGen" id="digitadoBusGen<?=$inputId;?>" value="" />
-    <span id="desc_<?=$inputId;?>"><?='&nbsp;&nbsp;'.$_GET['label'];?></span>
-    <a href="javascript:;" onclick="<?=$onClick;?>" title="Buscar <? echo $tituloBusca;?>"><img src="images/Search.png" width="19" style="margin-bottom:-3px;" /></a>
-    <iframe id="enviaBuscaGenerica<?=$inputId;?>" name="enviaBuscaGenerica<?=$inputId;?>" src="" style="width:0px;height:0px;border:0px;"></iframe>
-<?
+	<input name="<?php echo $inputCampo;?>" ondblclick="<?php echo $onClick;?>" placeholder="C&oacute;digo" type="text" class="txtbox55px" id="<?php echo $inputId;?>" autocomplete="off" onkeyup="clickDados<?php echo $inputId;?>(); " value="<?php echo $_GET['idAtual'];?>" style="width:60px; margin-bottom:2px; text-align:center;" />
+	<input type="hidden" name="digitadoBusGen" id="digitadoBusGen<?php echo $inputId;?>" value="" />
+    <span id="desc_<?php echo $inputId;?>"><?php echo '&nbsp;&nbsp;'.$_GET['label'];?></span>
+    <a href="javascript:;" onclick="<?php echo $onClick;?>" title="Buscar <?php echo $tituloBusca;?>"><img src="images/Search.png" width="19" style="margin-bottom:-3px;" /></a>
+    <iframe id="enviaBuscaGenerica<?php echo $inputId;?>" name="enviaBuscaGenerica<?php echo $inputId;?>" src="" style="width:0px;height:0px;border:0px;"></iframe>
+<?php
 }
 
 

@@ -11,7 +11,7 @@ $produtos = Produtos::getInstance(Conexao::getInstance());
 ?>
 <!doctype html>
 <html class="no-js" lang="">
-  <? include('head.php') ?>
+  <?php include('head.php') ?>
 <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -19,7 +19,7 @@ $produtos = Produtos::getInstance(Conexao::getInstance());
         <!-- Add your site or application content here -->
         <!-- start header_area
 		============================================ -->
-         <? include('header.php'); ?>
+         <?php include('header.php'); ?>
         <!-- end header_area
 		============================================ -->
         <!-- start main_shop_area
@@ -46,7 +46,7 @@ $produtos = Produtos::getInstance(Conexao::getInstance());
          <div class="main_shop_all">
           <div class="container">
            <div class="row">
-            <? include('inc-coluna.php'); ?>
+            <?php include('inc-coluna.php'); ?>
            
           <div class="col-md-9 col-sm-9 col-xs-12">
            <div class="row">
@@ -56,15 +56,15 @@ $produtos = Produtos::getInstance(Conexao::getInstance());
                <div role="tabpanel" class="tab-pane active" id="home">
                 <div class="row">
                  <div class="shop-tab">
-                 <? 
+                 <?php 
 				 $rsProdutos = $produtos->rsDados('', '', '', $_GET['id-cat']);
 				 if(count($rsProdutos) > 0) { ?>
-					  <? foreach($rsProdutos as $item) { ?>
+					  <?php foreach($rsProdutos as $item) { ?>
                       <div class="col-md-3 col-sm-6" style="min-height:350px;" >
                        <div class="single-product">
-                        <? if($item->promocao == 'S') { ?>
+                        <?php if($item->promocao == 'S') { ?>
                         <span class="sale-text">Oferta!</span>
-                        <? } ?>
+                        <?php } ?>
                          <div class="product-img" style="text-align:center;">
                           <a href="<?php echo str_replace(array('[id]', '[nome]'),array($item->id, $item->nome),$pagProdutos);?>">
                            <img class="primary-image" src="../img_noticias/<?php 
@@ -77,11 +77,11 @@ $produtos = Produtos::getInstance(Conexao::getInstance());
                            <span class="special-price">
                             R$ <?php echo number_format($item->preco_por, 2, ',', '.') ?>
                            </span>
-                           <? if($item->promocao == 'S') { ?>
+                           <?php if($item->promocao == 'S') { ?>
                            <span class="old-price">
                             R$ <?php echo number_format($item->preco_de, 2, ',', '.'); ?> 
                            </span>
-                           <? } ?>
+                           <?php } ?>
                           </div>
                           <h2 class="product-name">
                            <a href="<?php echo str_replace(array('[id]', '[nome]'),array($item->id, $item->nome),$pagProdutos);?>">
@@ -97,10 +97,10 @@ $produtos = Produtos::getInstance(Conexao::getInstance());
                          </div>
                         </div>
                        </div>
-                      <? } ?>
-                  <? } else { ?>
+                      <?php } ?>
+                  <?php } else { ?>
                    Não foi possível retornar um resultado.
-                  <? } ?>
+                  <?php } ?>
                   </div>
                  </div>
                 </div>
@@ -114,7 +114,7 @@ $produtos = Produtos::getInstance(Conexao::getInstance());
         </div>
         </section>
 
-		<? include('footer.php'); ?>
+		<?php include('footer.php'); ?>
        
 <div id="toTop">
             <i class="fa fa-chevron-up"></i>

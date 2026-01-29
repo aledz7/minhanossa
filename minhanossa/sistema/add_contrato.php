@@ -1,5 +1,5 @@
 <?php
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
@@ -29,7 +29,7 @@ if(isset($_SERVER['QUERY_STRING'])) {
 
 if((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "formAddContrato")) {
 	///AQUI SE FAZ A SOMA DE PONTOS DOS PRODUTOS LANÇADOS
-	for($k = 0 ; $k < count($_POST[nome_produto]);$k++){
+	for($k = 0 ; $k < count($_POST['nome_produto']);$k++){
 		$somarPontos += $_POST['pontuacao'][$k];
 		$somarPecas += $_POST['qtdItens'][$k];
 	}
@@ -76,7 +76,7 @@ if((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "formAddContrato")) {
 	
 	
 	
-	for($u = 0 ; $u < count($_POST[nome_produto]);$u++){
+	for($u = 0 ; $u < count($_POST['nome_produto']);$u++){
 	  
 	  mysql_select_db($database_conexao, $conexao);
 	  $query_rs_cliente = "SELECT * FROM tbl_item where nome_produto = '{$_POST['nome_produto'][$u]}' and data_retirada >={$_POST['data_evento']} and data_devolucao <= {$_POST['data_devolucao']} ";
@@ -112,7 +112,7 @@ if((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "formAddContrato")) {
 	$Result1 = mysql_query($insertSQL, $conexao) or die(mysql_error());
 	$idConteudo = mysql_insert_id();
 	
-	for($i = 0 ; $i < count($_POST[nome_produto]);$i++){
+	for($i = 0 ; $i < count($_POST['nome_produto']);$i++){
 		$insertSQL = sprintf("INSERT INTO tbl_item (nome_produto, quantidade_produto, valor_unitario_produto, desconto_produto, valor_total_produto, id_contrato, data_prova, data_retirada, data_devolucao, retirado_em, devolvido_em, busto, cintura, quadril, corpo, saia, paleto, comprimento, manga, camisa, colete, tamanho, colarinho, calca, barra, cintura_homem, sapato, comentario_item, id_cor, id_cliente) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['nome_produto'][$i], "text"),
                        GetSQLValueString($_POST['quantidade_produto'][$i], "text"),
@@ -158,7 +158,7 @@ if((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "formAddContrato")) {
 		$Result1 = mysql_query($insertSQL, $conexao) or die(mysql_error());
 	}
 	
-	for($o = 0 ; $o < count($_POST[valor_pagamento]);$o++){
+	for($o = 0 ; $o < count($_POST['valor_pagamento']);$o++){
 		$insertSQL = sprintf("INSERT INTO tbl_pagamento (data_pagamento, forma_pagamento, parcelas, valor_pagamento, id_contrato, id_cliente) VALUES (%s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['data_pagamento'][$o], "text"),
                        GetSQLValueString($_POST['forma_pagamento'][$o], "text"),
@@ -245,7 +245,7 @@ $totalRows_rs_cliente1 = mysql_num_rows($rs_cliente1);
 
 <script type="text/javascript" src="load.js"></script>
 
-<? include('dialog-jquery/inc-abre-janela.php');?>
+<?php include('dialog-jquery/inc-abre-janela.php');?>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 
@@ -310,7 +310,7 @@ $totalRows_rs_cliente1 = mysql_num_rows($rs_cliente1);
                                     Vendedor<br>
                                     <div class="input-prepend">
                                     	
-                     <select name="vendedor" style="height:32px; width:184px;" onChange="this.value = <?=$_SESSION['dadosUser']['id'];?>" >
+                     <select name="vendedor" style="height:32px; width:184px;" onChange="this.value = <?php echo $_SESSION['dadosUser']['id'];?>" >
                        					<?php do{?>
                             				<option value="<?php echo $row_rs_vendedor['id'];?>" <?php if($row_rs_vendedor['id'] == $_SESSION['dadosUser']['id']) { echo 'selected'; } ?> /><?php echo $row_rs_vendedor['nome'];?>
                        					<?php }while($row_rs_vendedor = mysql_fetch_assoc($rs_vendedor));?>         

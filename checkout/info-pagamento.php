@@ -1,12 +1,12 @@
 <?php require_once('Connections/conexao.php'); ?>
-<? @session_start();
+<?php @session_start();
 
 include('funcoes.php');
 
-if($_POST[acao] == 'continuar_compra') {
-	$_SESSION[compra] = $_POST[id_compra];
-	$_SESSION[total_frete] = $_POST[valor_frete];
-	$_SESSION[forma_envio] = $_POST[tipo_frete];
+if($_POST['acao'] == 'continuar_compra') {
+	$_SESSION['compra'] = $_POST['id_compra'];
+	$_SESSION['total_frete'] = $_POST['valor_frete'];
+	$_SESSION['forma_envio'] = $_POST['tipo_frete'];
 	
 	echo "	<script>
 			window.location='info-pagamento.php'
@@ -15,16 +15,16 @@ if($_POST[acao] == 'continuar_compra') {
 }
 
 mysql_select_db($database_conexao, $conexao);
-$query_rs_endereco = "SELECT *, tbl_endereco.id as idEnde, dados_estados.nome as nomeEstado, dados_cidades.nome as nomeCidade FROM tbl_endereco left join dados_estados on tbl_endereco.estado = dados_estados.id left join dados_cidades on tbl_endereco.cidade = dados_cidades.id where tbl_endereco.id = '$_GET[id]' ORDER BY tbl_endereco.id DESC";
+$query_rs_endereco = "SELECT *, tbl_endereco.id as idEnde, dados_estados.nome as nomeEstado, dados_cidades.nome as nomeCidade FROM tbl_endereco left join dados_estados on tbl_endereco.estado = dados_estados.id left join dados_cidades on tbl_endereco.cidade = dados_cidades.id where tbl_endereco.id = '$_GET['id']' ORDER BY tbl_endereco.id DESC";
 $rs_endereco = mysql_query($query_rs_endereco, $conexao) or die(mysql_error());
 $row_rs_endereco = mysql_fetch_assoc($rs_endereco);
 $totalRows_rs_endereco = mysql_num_rows($rs_endereco);
 
 $_SESSION['id_endereco'] = $row_rs_endereco[idEnde];
 
-if($_SESSION[compra] <> '' and $totalRows_rs_endereco > 0){
+if($_SESSION['compra'] <> '' and $totalRows_rs_endereco > 0){
 	
-	$updateSQL = "UPDATE tbl_compras SET id_endereco='$row_rs_endereco[idEnde]' WHERE id='$_SESSION[compra]'";
+	$updateSQL = "UPDATE tbl_compras SET id_endereco='$row_rs_endereco[idEnde]' WHERE id='$_SESSION['compra']'";
 	mysql_select_db($database_conexao, $conexao);
     $Result1 = mysql_query($updateSQL, $conexao) or die(mysql_error());	
 }
@@ -41,8 +41,8 @@ $totalRows_rs_user = mysql_num_rows($rs_user);
 
 
 
-if($_SESSION[compra] <> '') {
-	$updateSQL = "UPDATE tbl_compras SET id_cliente='$row_rs_user[id]' WHERE id='$_SESSION[compra]'";
+if($_SESSION['compra'] <> '') {
+	$updateSQL = "UPDATE tbl_compras SET id_cliente='$row_rs_user[id]' WHERE id='$_SESSION['compra']'";
   mysql_select_db($database_conexao, $conexao);
   $Result1 = mysql_query($updateSQL, $conexao) or die(mysql_error());
 
@@ -87,10 +87,10 @@ if($row_rs_user['endereco'] == '' or $row_rs_user['id_cidade'] == '') {
 ?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
-   <? include('head.php'); ?>
+   <?php include('head.php'); ?>
     <body>
         <!-- Header-->
-        <? include('header.php');?>
+        <?php include('header.php');?>
         <!-- End header -->
 
         <!-- ===========================================
@@ -125,7 +125,7 @@ if($row_rs_user['endereco'] == '' or $row_rs_user['id_cidade'] == '') {
                  </td>
                 </tr>
                 <tr> 
-                 <td valign="top" bgcolor="<? echo $fundo_meio; ?>">
+                 <td valign="top" bgcolor="<?php echo $fundo_meio; ?>">
                   <table width="100%" border="0" cellspacing="0" cellpadding="0">
                    <tr> 
                     <td>
@@ -190,7 +190,7 @@ if($row_rs_user['endereco'] == '' or $row_rs_user['id_cidade'] == '') {
                                          </div>
                                         </td>
                                         <td width="373" valign="top" class="valor">
-                                         <? if($totalRows_rs_endereco > 0){?>
+                                         <?php if($totalRows_rs_endereco > 0){?>
                                          <div align="right" class="texto_nav style2">
                                           <strong>
 										   <?php echo $row_rs_user['nome']; ?> 
@@ -202,7 +202,7 @@ if($row_rs_user['endereco'] == '' or $row_rs_user['id_cidade'] == '') {
                                            <?php echo $row_rs_endereco['nomeEstado']; ?>, 
                                            <?php echo $row_rs_user['pais']; ?></strong></div>
                                                
-                                         <? }else{ ?>    
+                                         <?php }else{ ?>    
                                          <div align="right" class="texto_nav style2">
                                           <strong>
 										   <?php echo $row_rs_user['nome']; ?>                        
@@ -217,7 +217,7 @@ if($row_rs_user['endereco'] == '' or $row_rs_user['id_cidade'] == '') {
                                           </strong>
                                          </div>
                                                
-                                       <? } ?>
+                                       <?php } ?>
                                       </td>
                                      </tr>
                                      <tr>
@@ -297,7 +297,7 @@ if($row_rs_user['endereco'] == '' or $row_rs_user['id_cidade'] == '') {
                                       Pedido ser&aacute; analizado pela nossa equipe antes da libera&ccedil;&atilde;o.</td>
                                       <td align="center" bgcolor="#F3F3F3"><input name="pagamento" type="radio" value="Faturamento" /></td>
                                     </tr>
-                                    <? } ?>
+                                    <?php } ?>
                                   </tbody>
                                 </table></td>
                               </tr>
@@ -359,7 +359,7 @@ if($row_rs_user['endereco'] == '' or $row_rs_user['id_cidade'] == '') {
         <!-- ===========================================
         =====        footer section               ====
         ============================================ -->        
-        <? include('footer.php');?>
+        <?php include('footer.php');?>
         <!-- End Section footer -->
         <script src="js/vendor/jquery.js"></script>
         <script src="js/vendor/jquery.easing.1.3.js"></script>

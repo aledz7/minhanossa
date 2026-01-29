@@ -3,7 +3,7 @@ include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 mysql_select_db($database_conexao, $conexao);
 $query_rs_cliente = "SELECT * FROM tbl_cliente ORDER BY nome ASC";
@@ -68,7 +68,7 @@ if((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "formEditarCLiente"))
 	mysql_select_db($database_conexao, $conexao);
 	$Result1 = mysql_query($deleteSQL, $conexao) or die(mysql_error());	
 		
-	for($i = 0 ; $i < count($_POST[nome_produto]);$i++){
+	for($i = 0 ; $i < count($_POST['nome_produto']);$i++){
 		
 		
 		$insertSQL = sprintf("INSERT INTO tbl_item (nome_produto, quantidade_produto, valor_unitario_produto, desconto_produto, valor_total_produto, id_lavanderia, data_prova, data_retirada, data_devolucao, retirado_em, devolvido_em, busto, cintura, quadril, corpo, saia, paleto, comprimento, manga, camisa, colete, tamanho, colarinho, calca, barra, cintura_homem, sapato, comentario_item, id_cliente, id_reserva) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",

@@ -2,7 +2,7 @@
 include('Connections/conexao.php');
 include('funcoes.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 
 if (!function_exists("scriptTotalFrete")) {

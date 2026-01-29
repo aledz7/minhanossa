@@ -126,10 +126,10 @@ $totalRows_rs_produto = mysql_num_rows($rs_produto);
                             <a href="desativar-cor.php?id=<?php echo $row_rs_produto['id']; ?>" class="btn btn-danger btn-mini" style="font-size:10px; margin-left:7px;"> <i class="iconfa-remove"></i> Desativar
                             </a>
 
-                          <? } elseif ($row_rs_produto['status'] == 'I') { ?>
+                          <?php } elseif ($row_rs_produto['status'] == 'I') { ?>
                             <a href="reativar-cor.php?id=<?php echo $row_rs_produto['id']; ?>" class="btn btn-success btn-mini" style="font-size:10px; margin-left:7px;"> <i class="iconfa-check"></i> Ativar
                             </a>
-                          <? } ?>
+                          <?php } ?>
                         </td>
                         <td class="centeralign">
                           <a href="editar_cores.php?id=<?php echo $row_rs_produto['id']; ?>" class="btn btn-primary btn-mini" style="font-size:9px;"> <i class="icon-pencil"></i> &nbsp; Editar

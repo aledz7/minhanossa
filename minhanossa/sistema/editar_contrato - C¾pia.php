@@ -2,7 +2,7 @@
 include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 
 mysql_select_db($database_conexao, $conexao);
@@ -50,7 +50,7 @@ if((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "formEditcontrato")) 
 	mysql_select_db($database_conexao, $conexao);
 	$Result1 = mysql_query($deleteSQL, $conexao) or die(mysql_error());	
 		
-	for($i = 0 ; $i < count($_POST[nome_produto]);$i++){
+	for($i = 0 ; $i < count($_POST['nome_produto']);$i++){
 		$insertSQL = sprintf("INSERT INTO tbl_item (nome_produto, quantidade_produto, valor_unitario_produto, desconto_produto, valor_total_produto, id_contrato, data_prova, data_retirada, data_devolucao, retirado_em, devolvido_em, busto, cintura, quadril, corpo, saia, paleto, comprimento, manga, camisa, colete, tamanho, colarinho, calca, barra, cintura_homem, sapato, comentario_item, id_cliente) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['nome_produto'][$i], "text"),
                        GetSQLValueString($_POST['quantidade_produto'][$i], "text"),
@@ -94,7 +94,7 @@ if((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "formEditcontrato")) 
 	mysql_select_db($database_conexao, $conexao);
 	$Result1 = mysql_query($deleteSQL, $conexao) or die(mysql_error());	
 		
-	for($o = 0 ; $o < count($_POST[valor_pagamento]);$o++){			
+	for($o = 0 ; $o < count($_POST['valor_pagamento']);$o++){			
 		$insertSQL = sprintf("INSERT INTO tbl_pagamento (data_pagamento, forma_pagamento, parcelas, valor_pagamento, id_contrato, id_cliente) VALUES (%s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['data_pagamento'][$o], "text"),
                        GetSQLValueString($_POST['forma_pagamento'][$o], "text"),
@@ -386,7 +386,7 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
                       	<div class="col-md-12" align="right">
                         	 <a href="javascript:;" onClick="document.getElementById('formEditcontrato').submit();" class="btn btn-mini btn-success"> <i class="iconfa-ok"></i>&nbsp; Salvar</a> 
                              
-                             <a href="javascript:;" class="btn btn-mini btn-info" onClick="MM_openBrWindow('imprimir-contrato.php?id=<?=$_GET['id'];?>','imprimirContrato','toolbar=yes,status=yes,scrollbars=yes,width=800,height=600')"> <i class="iconfa-ok"></i>&nbsp; Contrato</a> 
+                             <a href="javascript:;" class="btn btn-mini btn-info" onClick="MM_openBrWindow('imprimir-contrato.php?id=<?php echo $_GET['id'];?>','imprimirContrato','toolbar=yes,status=yes,scrollbars=yes,width=800,height=600')"> <i class="iconfa-ok"></i>&nbsp; Contrato</a> 
                              
                              <a href="contrato_cadastro.php" class="btn btn-danger btn-mini"> <i class="iconfa-remove"></i>&nbsp; Cancelar</a>
                         </div>

@@ -202,9 +202,9 @@ do {
           <ul>
           	
             <li><a href="javascript:;" onClick="marcaPonto('chegada')">Marcar Chegada</a></li>
-            <li><a href="javascript:;" onClick="marcaPonto('sdAlmoco')">Saída para Almoço</a></li>
-            <li><a href="javascript:;" onClick="marcaPonto('chAlmoco')">Chegada do Almoço </a></li>
-            <li><a href="javascript:;" onClick="marcaPonto('saida')">Marcar Saída</a></li>
+            <li><a href="javascript:;" onClick="marcaPonto('sdAlmoco')">Saï¿½da para Almoï¿½o</a></li>
+            <li><a href="javascript:;" onClick="marcaPonto('chAlmoco')">Chegada do Almoï¿½o </a></li>
+            <li><a href="javascript:;" onClick="marcaPonto('saida')">Marcar Saï¿½da</a></li>
           </ul>
         </li>
         <?php }*/?>
@@ -239,4 +239,4 @@ do {
   </div>
 <iframe src="" name="enviaColuna" id="enviaColuna" style="display:none" frameborder="0"></iframe>
 
-<?php// print_r($temAcessos);?>
+<?php // print_r($temAcessos);?>

@@ -107,7 +107,7 @@ class CKFinder_Connector_Core_Xml
      */
     function getXMLDeclaration()
     {
-    	return '<?xml version="1.0" encoding="utf-8"?>';
+    	return '<?php xml version="1.0" encoding="utf-8"?>';
     }
 
     /**

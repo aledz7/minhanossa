@@ -1,5 +1,5 @@
 <?php 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 //print_r($_SESSION);
 include('restrito.php');
 include('Connections/conexao.php');
@@ -120,12 +120,12 @@ body,td,th {
                             <li class="filesearch">
                             		<div class="input-prepend">
                                       <span class="add-on">Data de In&iacute;cio</span>
-                                      <input id="dataInicio" type="text" name="dataInicio" class="input-small datepicker" style="padding:5px;" value="<?=$_GET['dataInicio'];?>" />                                    </div>
+                                      <input id="dataInicio" type="text" name="dataInicio" class="input-small datepicker" style="padding:5px;" value="<?php echo $_GET['dataInicio'];?>" />                                    </div>
                                    
                                    
                                    <div class="input-prepend">
                                       <span class="add-on">Data Final</span>
-                                      <input id="dataFim" value="<?=$_GET['dataFim'];?>" style="padding:5px;" type="text" name="dataFim" class="input-small datepicker" />                                    </div>
+                                      <input id="dataFim" value="<?php echo $_GET['dataFim'];?>" style="padding:5px;" type="text" name="dataFim" class="input-small datepicker" />                                    </div>
                                    
                                    
                                    <div class="input-prepend">
@@ -135,8 +135,8 @@ body,td,th {
                                       <select name="id_usuario" id="id_usuario" style="height:32px;" >
                                       	<option value=""></option>
 										<?php do { ?>
-                                        <option value="<?=$row_rs_usuarios['id'];?>" <?php if($row_rs_usuarios['id'] == $_GET['id_usuario']) { echo 'selected'; } ?>><?=utf8_decode($row_rs_usuarios['nome']);?></option>
-                                        <? } while($row_rs_usuarios = mysql_fetch_assoc($rs_usuarios)); ?>
+                                        <option value="<?php echo $row_rs_usuarios['id'];?>" <?php if($row_rs_usuarios['id'] == $_GET['id_usuario']) { echo 'selected'; } ?>><?php echo utf8_decode($row_rs_usuarios['nome']);?></option>
+                                        <?php } while($row_rs_usuarios = mysql_fetch_assoc($rs_usuarios)); ?>
                                       </select>
                                    </div>
                                       
@@ -175,7 +175,7 @@ body,td,th {
               
             </tbody>
           </table>
-          <? 
+          <?php 
 		  } else { 
 		  	$HTML->nenhumRegistro();
 		  }

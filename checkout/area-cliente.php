@@ -1,5 +1,5 @@
 <?php 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 include('Connections/conexao.php');
 include('funcoes.php');
@@ -165,7 +165,7 @@ $queryString_rs_endereco = sprintf("&totalRows_rs_endereco=%d%s", $totalRows_rs_
 ?>
 <!doctype html>
 <html class="no-js" lang="">
-    <? include('head.php'); ?>
+    <?php include('head.php'); ?>
     <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -173,7 +173,7 @@ $queryString_rs_endereco = sprintf("&totalRows_rs_endereco=%d%s", $totalRows_rs_
         <!-- Add your site or application content here -->
         <!-- start header_area
 		============================================ -->
-        <? include('header.php'); ?>
+        <?php include('header.php'); ?>
         <!-- end header_area
 		============================================ -->
 		<style>
@@ -213,21 +213,21 @@ $queryString_rs_endereco = sprintf("&totalRows_rs_endereco=%d%s", $totalRows_rs_
 					</h4>
 				   </div> 
 				  </div>
-				  <? if($totalRows_rs_minhas_compras > 0) { ?>
+				  <?php if($totalRows_rs_minhas_compras > 0) { ?>
 				  <div class="panel panel-default">
 				   <div class="panel-heading" role="tab" id="headingTwo">
 					<h4 class="panel-title">
-					 <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="<? if($_GET['acao'] == 'compraFinalizada' ){ echo 'true'; } else { echo 'false'; } ?>" aria-controls="collapseTwo">
+					 <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="<?php if($_GET['acao'] == 'compraFinalizada' ){ echo 'true'; } else { echo 'false'; } ?>" aria-controls="collapseTwo">
 					  <span class="number"><i class="fa fa-check" aria-hidden="true"></i></span>
 					   Histórico de Compras Finalizadas
 					 </a>
 					</h4>
 				   </div>
-				   <? if($_GET['acao'] == 'compraFinalizada' ){  ?>
+				   <?php if($_GET['acao'] == 'compraFinalizada' ){  ?>
 				   <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="true" >
-				   <? } else { ?>
+				   <?php } else { ?>
 				   	<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">  
-					<? } ?>
+					<?php } ?>
 				   	 <div class="easy">
 					  <div class="order-review">
 					   <div class="table-responsive">
@@ -241,7 +241,7 @@ $queryString_rs_endereco = sprintf("&totalRows_rs_endereco=%d%s", $totalRows_rs_
 						  </tr>
 						 </thead>
 						 <tbody>
-						 <? do { ?>
+						 <?php do { ?>
 						  <tr>
 						   <td width="20%" style="vertical-align:middle">
 							<?php
@@ -284,9 +284,9 @@ $queryString_rs_endereco = sprintf("&totalRows_rs_endereco=%d%s", $totalRows_rs_
 					 </div>
 				   	</div>
 				   </div>
-			   <? } ?>
+			   <?php } ?>
 
-			   <? if($totalRows_rs_minhas_compras_nao_finalizadas > 0) { ?>
+			   <?php if($totalRows_rs_minhas_compras_nao_finalizadas > 0) { ?>
 				<div class="panel panel-default">
 				 <div class="panel-heading" role="tab" id="headingThree">
 				  <h4 class="panel-title">
@@ -310,7 +310,7 @@ $queryString_rs_endereco = sprintf("&totalRows_rs_endereco=%d%s", $totalRows_rs_
 						</tr>
 					   </thead>
 					   <tbody>
-						<? do { 
+						<?php do { 
 
 						 mysql_select_db($database_conexao, $conexao);
 						 $query_rs_produtos_nao = "SELECT * FROM tbl_pedidos_por_id_compra WHERE id_compra = '$row_rs_minhas_compras_nao_finalizadas[id]'";
@@ -322,7 +322,7 @@ $queryString_rs_endereco = sprintf("&totalRows_rs_endereco=%d%s", $totalRows_rs_
 						<tr>
 						 <td width="20%">
 						  <div class="o-pro-dec">
-							<? do { 
+							<?php do { 
 							 mysql_select_db($database_conexao, $conexao);
 							 $query_rs_detalhes_produtos_nao = "SELECT * FROM tbl_produtos WHERE id = '$row_rs_produtos_nao[produto]'";
 							 $rs_detalhes_produtos_nao = mysql_query($query_rs_detalhes_produtos_nao, $conexao) or die(mysql_error());
@@ -334,7 +334,7 @@ $queryString_rs_endereco = sprintf("&totalRows_rs_endereco=%d%s", $totalRows_rs_
 							   $total = $total+$row_rs_produtos_nao['valor_c_acrecimo'];
 							  ?>
 							 </p>
-							<? } while($row_rs_produtos_nao = mysql_fetch_assoc($rs_produtos_nao)); ?>
+							<?php } while($row_rs_produtos_nao = mysql_fetch_assoc($rs_produtos_nao)); ?>
 						  </div>
 						 </td>
 						 <td>
@@ -366,7 +366,7 @@ $queryString_rs_endereco = sprintf("&totalRows_rs_endereco=%d%s", $totalRows_rs_
 				  </div>
 				 </div>
 			  </div>
-			 <? } ?>
+			 <?php } ?>
 
 			  <div class="panel panel-default">
 			   <div class="panel-heading" role="tab" id="headingFour">
@@ -389,18 +389,18 @@ $queryString_rs_endereco = sprintf("&totalRows_rs_endereco=%d%s", $totalRows_rs_
 			   <div class="panel-heading" role="tab" id="headingFive">
 				<h4 class="panel-title">
 
-				 <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="<? if($_GET['acao'] == 'endEntrega' ){ echo 'true'; } else { echo 'false'; } ?>" id="endEntrega" aria-controls="collapseFive">
+				 <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="<?php if($_GET['acao'] == 'endEntrega' ){ echo 'true'; } else { echo 'false'; } ?>" id="endEntrega" aria-controls="collapseFive">
 				  <span class="number"><i class="fa fa-truck" aria-hidden="true"></i></span>
 				   Meus Dados (Endereço de entrega)
 				 </a>
 
 				</h4>
 			   </div> -->
-			   <? if($_GET['acao'] == 'endEntrega' ){?>
+			   <?php if($_GET['acao'] == 'endEntrega' ){?>
 			   <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive" aria-expanded="true" >
-			   <? } else { ?>
+			   <?php } else { ?>
 			   <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive" aria-expanded="false" style="height: 0px;">
-			   <? } ?>
+			   <?php } ?>
 				<a href="javascript:;" onclick="chamaForm()" class="btn-a">
 				 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cadastrar Novo Endereço
 				</a>
@@ -503,7 +503,7 @@ $queryString_rs_endereco = sprintf("&totalRows_rs_endereco=%d%s", $totalRows_rs_
 					   <th class="width-2">Opção de Entrega</th>
 					  </tr>
 					 </thead>
-					 <? do { ?>
+					 <?php do { ?>
 					 <tbody>
 					  <tr>
 					   <td>
@@ -545,7 +545,7 @@ $queryString_rs_endereco = sprintf("&totalRows_rs_endereco=%d%s", $totalRows_rs_
 					   </td>
 					  </tr>
 					 </tbody>
-					 <? } while($row_rs_endereco = mysql_fetch_assoc($rs_endereco)); ?>
+					 <?php } while($row_rs_endereco = mysql_fetch_assoc($rs_endereco)); ?>
 					</table>
 				   </div>
 				  </div>
@@ -611,7 +611,7 @@ $queryString_rs_endereco = sprintf("&totalRows_rs_endereco=%d%s", $totalRows_rs_
 		  </div>
 		</section>
         
-        <? include('footer.php'); ?>
+        <?php include('footer.php'); ?>
         <!-- start scrollUp
 		============================================ -->
         <div id="toTop">

@@ -4,7 +4,7 @@ include('funcoes.php');
 
 // *** Validate request to login to this site.
 if (!isset($_SESSION)) {
-  session_start();
+  if (!isset($_SESSION)) { session_start(); }
 }
 
 $loginFormAction = $_SERVER['PHP_SELF'];
@@ -119,7 +119,7 @@ body,td,th {
 </div><!--loginpanel-->
 
 <div class="loginfooter">
-    <p>&copy; <?=date('Y');?>. Minha nossa. Todos os Direitos Reservados.</p>
+    <p>&copy; <?php echo date('Y');?>. Minha nossa. Todos os Direitos Reservados.</p>
 </div>
 
 </body>

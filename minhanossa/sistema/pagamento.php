@@ -25,7 +25,7 @@ if(basename($_SERVER['SCRIPT_NAME']) == 'editar_contrato.php'){
   <tbody>
     <tr>
       <td colspan="4" style="border-bottom:1px solid #9E9E9E;">Pagamento
-        <?=($i+1);?>
+        <?php echo ($i+1);?>
         :</td>
     </tr>
     <tr>
@@ -33,12 +33,12 @@ if(basename($_SERVER['SCRIPT_NAME']) == 'editar_contrato.php'){
           <div class="col-md-12">
             <div class="col-md-2"> Data<br>
               <div class="input-prepend">
-                <input type="date" name="data_pagamento[]" id="data_pagamento<?=$i;?>" class="input-xsmall" value="<?=$row_rs_editar_pagamento['data_pagamento'];?>" >
+                <input type="date" name="data_pagamento[]" id="data_pagamento<?php echo $i;?>" class="input-xsmall" value="<?php echo $row_rs_editar_pagamento['data_pagamento'];?>" >
                 <span class="add-on"><i class="iconfa-calendar"></i></span> </div>
             </div>
             <div class="col-md-3"> Forma de Pagamento<br>
               <div class="input-prepend">
-                <select name="forma_pagamento[]" id="forma_pagamento<?=$i;?>">
+                <select name="forma_pagamento[]" id="forma_pagamento<?php echo $i;?>">
                   <option>Selecione</option>
                   <option value="1" <?php if($row_rs_editar_pagamento['forma_pagamento'] == 1){ echo "selected";}?> >Dinheiro</option>
                   <option value="2" <?php if($row_rs_editar_pagamento['forma_pagamento'] == 2){ echo "selected";}?>>Cheque</option>
@@ -50,12 +50,12 @@ if(basename($_SERVER['SCRIPT_NAME']) == 'editar_contrato.php'){
             </div>
             <div class="col-md-2"> Parcelas<br>
               <div class="input-prepend">
-                <input type="text" name="parcela_pagamento[]" id="parcela_pagamento<?=$i;?>" class="input-xxsmall" value="<?=($row_rs_editar_pagamento['parcelas'] <> '') ? $row_rs_editar_pagamento['parcelas'] : 1;?>">
+                <input type="text" name="parcela_pagamento[]" id="parcela_pagamento<?php echo $i;?>" class="input-xxsmall" value="<?php echo ($row_rs_editar_pagamento['parcelas'] <> '') ? $row_rs_editar_pagamento['parcelas'] : 1;?>">
               </div>
             </div>
             <div class="col-md-2"> Valor Pagamento<br>
               <div class="input-prepend">
-                <input type="text" name="valor_pagamento[]" id="valor_pagamento<?=$i;?>" value="<?=$row_rs_editar_pagamento['valor_pagamento'];?>" class="input-xxsmall">
+                <input type="text" name="valor_pagamento[]" id="valor_pagamento<?php echo $i;?>" value="<?php echo $row_rs_editar_pagamento['valor_pagamento'];?>" class="input-xxsmall">
                 <span class="add-on"><i class="fa fa-usd" aria-hidden="true"></i></span> </div>
             </div>
           </div>
@@ -63,15 +63,15 @@ if(basename($_SERVER['SCRIPT_NAME']) == 'editar_contrato.php'){
     </tr>
   </tbody>
 </table>
-<? } ?>
+<?php } ?>
 <iframe name="buscaArquivo" id="buscaArquivo" style="display:none"></iframe>
 <?php
 for($i=0; $i<$_GET['qtdPago']; $i++) {
 	?>
     <script>
 	//alert(document.getElementById('totalItens').value);
-	document.getElementById('valor_pagamento<?=$i;?>').value = number_format(valorCalculavel(document.getElementById('totalItens').value)/<?=$_GET['qtdPago'];?>,2,',','.');
+	document.getElementById('valor_pagamento<?php echo $i;?>').value = number_format(valorCalculavel(document.getElementById('totalItens').value)/<?php echo $_GET['qtdPago'];?>,2,',','.');
 	</script>
-    <?
+    <?php
 }
 ?>

@@ -3,7 +3,7 @@ include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
 
-if($_GET[acao] == 'excluir') {
+if($_GET['acao'] == 'excluir') {
 	mysql_select_db($database_conexao, $conexao);
 	$deleteSQL = sprintf("DELETE FROM tbl_termo_de_uso WHERE id=%s",
                        GetSQLValueString($_GET['id'], "int"));
@@ -129,13 +129,13 @@ body,td,th {
              
             <?php }while($row_rs_ordens_de_servico = mysql_fetch_assoc($rs_ordens_de_servico)); ?>
              
-              <?
+              <?php
 			}
 			?>
               
             </tbody>
           </table>
-          <? 
+          <?php 
 		  } else { 
 		  	$HTML->nenhumRegistro();
 		  }

@@ -100,13 +100,13 @@ body,td,th {
 <!--
                             		<div class="input-prepend">
                                       <span class="add-on">Data Retirada</span>
-                                      <input id="dataSaida" type="date" name="dataSaida" class="input-small datepicker" style="padding:5px;" value="<?=$_GET['dataSaida'];?>" />                                    
+                                      <input id="dataSaida" type="date" name="dataSaida" class="input-small datepicker" style="padding:5px;" value="<?php echo $_GET['dataSaida'];?>" />                                    
                                       </div>
 -->
 <!--
                                       <div class="input-prepend">
                                       <span class="add-on">Data Devolu&ccedil;&atilde;o</span>
-                                      <input id="dataRetorno" type="date" name="dataRetorno" class="input-small datepicker" style="padding:5px;" value="<?=$_GET['dataRetorno'];?>" />                                    
+                                      <input id="dataRetorno" type="date" name="dataRetorno" class="input-small datepicker" style="padding:5px;" value="<?php echo $_GET['dataRetorno'];?>" />                                    
                                       </div>
 -->
                                    
@@ -114,7 +114,7 @@ body,td,th {
                                    
                               <div class="input-prepend">
                                       <span class="add-on" style="width: 43px">Produto</span>
-								  		<input type="text" name="busca"  value="<?=$_GET['busca'];?>" placeholder="Código do Produto" style="height: 22px;">
+								  		<input type="text" name="busca"  value="<?php echo $_GET['busca'];?>" placeholder="Código do Produto" style="height: 22px;">
 
 
                                    </div>

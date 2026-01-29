@@ -39,7 +39,7 @@ $totalRows_rs_desc_blog = mysql_num_rows($rs_desc_blog);
 ?>
 <!doctype html>
 <html class="no-js" lang="">
-    <? include('head.php'); ?>
+    <?php include('head.php'); ?>
 <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -47,7 +47,7 @@ $totalRows_rs_desc_blog = mysql_num_rows($rs_desc_blog);
         <!-- Add your site or application content here -->
         <!-- start header_area
 		============================================ -->
-         <? include('header.php'); ?>
+         <?php include('header.php'); ?>
         <!-- end header_area
 		============================================ -->
         <!-- start main_shop_area
@@ -123,7 +123,7 @@ $totalRows_rs_desc_blog = mysql_num_rows($rs_desc_blog);
 		============================================ -->
         <!-- start tweets_area
 		============================================ -->
-         <? include('footer.php'); ?>
+         <?php include('footer.php'); ?>
         <!-- end tweets_area
 		============================================ -->
         <!-- start ma-footer-stati

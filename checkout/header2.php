@@ -55,19 +55,19 @@ $_SESSION['MM_Username'] = '';
                                        <i class="fa fa-headphones"></i>&nbsp;SAC
                                       </a>
                                      </li>
-                                     <? if($_SESSION['MM_Username'] <> '') { ?>
+                                     <?php if($_SESSION['MM_Username'] <> '') { ?>
                                      <li>
                                       <a href="#">
                                        <i class="fa fa-user"></i>&nbsp;MINHA CONTA
                                       </a>
                                      </li>
-                                     <? } else { ?>
+                                     <?php } else { ?>
                                      <li>
                                       <a href="#">
                                        <i class="fa fa-user"></i>&nbsp;LOGIN | CADASTRE-SE
                                       </a>
                                      </li>
-                                     <? } ?>
+                                     <?php } ?>
                                 </ul>
                             </div>
                         </div>
@@ -121,11 +121,11 @@ $_SESSION['MM_Username'] = '';
                                         <?php /*?><div class="select-wrapper">
                                             <select class="select" name="categoria" id="categoria">
                                              <option value="">Categorias</option>
-                                              <? do { ?>
+                                              <?php do { ?>
                                               <option value="<?php echo $row_rs_categoria_header['id'] ?>">
                                                <?php echo $row_rs_categoria_header['name'] ?>
                                               </option>
-                                              <? } while($row_rs_categoria_header = mysql_fetch_assoc($rs_categoria_header)); ?>
+                                              <?php } while($row_rs_categoria_header = mysql_fetch_assoc($rs_categoria_header)); ?>
                                               </select>
                                         </div><?php */?>
                                         <input class="input-text" type="text" id="txtProduto" name="txtProduto" placeholder="O que Você Precisa?">

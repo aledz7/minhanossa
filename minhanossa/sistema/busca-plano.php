@@ -14,7 +14,7 @@ $totalRows_rs_pega_cliente = mysql_num_rows($rs_pega_cliente);
 ?>
 
 <script>
-     <? if($row_rs_pega_cliente['id_plano'] <> ''){?>
-        parent.document.getElementById('tipo_contrato').value = '<? echo $row_rs_pega_cliente['id_plano'];?>';
-	 <? }?>
+     <?php if($row_rs_pega_cliente['id_plano'] <> ''){?>
+        parent.document.getElementById('tipo_contrato').value = '<?php echo $row_rs_pega_cliente['id_plano'];?>';
+	 <?php }?>
 </script>

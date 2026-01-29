@@ -43,7 +43,7 @@ $sql_status .= "and (tbl_produto.status = 'A')";
 }
 
 mysql_select_db($database_conexao, $conexao);
-$query_rs_produto = "SELECT tbl_produto.*, tbl_categoria.categoria FROM tbl_produto left join tbl_categoria on tbl_produto.categoria = tbl_categoria.id WHERE tbl_produto.id is not null and (tbl_produto.nome LIKE '%" . ($_GET['busca']) . "%' OR tbl_produto.id LIKE '$_GET[busca]') $sql_status $sql";
+$query_rs_produto = "SELECT tbl_produto.*, tbl_categoria.categoria FROM tbl_produto left join tbl_categoria on tbl_produto.categoria = tbl_categoria.id WHERE tbl_produto.id is not null and (tbl_produto.nome LIKE '%" . ($_GET['busca']) . "%' OR tbl_produto.id LIKE '$_GET['busca']') $sql_status $sql";
 $rs_produto = mysql_query($query_rs_produto, $conexao) or die(mysql_error());
 $row_rs_produto = mysql_fetch_assoc($rs_produto);
 $totalRows_rs_produto = mysql_num_rows($rs_produto);
@@ -174,7 +174,7 @@ $totalRows_rs_status = mysql_num_rows($rs_status);
                     <li class="filesearch">
                       <div class="input-prepend">
                         <span class="add-on">Buscar</span>
-                        <input id="busca" value="<?= $_GET['busca']; ?>" style="padding:5px;" type="text" name="busca" class="input-large" />
+                        <input id="busca" value="<?php echo  $_GET['busca']; ?>" style="padding:5px;" type="text" name="busca" class="input-large" />
                       </div>
                     </li>
 
@@ -237,10 +237,10 @@ $totalRows_rs_status = mysql_num_rows($rs_status);
                         <select name="id_fornecedor" id="id_fornecedor" class="input-large">
                           <option value=""></option>
                           <?php do { ?>
-                            <option value="<?= $row_rs_fornecedor['id']; ?>" <?php if ($row_rs_fornecedor['id'] == $_GET['id_fornecedor']) {
+                            <option value="<?php echo  $row_rs_fornecedor['id']; ?>" <?php if ($row_rs_fornecedor['id'] == $_GET['id_fornecedor']) {
                                                                                 echo 'selected';
-                                                                              } ?>><?= utf8_decode($row_rs_fornecedor['nome']); ?></option>
-                          <? } while ($row_rs_fornecedor = mysql_fetch_assoc($rs_fornecedor)); ?>
+                                                                              } ?>><?php echo  utf8_decode($row_rs_fornecedor['nome']); ?></option>
+                          <?php } while ($row_rs_fornecedor = mysql_fetch_assoc($rs_fornecedor)); ?>
                         </select>
 
                       </div>
@@ -336,7 +336,7 @@ $totalRows_rs_status = mysql_num_rows($rs_status);
 
                   </tbody>
                 </table>
-              <?
+              <?php
               } else {
                 $HTML->nenhumRegistro();
               } ?>
@@ -344,7 +344,7 @@ $totalRows_rs_status = mysql_num_rows($rs_status);
 
               <?php if ($_GET['busca'] == '' and $_GET['tamanho'] == '') { ?>
                 <nav>
-                  <?
+                  <?php
                   $total = ceil($row_rs_totalRegistros['total'] / $limit);
                   ?>
                   <style>
@@ -362,21 +362,21 @@ $totalRows_rs_status = mysql_num_rows($rs_status);
                     <?php
 
                     for ($i = 1; $i <= $total; $i++) { ?>
-                      <? if ($i == $numeroPag) { ?>
+                      <?php if ($i == $numeroPag) { ?>
                         <li class="active">
-                          <a href="?numeroPag=<? echo $i ?>"><? echo $i ?></a>
+                          <a href="?numeroPag=<?php echo $i ?>"><?php echo $i ?></a>
                         </li>
-                      <? } else { ?>
+                      <?php } else { ?>
                         <li>
-                          <a href="?numeroPag=<? echo $i ?>"><? echo $i ?></a>
+                          <a href="?numeroPag=<?php echo $i ?>"><?php echo $i ?></a>
                         </li>
-                      <? } ?>
-                    <? } ?>
-                    <? if ($numeroPag != $total) { ?>
+                      <?php } ?>
+                    <?php } ?>
+                    <?php if ($numeroPag != $total) { ?>
                       <li class="last">
-                        <a href="?numeroPag=<? echo $_GET['numeroPag'] + 1; ?>"><i class="fa fa-long-arrow-right"></i></a>
+                        <a href="?numeroPag=<?php echo $_GET['numeroPag'] + 1; ?>"><i class="fa fa-long-arrow-right"></i></a>
                       </li>
-                    <? } ?>
+                    <?php } ?>
                   </ul>
                 </nav>
 

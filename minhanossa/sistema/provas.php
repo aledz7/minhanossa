@@ -52,7 +52,7 @@ $totalRows_rs_provas = mysql_num_rows($rs_provas);
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Agenda > <?=$_GET['tipo'];?></title>
+<title>Agenda > <?php echo $_GET['tipo'];?></title>
 
 <link rel="stylesheet" href="css/style.default.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap-fileupload.min.css" type="text/css" />
@@ -80,7 +80,7 @@ $totalRows_rs_provas = mysql_num_rows($rs_provas);
 <script type="text/javascript" src="js/forms.js"></script>
 
 <script type="text/javascript" src="load.js"></script>
-<? include('dialog-jquery/inc-abre-janela.php');?>
+<?php include('dialog-jquery/inc-abre-janela.php');?>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-9" /></head>
@@ -94,7 +94,7 @@ $totalRows_rs_provas = mysql_num_rows($rs_provas);
 <div class="rightpanel">
   <ul class="breadcrumbs">
     <li><a href="."><i class="iconfa-home"></i></a> <span class="separator"></span></li>
-    <li><a href="provas.php"><?=$_GET['tipo'];?></a></li>
+    <li><a href="provas.php"><?php echo $_GET['tipo'];?></a></li>
     
   </ul>
   <div class="pageheader">
@@ -104,7 +104,7 @@ $totalRows_rs_provas = mysql_num_rows($rs_provas);
     <div class="pageicon"><span class="iconfa-edit"></span></div>
     <div class="pagetitle" >
       <h5>Agenda</h5>
-      <h1><?=$_GET['tipo'];?></h1>
+      <h1><?php echo $_GET['tipo'];?></h1>
     </div>
     
     
@@ -114,7 +114,7 @@ $totalRows_rs_provas = mysql_num_rows($rs_provas);
   <div class="maincontent">
     <div class="maincontentinner">
       <div class="widget">
-        <h4 class="widgettitle"><span class="icon-calendar"></span>Agenda de <?=$_GET['tipo'];?></h4>
+        <h4 class="widgettitle"><span class="icon-calendar"></span>Agenda de <?php echo $_GET['tipo'];?></h4>
         <div class="widgetcontent">
         
          
@@ -124,12 +124,12 @@ $totalRows_rs_provas = mysql_num_rows($rs_provas);
                             <li class="filesearch">
                             		<div class="input-prepend">
                                       <span class="add-on">Data de In&iacute;cio</span>
-                                      <input id="dataInicio" type="text" name="dataInicio" class="input-small datepicker" style="padding:5px;" value="<?=$_GET['dataInicio'];?>" />                                    </div>
+                                      <input id="dataInicio" type="text" name="dataInicio" class="input-small datepicker" style="padding:5px;" value="<?php echo $_GET['dataInicio'];?>" />                                    </div>
                                    
                                    
                                    <div class="input-prepend">
                                       <span class="add-on">Data Final</span>
-                                      <input id="dataFim" value="<?=$_GET['dataFim'];?>" style="padding:5px;" type="text" name="dataFim" class="input-small datepicker" />                                    </div>
+                                      <input id="dataFim" value="<?php echo $_GET['dataFim'];?>" style="padding:5px;" type="text" name="dataFim" class="input-small datepicker" />                                    </div>
                                    
                                    
                                    <div class="input-prepend">
@@ -155,7 +155,7 @@ buscaGenericad('id_cliente', 'id', '', 'Clientes', 'nome', $javascript, 'tbl_cli
                             <li class="left newfilebtn"><a href="javascript:;" onClick="document.getElementById('formProvas').submit()" class="btn btn-primary"  style="padding:4px; margin-left:10px;">Pesquisar</a></li>
                             <li class="left newfilebtn"><a href="javascript:;" onClick="window.location='imprimir-provas.php?tipo=<?php echo $_GET['tipo'];?>&dataInicio=<?php echo $_GET['dataInicio'];?>&dataFim=<?php echo $_GET['dataFim'];?>&id_cliente=<?php echo $_GET['id_cliente'];?>'" class="btn btn-primary"  style="padding:4px; margin-left:10px;">Imprimir</a></li>
                         </ul>
-                        <input type="hidden" name="tipo" value="<?=$_GET['tipo'];?>">
+                        <input type="hidden" name="tipo" value="<?php echo $_GET['tipo'];?>">
             </form>
                         <span class="clearall"></span>
                     </div>
@@ -201,7 +201,7 @@ $totalRows_rs_nome_cliente = mysql_num_rows($rs_nome_cliente);
               
             </tbody>
           </table>
-          <? 
+          <?php 
 		  } else { 
 		  	$HTML->nenhumRegistro();
 		  }

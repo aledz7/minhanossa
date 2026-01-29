@@ -3,7 +3,7 @@ include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 $editFormAction = $_SERVER['PHP_SELF'];
 if(isset($_SERVER['QUERY_STRING'])) {
@@ -426,7 +426,7 @@ body,td,th {
 									
 										<?php do{
 									mysql_select_db($database_conexao, $conexao);
-		$query_rs_existe_cat = sprintf("SELECT * FROM tbl_relaciona_categorias WHERE id_categoria = %s and id_produto = '{$_GET[id]}'", GetSQLValueString($row_rs_cats['id'], "int"));
+		$query_rs_existe_cat = sprintf("SELECT * FROM tbl_relaciona_categorias WHERE id_categoria = %s and id_produto = '{$_GET['id']}'", GetSQLValueString($row_rs_cats['id'], "int"));
 		$rs_existe_cat = mysql_query($query_rs_existe_cat, $conexao) or die(mysql_error());
 		$row_rs_existe_cat = mysql_fetch_assoc($rs_existe_cat);
 		$totalRows_rs_existe_cat = mysql_num_rows($rs_existe_cat);
@@ -459,7 +459,7 @@ body,td,th {
 												 do{
 									
 																		mysql_select_db($database_conexao, $conexao);
-		$query_rs_existe_subcat = sprintf("SELECT * FROM tbl_relaciona_categorias WHERE id_subcategoria = %s and id_produto = '{$_GET[id]}'", GetSQLValueString($row_rs_subcategoria['id'], "int"));
+		$query_rs_existe_subcat = sprintf("SELECT * FROM tbl_relaciona_categorias WHERE id_subcategoria = %s and id_produto = '{$_GET['id']}'", GetSQLValueString($row_rs_subcategoria['id'], "int"));
 		$rs_existe_subcat = mysql_query($query_rs_existe_subcat, $conexao) or die(mysql_error());
 		$row_rs_existe_subcat = mysql_fetch_assoc($rs_existe_subcat);
 		$totalRows_rs_existe_subcat = mysql_num_rows($rs_existe_subcat);

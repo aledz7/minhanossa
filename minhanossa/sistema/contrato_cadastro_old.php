@@ -3,7 +3,7 @@ include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 $currentPage = 'contrato_cadastro.php';
 
@@ -56,7 +56,7 @@ $totalRows_rs_cliente = mysql_num_rows($rs_cliente);
 
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="load.js"></script>
-<? include('dialog-jquery/inc-abre-janela.php');?>
+<?php include('dialog-jquery/inc-abre-janela.php');?>
 
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-migrate-1.1.1.min.js"></script>
@@ -129,16 +129,16 @@ body,td,th {
 
 								 <div class="input-prepend">
                                       <span class="add-on">Data Retirada</span>
-                                      <input id="dataSaida" type="text" name="dataSaida" class="input-small datepicker" style="padding:5px;" value="<?=$_GET['dataSaida'];?>" />                                    
+                                      <input id="dataSaida" type="text" name="dataSaida" class="input-small datepicker" style="padding:5px;" value="<?php echo $_GET['dataSaida'];?>" />                                    
                                       </div>
                                       <div class="input-prepend">
                                       <span class="add-on">Data Devolu&ccedil;&atilde;o</span>
-                                      <input id="dataRetorno" type="text" name="dataRetorno" class="input-small datepicker" style="padding:5px;" value="<?=$_GET['dataRetorno'];?>" />                                    
+                                      <input id="dataRetorno" type="text" name="dataRetorno" class="input-small datepicker" style="padding:5px;" value="<?php echo $_GET['dataRetorno'];?>" />                                    
                                       </div>
 								
 								    <div class="input-prepend">
                                       <span class="add-on">C&oacute;digo</span>
-                                      <input id="buscaCodigo" type="text" name="buscaCodigo" class="input-small" style="padding:5px;" value="<?=$_GET['buscaCodigo'];?>" />                                    
+                                      <input id="buscaCodigo" type="text" name="buscaCodigo" class="input-small" style="padding:5px;" value="<?php echo $_GET['buscaCodigo'];?>" />                                    
                                       </div>
 								
                             		<div class="input-prepend">

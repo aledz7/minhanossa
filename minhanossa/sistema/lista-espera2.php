@@ -3,7 +3,7 @@ include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
 
-if($_GET[acao] == 'excluir') {
+if($_GET['acao'] == 'excluir') {
 	mysql_select_db($database_conexao, $conexao);
 	$deleteSQL = sprintf("DELETE FROM tbl_lista_espera WHERE id=%s",
                        GetSQLValueString($_GET['id'], "int"));
@@ -136,18 +136,18 @@ body,td,th {
                             <li class="filesearch">
                             		<div class="input-prepend">
                                       <span class="add-on">Data de In&iacute;cio</span>
-                                      <input id="dataInicio" type="text" name="dataInicio" class="input-small datepicker" style="padding:5px;" value="<?=$_GET['dataInicio'];?>" />                                    </div>
+                                      <input id="dataInicio" type="text" name="dataInicio" class="input-small datepicker" style="padding:5px;" value="<?php echo $_GET['dataInicio'];?>" />                                    </div>
                                    
                                    
                                    <div class="input-prepend">
                                       <span class="add-on">Data Final</span>
-                                      <input id="dataFim" value="<?=$_GET['dataFim'];?>" style="padding:5px;" type="text" name="dataFim" class="input-small datepicker" />                                    </div>
+                                      <input id="dataFim" value="<?php echo $_GET['dataFim'];?>" style="padding:5px;" type="text" name="dataFim" class="input-small datepicker" />                                    </div>
                                    
                                    
                                    <div class="input-prepend">
                                       <span class="add-on">Produto</span>
                                    
-                                 <input id="id_produto" value="<?=$_GET['id_produto'];?>" style="padding:5px;" type="text" name="id_produto"  />  
+                                 <input id="id_produto" value="<?php echo $_GET['id_produto'];?>" style="padding:5px;" type="text" name="id_produto"  />  
                                    </div>
                             </li>
                             <li class="left newfilebtn"><a href="javascript:;" onClick="document.getElementById('formProvas').submit()" class="btn btn-primary"  style="padding:4px; margin-left:10px;">Pesquisar</a></li>

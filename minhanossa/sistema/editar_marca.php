@@ -3,7 +3,7 @@ include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 $editFormAction = $_SERVER['PHP_SELF'];
 if(isset($_SERVER['QUERY_STRING'])) {

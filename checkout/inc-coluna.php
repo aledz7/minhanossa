@@ -59,7 +59,7 @@ $totalRows_rs_fornecedores_produtos = mysql_num_rows($rs_fornecedores_produtos);
 					   <?php echo $item->titulo; ?>
 					  </a>
 					 </li>
-                 	<? } 
+                 	<?php } 
 				*/?>
                </ul>
               </div>
@@ -73,13 +73,13 @@ $totalRows_rs_fornecedores_produtos = mysql_num_rows($rs_fornecedores_produtos);
               </div>
               <div class="odd">
                <ul>
-                <? do { ?>
+                <?php do { ?>
                 <li>
                  <a href="?id-for=<?php echo $row_rs_fornecedores_produtos['id']?>" style="text-transform:uppercase;">
                   <?php echo $row_rs_fornecedores_produtos['nome'] ?>
                  </a>
                 </li>
-                <? } while($row_rs_fornecedores_produtos = mysql_fetch_assoc($rs_fornecedores_produtos)); ?>
+                <?php } while($row_rs_fornecedores_produtos = mysql_fetch_assoc($rs_fornecedores_produtos)); ?>
                </ul>
               </div>
              </div>

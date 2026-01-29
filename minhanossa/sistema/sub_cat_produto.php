@@ -105,7 +105,7 @@ body,td,th {
                   <a href="editar_subcat_produto.php?id_categoria=<?php echo $_GET['id_categoria']; ?>&id=<?php echo $row_rs_produto['id'];?>"class="btn btn-primary btn-mini" > 
                     <i class="icon-pencil"></i> &nbsp; Editar
                   </a>
-                  <a href="sql_excluir.php?id_categoria=<?echo $_GET['id_categoria']?>&id=<?php echo $row_rs_produto['id']; ?>&acao=excluirSubcatProduto" class="btn btn-danger btn-mini" style="margin-left:7px;"> 
+                  <a href="sql_excluir.php?id_categoria=<?php echo $_GET['id_categoria']?>&id=<?php echo $row_rs_produto['id']; ?>&acao=excluirSubcatProduto" class="btn btn-danger btn-mini" style="margin-left:7px;"> 
                     <i class="iconfa-remove"></i> Excluir
                   </a>
 				        </td>

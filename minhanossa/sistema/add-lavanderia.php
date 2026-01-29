@@ -3,7 +3,7 @@ include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 mysql_select_db($database_conexao, $conexao);
 $query_rs_cat_produto = "SELECT * FROM tbl_categoria ORDER BY categoria ASC";
@@ -26,7 +26,7 @@ if((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "formAddCLiente")) {
   	$Result1 = mysql_query($insertSQL, $conexao) or die(mysql_error());
   	$idConteudo = mysql_insert_id();
 	
-	for($i = 0 ; $i < count($_POST[nome_produto]);$i++){
+	for($i = 0 ; $i < count($_POST['nome_produto']);$i++){
 		$insertSQL = sprintf("INSERT INTO tbl_item (nome_produto, quantidade_produto, valor_unitario_produto, desconto_produto, valor_total_produto, id_lavanderia, data_prova, data_retirada, data_devolucao, retirado_em, devolvido_em, busto, cintura, quadril, corpo, saia, paleto, comprimento, manga, camisa, colete, tamanho, colarinho, calca, barra, cintura_homem, sapato, comentario_item, id_cliente) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['nome_produto'][$i], "text"),
                        GetSQLValueString($_POST['quantidade_produto'][$i], "text"),
@@ -223,7 +223,7 @@ body,td,th {
                                 <div class="col-md-3">
                                     Vendedor<br>
                                     <div class="input-prepend">
-                                        <select name="id_vendedor" style="height:32px; width:184px;" onChange="this.value = <?=$_SESSION['dadosUser']['id'];?>" >
+                                        <select name="id_vendedor" style="height:32px; width:184px;" onChange="this.value = <?php echo $_SESSION['dadosUser']['id'];?>" >
                        					<?php do{?>
                             				<option value="<?php echo $row_rs_vendedores['id'];?>" <?php if($row_rs_vendedores['id'] == $_SESSION['dadosUser']['id']) { echo 'selected'; } ?> /><?php echo $row_rs_vendedores['nome'];?>
                        					<?php }while($row_rs_vendedores = mysql_fetch_assoc($rs_vendedores));?>         

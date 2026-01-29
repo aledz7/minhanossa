@@ -60,10 +60,10 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 if ((isset($_POST['id'])) && ($_POST['id'] != "")) {
 
-  $deleteSQL = sprintf("DELETE FROM $_POST[tbl] WHERE id=%s",
+  $deleteSQL = sprintf("DELETE FROM $_POST['tbl'] WHERE id=%s",
                        GetSQLValueString($_POST['id'], "int"));
 
-unlink("../galerias/$_POST[foto]");
+unlink("../galerias/$_POST['foto']");
 
   mysql_select_db($database_conexao, $conexao);
   $Result1 = mysql_query($deleteSQL, $conexao) or die(mysql_error());
@@ -71,11 +71,11 @@ unlink("../galerias/$_POST[foto]");
 ?>
 
 <script>
-window.opener.location='controle-de-fotos.php?tipo=<?=$_POST[volta];?>&id=<?=$_POST[idGaleria];?>';
+window.opener.location='controle-de-fotos.php?tipo=<?php echo $_POST['volta'];?>&id=<?php echo $_POST['idGaleria'];?>';
 window.opener.focus();
 self.close();
 </script>
-<?
+<?php
 
 }
 
@@ -107,13 +107,13 @@ function MM_goToURL() { //v3.0
     <br />
 
 
-    <input name="idGaleria" type="hidden" id="idGaleria" value="<?=$_GET[idGaleria];?>" />
-    <input name="foto" type="hidden" id="foto" value="<?=$_GET[foto];?>" />
-    <input name="volta" type="hidden" id="volta" value="<?=$_GET[volta];?>">
+    <input name="idGaleria" type="hidden" id="idGaleria" value="<?php echo $_GET['idGaleria'];?>" />
+    <input name="foto" type="hidden" id="foto" value="<?php echo $_GET['foto'];?>" />
+    <input name="volta" type="hidden" id="volta" value="<?php echo $_GET['volta'];?>">
 
-    <input name="tbl" type="hidden" id="tbl" value="<?=$_GET[tbl];?>">
+    <input name="tbl" type="hidden" id="tbl" value="<?php echo $_GET['tbl'];?>">
 
-    <input name="id" type="hidden" id="id" value="<?=$_GET[id];?>">
+    <input name="id" type="hidden" id="id" value="<?php echo $_GET['id'];?>">
 
     <input name="button" type="submit" class="style_botao_preto" id="button" value="  Sim  ">
 

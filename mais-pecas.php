@@ -43,9 +43,9 @@ include('funcoes/cortar-imagem.php');
 			</a>
 			<div class="caption deg-produto-rosa text-left caption-color" style="padding: 53px 10px 0px;">
 				<!--<small>Titulo</small> -->
-				<a href="add-lista-desejos.php?id_produto=<? echo $row_rs_roupas['id'];?>"><h5 style="color: #FFFFFF;">Clique na foto e descubra mais</h5></a>
+				<a href="add-lista-desejos.php?id_produto=<?php echo $row_rs_roupas['id'];?>"><h5 style="color: #FFFFFF;">Clique na foto e descubra mais</h5></a>
 				<div class="clearfix">&nbsp;</div>
-				<a href="add-lista-desejos.php?id_produto=<? echo $row_rs_roupas['id'];?>">
+				<a href="add-lista-desejos.php?id_produto=<?php echo $row_rs_roupas['id'];?>">
 					<div class="estrela">
 						<i class="fa fa-star"></i>
 					</div>

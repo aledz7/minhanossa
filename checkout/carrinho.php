@@ -2,7 +2,7 @@
 include('Connections/conexao.php'); 
 include('funcoes.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 include('../class/pedidos.php');
 $pedidos = Pedidos::getInstance(Conexao::getInstance());
@@ -27,7 +27,7 @@ $row_rs_dados_empresa_carrinho = mysql_fetch_assoc($rs_dados_empresa_carrinho);
 $totalRows_rs_dados_empresa_carrinho = mysql_num_rows($rs_dados_empresa_carrinho);
 
 /////////////////////////////////////// INCLUI COMPRA /////////////////////////////////////
-if($_SESSION[compra] == '') {
+if($_SESSION['compra'] == '') {
 	
 	$insertSQL = "INSERT INTO tbl_compras (data, id_cliente) VALUES ('".date('Y-m-d H:i:s')."', '$row_rs_dados_cliente_se_logado[id]')";
 	mysql_select_db($database_conexao, $conexao);
@@ -39,13 +39,13 @@ if($_SESSION[compra] == '') {
 	$row_rs_compra = mysql_fetch_assoc($rs_compra);
 	$totalRows_rs_compra = mysql_num_rows($rs_compra);
 	
-	$_SESSION[compra] = $row_rs_compra['id'];
+	$_SESSION['compra'] = $row_rs_compra['id'];
 	
 } 
 
 ////////////////// VERIFICA SE COMPRA JA FOI FECHADA  E CRIA UMA NOVA ////////////////
 mysql_select_db($database_conexao, $conexao);
-$query_rs_compra_fechada = "SELECT * FROM tbl_compras WHERE id = '$_SESSION[compra]' and fechado = 'S'";
+$query_rs_compra_fechada = "SELECT * FROM tbl_compras WHERE id = '$_SESSION['compra']' and fechado = 'S'";
 $rs_compra_fechada = mysql_query($query_rs_compra_fechada, $conexao) or die(mysql_error());
 $row_rs_compra_fechada = mysql_fetch_assoc($rs_compra_fechada);
 $totalRows_rs_compra_fechada = mysql_num_rows($rs_compra_fechada);
@@ -62,10 +62,10 @@ if($totalRows_rs_compra_fechada > 0 ) {
 	$row_rs_compra = mysql_fetch_assoc($rs_compra);
 	$totalRows_rs_compra = mysql_num_rows($rs_compra);
 	
-	$_SESSION[compra] = $row_rs_compra['id'];
+	$_SESSION['compra'] = $row_rs_compra['id'];
 }
 mysql_select_db($database_conexao, $conexao);
-	$query_rs_dados_produto1 = "SELECT * FROM tbl_produtos WHERE id = '$_POST[id]'";
+	$query_rs_dados_produto1 = "SELECT * FROM tbl_produtos WHERE id = '$_POST['id']'";
 	$rs_dados_produto1 = mysql_query($query_rs_dados_produto1, $conexao) or die(mysql_error());
 	$row_rs_dados_produto1 = mysql_fetch_assoc($rs_dados_produto1);
 	$totalRows_rs_dados_produto1 = mysql_num_rows($rs_dados_produto1);
@@ -81,7 +81,7 @@ mysql_select_db($database_conexao, $conexao);
 		";
 	}
 
-if($_POST[acao] == 'comprar' and $_POST[id] <> '') {
+if($_POST['acao'] == 'comprar' and $_POST['id'] <> '') {
 	
 	if($_POST['sistema_variacao'] <> 'presente') {
 		echo "	<script>
@@ -92,7 +92,7 @@ if($_POST[acao] == 'comprar' and $_POST[id] <> '') {
 	}
 	
 	mysql_select_db($database_conexao, $conexao);
-	$query_rs_dados_produto = "SELECT * FROM tbl_produtos WHERE id = '$_POST[id]'";
+	$query_rs_dados_produto = "SELECT * FROM tbl_produtos WHERE id = '$_POST['id']'";
 	$rs_dados_produto = mysql_query($query_rs_dados_produto, $conexao) or die(mysql_error());
 	$row_rs_dados_produto = mysql_fetch_assoc($rs_dados_produto);
 	$totalRows_rs_dados_produto = mysql_num_rows($rs_dados_produto);
@@ -109,7 +109,7 @@ if($_POST[acao] == 'comprar' and $_POST[id] <> '') {
 	}
 	
 	/*mysql_select_db($database_conexao, $conexao);
-	$query_rs_variacoes = "SELECT * FROM tbl_variacoes WHERE id = '$_POST[id_variacao]'";
+	$query_rs_variacoes = "SELECT * FROM tbl_variacoes WHERE id = '$_POST['id_variacao']'";
 	$rs_variacoes = mysql_query($query_rs_variacoes, $conexao) or die(mysql_error());
 	$row_rs_variacoes = mysql_fetch_assoc($rs_variacoes);
 	$totalRows_rs_variacoes = mysql_num_rows($rs_variacoes);*/
@@ -120,8 +120,8 @@ if($_POST[acao] == 'comprar' and $_POST[id] <> '') {
 		$preco_com_acrecimo = $row_rs_dados_produto['preco_por']/100*$row_rs_niveis['porcentagem']+$row_rs_dados_produto['preco_por'];
 	}
 	
-	/*if($_POST[valorVariacao] <> '') {
-		$preco_com_acrecimo = $_POST[valorVariacao]; 
+	/*if($_POST['valorVariacao'] <> '') {
+		$preco_com_acrecimo = $_POST['valorVariacao']; 
 	}*/
 	
 	///////////////// VERIFICAR SE PRODUTO JA TA NO CARRINHO ////////////
@@ -130,7 +130,7 @@ if($_POST[acao] == 'comprar' and $_POST[id] <> '') {
 		$colname_rs_prod_existe = $_SESSION['compra'];
 	}
 	mysql_select_db($database_conexao, $conexao);
-	$query_rs_prod_existe = sprintf("SELECT * FROM tbl_pedidos_por_id_compra WHERE id_compra = %s and produto = '$_POST[id]'", GetSQLValueString($colname_rs_prod_existe, "int"));
+	$query_rs_prod_existe = sprintf("SELECT * FROM tbl_pedidos_por_id_compra WHERE id_compra = %s and produto = '$_POST['id']'", GetSQLValueString($colname_rs_prod_existe, "int"));
 	$rs_prod_existe = mysql_query($query_rs_prod_existe, $conexao) or die(mysql_error());
 	$row_rs_prod_existe = mysql_fetch_assoc($rs_prod_existe);
 	$totalRows_rs_prod_existe = mysql_num_rows($rs_prod_existe);
@@ -144,8 +144,8 @@ if($_POST[acao] == 'comprar' and $_POST[id] <> '') {
 	} ////// FIM VERIFICAÇÃO
 
 	
-	if($_POST[qtd] == '') { 
-		$_POST[qtd] = 1;
+	if($_POST['qtd'] == '') { 
+		$_POST['qtd'] = 1;
 	}
 	
 	if(count($_POST['id_variacao']) > 0) {
@@ -163,7 +163,7 @@ if($_POST[acao] == 'comprar' and $_POST[id] <> '') {
 		}
 	}
 	
-	$insertSQL = "INSERT INTO tbl_pedidos_por_id_compra (variacao, produto, valor_c_acrecimo, id_compra, data, qtd) VALUES ('".$variacoes."', '$_POST[id]', '$preco_com_acrecimo', '$_SESSION[compra]', '$data', '$_POST[qtd]')";
+	$insertSQL = "INSERT INTO tbl_pedidos_por_id_compra (variacao, produto, valor_c_acrecimo, id_compra, data, qtd) VALUES ('".$variacoes."', '$_POST['id']', '$preco_com_acrecimo', '$_SESSION['compra']', '$data', '$_POST['qtd']')";
 	mysql_select_db($database_conexao, $conexao);
 	$Result1 = mysql_query($insertSQL, $conexao) or die(mysql_error());
 	
@@ -176,14 +176,14 @@ if($_POST[acao] == 'comprar' and $_POST[id] <> '') {
 /////////////////  ALTERAR QUANTIDADE ////////////
 
 
-if($_POST[acao] == 'alterar' and $_POST[id] <> '') {
+if($_POST['acao'] == 'alterar' and $_POST['id'] <> '') {
 
-	$updateSQL = "UPDATE tbl_pedidos_por_id_compra SET qtd='$_POST[qtd]' WHERE id='$_POST[id]'";
+	$updateSQL = "UPDATE tbl_pedidos_por_id_compra SET qtd='$_POST['qtd']' WHERE id='$_POST['id']'";
 	mysql_select_db($database_conexao, $conexao);
 	$Result1 = mysql_query($updateSQL, $conexao) or die(mysql_error());
 
 	echo "	<script>
-			window.location='carrinho.php?tipo_entrega=$_POST[tipo_entrega]'
+			window.location='carrinho.php?tipo_entrega=$_POST['tipo_entrega']'
 			</script>";
 } //// FIM ALTERAR QUANTIDADE.
 
@@ -191,9 +191,9 @@ if($_POST[acao] == 'alterar' and $_POST[id] <> '') {
 
 ////////////////  EXCLUIR PRODUTO ///////////////
 
-if($_GET[acao] == 'excluir' and $_GET[id] <> '') {
+if($_GET['acao'] == 'excluir' and $_GET['id'] <> '') {
 
-$deleteSQL = "DELETE FROM tbl_pedidos_por_id_compra WHERE id='$_GET[id]'";
+$deleteSQL = "DELETE FROM tbl_pedidos_por_id_compra WHERE id='$_GET['id']'";
 
   mysql_select_db($database_conexao, $conexao);
   $Result1 = mysql_query($deleteSQL, $conexao) or die(mysql_error());
@@ -205,16 +205,16 @@ echo "	<script>
 
 /////////////// LIMPAR CARRINHO /////////////////////
 
-if($_GET[acao] == 'limpar' and $_SESSION[compra] <> '') {
-	$deleteSQL = "DELETE FROM tbl_pedidos_por_id_compra WHERE id_compra='$_SESSION[compra]'";
+if($_GET['acao'] == 'limpar' and $_SESSION['compra'] <> '') {
+	$deleteSQL = "DELETE FROM tbl_pedidos_por_id_compra WHERE id_compra='$_SESSION['compra']'";
 	mysql_select_db($database_conexao, $conexao);
 	$Result1 = mysql_query($deleteSQL, $conexao) or die(mysql_error());
   
-	$deleteSQL = "DELETE FROM tbl_compras WHERE id='$_SESSION[compra]'";
+	$deleteSQL = "DELETE FROM tbl_compras WHERE id='$_SESSION['compra']'";
 	mysql_select_db($database_conexao, $conexao);
 	$Result1 = mysql_query($deleteSQL, $conexao) or die(mysql_error());
   
-	unset($_SESSION[compra]);
+	unset($_SESSION['compra']);
 	
 	echo "	<script>
 			window.location='index.php'
@@ -225,11 +225,11 @@ if($_GET[acao] == 'limpar' and $_SESSION[compra] <> '') {
 
 
 /// GRAVA VALOR DO FRETE NA SESSÃO PARA CONFIRMAR PEDIDO.
-if($_GET[total_prods] <> '') {
+if($_GET['total_prods'] <> '') {
 	/// se frete gratis
-	if($_GET[acao] == "freteGratis") {
-		$_SESSION[total_frete] = "Grátis";
-		$_SESSION[forma_envio] = 'Frete Grátis';
+	if($_GET['acao'] == "freteGratis") {
+		$_SESSION['total_frete'] = "Grátis";
+		$_SESSION['forma_envio'] = 'Frete Grátis';
 		
 		echo "	<script>
 				parent.window.location='area-cliente.php'
@@ -240,7 +240,7 @@ if($_GET[total_prods] <> '') {
 ?>
 <!doctype html>
 <html class="no-js" lang="">
-   <? include('head.php'); ?>
+   <?php include('head.php'); ?>
 <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -248,7 +248,7 @@ if($_GET[total_prods] <> '') {
         <!-- Add your site or application content here -->
         <!-- start header_area
 		============================================ -->
-        <? include('header.php'); ?>
+        <?php include('header.php'); ?>
 
         <div class="shopping-cart-area">
             <div class="container">
@@ -274,7 +274,7 @@ if($_GET[total_prods] <> '') {
                                     </tr>
 <?php
 		unset($total_frete);
-		unset($_SESSION[total_prods]);
+		unset($_SESSION['total_prods']);
 		unset($total_prods);
 
 		foreach($rsItensPedido as $itensPedido) {
@@ -316,17 +316,17 @@ if($_GET[total_prods] <> '') {
                                       R$ <?php echo number_format($itensPedido->valor_c_acrecimo, 2, ',', '.') ?>
                                      </td>
                                      <td>
-                                     <input name="tipo_entrega" type="hidden" id="tipo_entrega" value="<?=$_GET[tipo_entrega];?>" />
+                                     <input name="tipo_entrega" type="hidden" id="tipo_entrega" value="<?=$_GET['tipo_entrega'];?>" />
                                      <input name="acao" type="hidden" id="acao" value="alterar" />
                                      <input name="id" type="hidden" id="id" value="<?php echo $itensPedido->id; ?>" />
                                       <select  name="qtd" class="styler" id="qtd" style="padding:3px;" onchange="javascript:document.formCarrinho<?php echo $itensPedido->id; ?>.submit(); qdtEstoque(this.value);">
-                                      <? for ($i=1; $i< 100; $i++) { ?> 
-                                       <option value="<?=$i;?>" <?php if($itensPedido->qtd == $i) { ?>selected="selected"<? } ?> >
-               							<? echo $i; ?>
+                                      <?php for ($i=1; $i< 100; $i++) { ?> 
+                                       <option value="<?=$i;?>" <?php if($itensPedido->qtd == $i) { ?>selected="selected"<?php } ?> >
+               							<?php echo $i; ?>
                                        </option>
-                                     <? } ?>
+                                     <?php } ?>
                                      <input type="hidden" name="qdtestoque" id="qdtestoque" value="" >
-                                     <input type="hidden" name="qdtestoque3" id="qdtestoque3" value="<? echo $itensPedido->estoque;?>" >
+                                     <input type="hidden" name="qdtestoque3" id="qdtestoque3" value="<?php echo $itensPedido->estoque;?>" >
                                      </select>
                                      </td>
                                      <td class="sop-cart">
@@ -358,9 +358,9 @@ if($_GET[total_prods] <> '') {
                                   </div>
                                  
                                  </div>
-                          <? } else { ?>
+                          <?php } else { ?>
                            <p>Você não colocou produtos em seu carrinho!</p>
-                          <? } ?>
+                          <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -396,7 +396,7 @@ if($_GET[total_prods] <> '') {
                           </div>
                          </div>
                         </form>
-                     <? } ?>
+                     <?php } ?>
                      </div>
                      
 <script>
@@ -407,12 +407,12 @@ function fecha_pedido() {
 		parent.window.location='info-pagamento.php';
 		return false;
 	}
-	<? 
+	<?php 
 	if($total_prods > $row_rs_dados_empresa_carrinho['frete_gratis_acimade']) { 
 	?>
 	//window.location='?acao=freteGratis&total_prods=<?=$total_prods;?>';
 	//return false;
-	<? } ?>
+	<?php } ?>
 	/// VERIFICA SE PEDIDO TA NO VALOR MINIMO
 	if(document.getElementById('total_prods').value > <?php echo valorCalculavel($row_rs_dados_empresa_carrinho['venda_minima']); if(valorCalculavel($row_rs_dados_empresa_carrinho['venda_minima']) == '') { echo 0; } ?>) { 
 	/// SE ESTIVER FAZ O SUBMIT
@@ -428,8 +428,8 @@ alert('Desculpe. Aceitamos pedidos somente acima de R$ <?php echo number_format(
                         <div class="totals">
                             <div class="subtotal">
                                 <p>Subtotal R$<span>
-                                 <? echo number_format($total_prods,2,',','.');
-									$_SESSION[total_prods] = $total_prods; ?>
+                                 <?php echo number_format($total_prods,2,',','.');
+									$_SESSION['total_prods'] = $total_prods; ?>
                                 </span></p>
                                 <p>Valor do Frete <span id="frete"> R$ 0.00</span></p>
                                 <p>Total R$ <span id="subtotal">0.00</span></p>
@@ -446,7 +446,7 @@ alert('Desculpe. Aceitamos pedidos somente acima de R$ <?php echo number_format(
 
 		<iframe src="" frameborder="0" name="enviaCarrinho" id="enviaCarrinho" style="display:none;"></iframe>
        
-	     <? include('footer.php'); ?>
+	     <?php include('footer.php'); ?>
 
 <!-- end footer-address
 		============================================ -->

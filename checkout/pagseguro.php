@@ -3,7 +3,7 @@ include('Connections/conexao.php');
 include 'PagSeguroLibrary/PagSeguroLibrary.php';
 include('funcoes.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 mysql_select_db($database_conexao, $conexao);
 $query_rs_dadosPagseguro = "SELECT * FROM tbl_config";
@@ -33,12 +33,12 @@ $item = new PagSeguroItem($data);
 $paymentrequest->addItem($item);
 
 /// Frete
-if(valorCalculavel($_SESSION[total_frete]) <> '') {
+if(valorCalculavel($_SESSION['total_frete']) <> '') {
 	$dataFrete = Array(
 		'id' => $produtos_id . '-Frete', // identificador
 		'description' => 'Frete', // descrição
 		'quantity' => 1, // quantidade
-		'amount' => number_format(valorCalculavel($_SESSION[total_frete]),2,'.',''), 
+		'amount' => number_format(valorCalculavel($_SESSION['total_frete']),2,'.',''), 
 	);
 	$itemFrete = new PagSeguroItem($dataFrete);
 	$paymentrequest->addItem($itemFrete);

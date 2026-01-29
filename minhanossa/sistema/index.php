@@ -1,6 +1,6 @@
 <?php
 include('Connections/conexao.php');
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 include('funcoes.php');
 include('verifica-retorno-produto.php');
@@ -145,7 +145,7 @@ $totalRows_rs_pendencias = mysql_num_rows($rs_pendencias);
   </style>
   <script type="text/javascript" src="jquery.js"></script>
   <script type="text/javascript" src="load.js"></script>
-  <? include('dialog-jquery/inc-abre-janela.php'); ?>
+  <?php include('dialog-jquery/inc-abre-janela.php'); ?>
 
   <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
   <script type="text/javascript" src="js/jquery-migrate-1.1.1.min.js"></script>
@@ -408,7 +408,7 @@ $totalRows_rs_pendencias = mysql_num_rows($rs_pendencias);
                 <h4 class="widgettitle">A Pagar Hoje</h4>
               </div>
               <div class="widgetcontent" >
-              <a <?php /*?>href="contas.php?dataInicio=<?=date('d/m/Y');?>&dataFim=<?=date('d/m/Y');?>&busca=&tipo=D"<?php */ ?> style="color:#C00003; font-size:30px; text-decoration:none;;">R$ <?= number_format($row_rs_contaPagar['total'], 2, ',', '.'); ?></a>
+              <a <?php /*?>href="contas.php?dataInicio=<?php echo date('d/m/Y');?>&dataFim=<?php echo date('d/m/Y');?>&busca=&tipo=D"<?php */ ?> style="color:#C00003; font-size:30px; text-decoration:none;;">R$ <?php echo  number_format($row_rs_contaPagar['total'], 2, ',', '.'); ?></a>
               </div>
               
             </div>
@@ -430,7 +430,7 @@ $totalRows_rs_pendencias = mysql_num_rows($rs_pendencias);
               </div>
               
               <div class="widgetcontent" >
-              <a <?php /*?>href="contas.php?dataInicio=<?=date('d/m/Y');?>&dataFim=<?=date('d/m/Y');?>&busca=&tipo=R"<?php */ ?> style="color:#006C09; font-size:30px; text-decoration:none;;">R$ <?= number_format($row_rs_contaReceber['total'], 2, ',', '.'); ?></a>
+              <a <?php /*?>href="contas.php?dataInicio=<?php echo date('d/m/Y');?>&dataFim=<?php echo date('d/m/Y');?>&busca=&tipo=R"<?php */ ?> style="color:#006C09; font-size:30px; text-decoration:none;;">R$ <?php echo  number_format($row_rs_contaReceber['total'], 2, ',', '.'); ?></a>
               </div>
 
             </div>
@@ -476,7 +476,7 @@ $totalRows_rs_pendencias = mysql_num_rows($rs_pendencias);
                         </tr>
                       </tbody>
                     </table>
-                    <input type="hidden" name="dataEvento" value="<?= date('d/m/Y'); ?>">
+                    <input type="hidden" name="dataEvento" value="<?php echo  date('d/m/Y'); ?>">
                   </form>
 
 
@@ -513,15 +513,15 @@ $totalRows_rs_pendencias = mysql_num_rows($rs_pendencias);
             <div class="widgetbox">
               <div class="headtitle">
                
-                <h4 class="widgettitle">Metas de <?= exibe_mes(date('m')); ?> de <?= date('Y'); ?></h4>
+                <h4 class="widgettitle">Metas de <?php echo  exibe_mes(date('m')); ?> de <?php echo  date('Y'); ?></h4>
               </div>
               <div class="widgetcontent"> 
-              	<li>Meta Geral da Loja: <strong><?= number_format($row_rs_metaLoja['meta'], 2, ',', '.'); ?></strong></li>
-              	<li>Meta geral alcan�ada: <strong><?= number_format($row_rs_metaAlcLoja['total'], 2, ',', '.'); ?></strong></li>
+              	<li>Meta Geral da Loja: <strong><?php echo  number_format($row_rs_metaLoja['meta'], 2, ',', '.'); ?></strong></li>
+              	<li>Meta geral alcan�ada: <strong><?php echo  number_format($row_rs_metaAlcLoja['total'], 2, ',', '.'); ?></strong></li>
                 ------------
-              	<li>Sua meta: <strong><?= number_format($_SESSION['dadosUser']['meta'], 2, ',', '.'); ?></strong></li>
-              	<li>Meta alcan�ada: <strong><?= number_format($row_rs_metaAlcVendedor['total'], 2, ',', '.'); ?></strong></li>
-              	<li>Faltando para alcan�ar: <strong><?= number_format($_SESSION['dadosUser']['meta'] - $row_rs_metaAlcVendedor['total'], 2, ',', '.'); ?></strong></li>
+              	<li>Sua meta: <strong><?php echo  number_format($_SESSION['dadosUser']['meta'], 2, ',', '.'); ?></strong></li>
+              	<li>Meta alcan�ada: <strong><?php echo  number_format($row_rs_metaAlcVendedor['total'], 2, ',', '.'); ?></strong></li>
+              	<li>Faltando para alcan�ar: <strong><?php echo  number_format($_SESSION['dadosUser']['meta'] - $row_rs_metaAlcVendedor['total'], 2, ',', '.'); ?></strong></li>
               </div>
               
             </div>

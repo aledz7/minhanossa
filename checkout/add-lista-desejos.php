@@ -1,5 +1,5 @@
 ﻿<?php
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 include('../class/produtos.php');
 $produtos = Produtos::getInstance(Conexao::getInstance());

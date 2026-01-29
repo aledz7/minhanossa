@@ -52,7 +52,7 @@ $totalRows_rs_provas = mysql_num_rows($rs_provas);
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Agenda > <?=$_GET['tipo'];?></title>
+<title>Agenda > <?php echo $_GET['tipo'];?></title>
 
 <link rel="stylesheet" href="css/style.default.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap-fileupload.min.css" type="text/css" />
@@ -80,7 +80,7 @@ $totalRows_rs_provas = mysql_num_rows($rs_provas);
 <script type="text/javascript" src="js/forms.js"></script>
 
 <script type="text/javascript" src="load.js"></script>
-<? include('dialog-jquery/inc-abre-janela.php');?>
+<?php include('dialog-jquery/inc-abre-janela.php');?>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-9" /></head>
@@ -95,7 +95,7 @@ $totalRows_rs_provas = mysql_num_rows($rs_provas);
  
  
       <div class="widget">
-        <h4 class="widgettitle"><span class="icon-calendar"></span>Agenda de <?=$_GET['tipo'];?></h4>
+        <h4 class="widgettitle"><span class="icon-calendar"></span>Agenda de <?php echo $_GET['tipo'];?></h4>
         <div class="widgetcontent">
         
          <?php if($totalRows_rs_provas > 0) { ?>
@@ -138,7 +138,7 @@ $totalRows_rs_nome_cliente = mysql_num_rows($rs_nome_cliente);
               
             </tbody>
           </table>
-          <? 
+          <?php 
 		  } else { 
 		  	$HTML->nenhumRegistro();
 		  }

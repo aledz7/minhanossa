@@ -1,5 +1,5 @@
 <?php 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 include('Connections/conexao.php'); 
 include('funcoes.php');
@@ -74,7 +74,7 @@ if($row_rs_cliente['nome'] == '') {
 ///////////////// ENVIA TUDO PARA O CLIENTE ///////////////
 mysql_select_db($database_conexao, $conexao);
 
-$query_rs_dados_compra = "SELECT tbl_compras.*, tbl_status.status as status FROM tbl_compras left join tbl_status on tbl_compras.status = tbl_status.id WHERE tbl_compras.id = '$_SESSION[compra]'";
+$query_rs_dados_compra = "SELECT tbl_compras.*, tbl_status.status as status FROM tbl_compras left join tbl_status on tbl_compras.status = tbl_status.id WHERE tbl_compras.id = '$_SESSION['compra']'";
 $rs_dados_compra = mysql_query($query_rs_dados_compra, $conexao) or die(mysql_error());
 $row_rs_dados_compra = mysql_fetch_assoc($rs_dados_compra);
 $totalRows_rs_dados_compra = mysql_num_rows($rs_dados_compra);
@@ -130,10 +130,10 @@ $totalRows_rs_email = mysql_num_rows($rs_email);
 ?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
-   <? include('head.php'); ?>
+   <?php include('head.php'); ?>
     <body>
         <!-- Header-->
-        <? include('header.php');?>
+        <?php include('header.php');?>
         <!-- End header -->
                 
         <section>
@@ -147,7 +147,7 @@ $totalRows_rs_email = mysql_num_rows($rs_email);
                                 <td width="47%" height="32" style="background:url(img/categorias_loja.gif); background-repeat:no-repeat;">
                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                   <span class="titulo_verde">
-                                   <h4><strong>Confirma&ccedil;&atilde;o de Pedido - <?=$_SESSION[compra];?></strong></h4>
+                                   <h4><strong>Confirma&ccedil;&atilde;o de Pedido - <?=$_SESSION['compra'];?></strong></h4>
                                   </span>
                                  </td>
     <td width="53%" style="background:url(img/categorias_loja-fundo.gif);">&nbsp;</td>
@@ -155,7 +155,7 @@ $totalRows_rs_email = mysql_num_rows($rs_email);
 </table>
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
 <tr>
-  <td width="95%" valign="top" bgcolor="<? echo $fundo_meio; ?>"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <td width="95%" valign="top" bgcolor="<?php echo $fundo_meio; ?>"><table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td><table width="100%" cellpadding="0" cellspacing="0">
         <tr>
@@ -178,7 +178,7 @@ $totalRows_rs_email = mysql_num_rows($rs_email);
                     </tbody>
                   </table>
                   <?php do { ?>
-                    <?
+                    <?php
 $id_prod = $row_rs_pedidos['produto'];
 
 mysql_select_db($database_conexao, $conexao);
@@ -229,10 +229,10 @@ $produtos_nomes .= $row_rs_dados_produto['nome'].', ';
                       <td><div align="left"><strong class="texto_preto">Informa&ccedil;&otilde;es de pagamento</strong></div></td>
                       </tr>
                     <tr>
-                      <td ><div align="left" class="texto_nav style12"><? echo $_SESSION['pagamento'];?></div><br/>
-                      <? if(substr($_SESSION['pagamento'],0,8) == 'Depósito'){?>
+                      <td ><div align="left" class="texto_nav style12"><?php echo $_SESSION['pagamento'];?></div><br/>
+                      <?php if(substr($_SESSION['pagamento'],0,8) == 'Depósito'){?>
                       Dep&oacute;sito banc&aacute;rio tem 5% de desconto no produto!
-                      <? }?>
+                      <?php }?>
                       </td>
                       </tr>
                     </tbody>
@@ -251,14 +251,14 @@ $produtos_nomes .= $row_rs_dados_produto['nome'].', ';
                       <tr>
                       <td width="91%" align="right" class="texto_nav style13"><div align="right"><strong>Total Frete:&nbsp;</strong></div></td>
                       <td width="9%" nowrap class="texto_nav">R$
-                        <?=number_format(valorCalculavel($_SESSION[total_frete]),2,',','.');?></td>
+                        <?=number_format(valorCalculavel($_SESSION['total_frete']),2,',','.');?></td>
                       </tr>
                       
                       <?php      /// calcula desconto
-if($_SESSION[tipoDesconto] == 'valor') {
-	$desconto = number_format($_SESSION[desconto],2,',','.'); 
+if($_SESSION['tipoDesconto'] == 'valor') {
+	$desconto = number_format($_SESSION['desconto'],2,',','.'); 
 } else { 
-	$desconto = number_format($total_prods/100*$_SESSION[desconto],2,',','.'); 
+	$desconto = number_format($total_prods/100*$_SESSION['desconto'],2,',','.'); 
 }
 
 if($row_rs_dados_compra['desconto'] <> '' and $row_rs_dados_compra['desconto'] <> 0) {
@@ -271,23 +271,23 @@ if($row_rs_dados_compra['desconto'] <> '' and $row_rs_dados_compra['desconto'] <
                       <td align="left" nowrap class="texto_nav">R$ <?=$desconto;?></td>
                     </tr>
                     <?php } ?>
-                   <?php /*?> <? if(substr($_SESSION['pagamento'],0,8) == 'Depósito'){?>
-                    <? $porcentagem = 5 /100;
+                   <?php /*?> <?php if(substr($_SESSION['pagamento'],0,8) == 'Depósito'){?>
+                    <?php $porcentagem = 5 /100;
 						$valorTotal2 = $total_prods - ($porcentagem*$total_prods);
 					?>
                     <tr>
                       <td align="right" class="style13 texto_nav"><strong>Total:</strong></td>
                       <td nowrap class="texto_nav">R$
-                        <?=number_format(($_SESSION[total_frete]+$valorTotal2)-valorCalculavel($desconto),2,',','.');?></td>
+                        <?=number_format(($_SESSION['total_frete']+$valorTotal2)-valorCalculavel($desconto),2,',','.');?></td>
                       </tr>
-					<? }else{?><?php */?>
+					<?php }else{?><?php */?>
                     
                     <tr>
                       <td align="right" class="style13 texto_nav"><strong>Total:&nbsp;</strong></td>
                       <td nowrap class="texto_nav">R$
-                        <?=number_format((valorCalculavel($_SESSION[total_frete])+$total_prods)-valorCalculavel($desconto),2,',','.');?></td>
+                        <?=number_format((valorCalculavel($_SESSION['total_frete'])+$total_prods)-valorCalculavel($desconto),2,',','.');?></td>
                       </tr>
-                      <? // }?>
+                      <?php // }?>
                     </tbody>
                   </table></td>
                 </tr>
@@ -369,7 +369,7 @@ if($_SESSION['pagamento'] == 'Banco do Brasil') {
 	  </tr>
 	  <tr>
 		<td nowrap class='style26'><div align='right'>Total a pagar:&nbsp;</div></td>
-		<td class='style27'>R$ ".number_format(($_SESSION[total_frete]+$total_prods)-valorCalculavel($desconto),2,',','.')."</td>
+		<td class='style27'>R$ ".number_format(($_SESSION['total_frete']+$total_prods)-valorCalculavel($desconto),2,',','.')."</td>
 	  </tr>
 	</table>
 	"; 
@@ -456,7 +456,7 @@ $forma_de_pagamento = "<style type='text/css'>
     <td nowrap class='style26'><div align='right'>Total a pagar:</div></td>
 	
     
-	<td class='style27'>R$ ".number_format(($_SESSION[total_frete]+$valorTotal2)-valorCalculavel($desconto),2,',','.')."
+	<td class='style27'>R$ ".number_format(($_SESSION['total_frete']+$valorTotal2)-valorCalculavel($desconto),2,',','.')."
 	</td>
   </tr>
 </table>
@@ -512,7 +512,7 @@ echo $forma_de_pagamento; ?>
         <!-- ===========================================
         =====        footer section               ====
         ============================================ -->        
-        <? include('footer.php');?>
+        <?php include('footer.php');?>
         <!-- End Section footer -->
         <script src="js/vendor/jquery.js"></script>
         <script src="js/vendor/jquery.easing.1.3.js"></script>
@@ -549,17 +549,17 @@ EnviarEmail($assunto, 'Ciclo Dandi', 'danilo@ciclodandi.com.br', 'alessandro@dfi
 echo '>>';
 */
 ///////////////////////////////////////////////////////////
-if($_SESSION[compra] <> '' and $_SESSION[ok] <> 1) {
+if($_SESSION['compra'] <> '' and $_SESSION['ok'] <> 1) {
 
 	$subtotal = $row_rs_cidades['valor']+$total_prods;
 	
-	$updateSQL = "UPDATE tbl_compras SET fechado='S', forma_de_envio='$_SESSION[forma_envio]', formas_de_pagamento='$_SESSION[pagamento]', subtotal='$subtotal', total_frete='$_SESSION[total_frete]', id_cliente='$row_rs_cliente[id]' WHERE id='$_SESSION[compra]'";
+	$updateSQL = "UPDATE tbl_compras SET fechado='S', forma_de_envio='$_SESSION['forma_envio']', formas_de_pagamento='$_SESSION['pagamento']', subtotal='$subtotal', total_frete='$_SESSION['total_frete']', id_cliente='$row_rs_cliente[id]' WHERE id='$_SESSION['compra']'";
 	mysql_select_db($database_conexao, $conexao);
 	$Result1 = mysql_query($updateSQL, $conexao) or die(mysql_error());
 
 	/// ALTERA ESTOQUE DOS PRODUTOS
 	mysql_select_db($database_conexao, $conexao);
-	$query_rs_pedidos_ESTOQUE = sprintf("SELECT * FROM tbl_pedidos_por_id_compra WHERE id_compra = '$_SESSION[compra]'", GetSQLValueString($colname_rs_pedidos_ESTOQUE, "int"));
+	$query_rs_pedidos_ESTOQUE = sprintf("SELECT * FROM tbl_pedidos_por_id_compra WHERE id_compra = '$_SESSION['compra']'", GetSQLValueString($colname_rs_pedidos_ESTOQUE, "int"));
 	$rs_pedidos_ESTOQUE = mysql_query($query_rs_pedidos_ESTOQUE, $conexao) or die(mysql_error());
 	$row_rs_pedidos_ESTOQUE = mysql_fetch_assoc($rs_pedidos_ESTOQUE);
 	$totalRows_rs_pedidos_ESTOQUE = mysql_num_rows($rs_pedidos_ESTOQUE);
@@ -588,20 +588,20 @@ if($_SESSION[compra] <> '' and $_SESSION[ok] <> 1) {
 	//// ALTERAÇAO DE ESTOQUE
 	/////////////////////////////////////////////////////////////////////////////////////////
 
-	if(!$_SESSION[ok]) {
-	$_SESSION[ok] = 1;
+	if(!$_SESSION['ok']) {
+	$_SESSION['ok'] = 1;
 	echo "	<script>
 			window.location='./confirmacao.php'
 			</script>";
 
-	$assunto = "Pedido No $_SESSION[compra] confirmado!";
+	$assunto = "Pedido No $_SESSION['compra'] confirmado!";
 	$mail = $row_rs_cliente['email'];
 	$remetente = "$titulo <$infoSite->email>";
 	$headers = "Content-Type: text/html; charset=iso-8859-1\n";  
 	$headers.="From: $remetente\n"; 
 
 	mysql_select_db($database_conexao, $conexao);
-	$query_rs_pedidos = sprintf("SELECT * FROM tbl_pedidos_por_id_compra WHERE id_compra = '$_SESSION[compra]'", GetSQLValueString($colname_rs_pedidos, "int"));
+	$query_rs_pedidos = sprintf("SELECT * FROM tbl_pedidos_por_id_compra WHERE id_compra = '$_SESSION['compra']'", GetSQLValueString($colname_rs_pedidos, "int"));
 	$rs_pedidos = mysql_query($query_rs_pedidos, $conexao) or die(mysql_error());
 	$row_rs_pedidos = mysql_fetch_assoc($rs_pedidos);
 	$totalRows_rs_pedidos = mysql_num_rows($rs_pedidos);
@@ -673,7 +673,7 @@ $topo_email_confim
   <tr>
     <td height='59' valign='top'><p><span class='arial_12_vermelho'>Identifica&ccedil;&atilde;o do   pedido</span><strong><BR>
               <BR>
-    </strong><span class='texto_pagina'>Pedido N&ordm; <STRONG>$_SESSION[compra]</STRONG> realizado em <STRONG>".date('d/m/Y')."</STRONG></span></p>
+    </strong><span class='texto_pagina'>Pedido N&ordm; <STRONG>$_SESSION['compra']</STRONG> realizado em <STRONG>".date('d/m/Y')."</STRONG></span></p>
         <p class='titulo_campos'><span class='style8'><strong class='titulo_campos'>Status: </strong>$row_rs_dados_compra[status]</span></p></td>
   </tr>
 </table>
@@ -750,7 +750,7 @@ $dados_pedidos
               <TD width='50%'><STRONG class='titulo_campos'>Endere&ccedil;o de entrega</STRONG></TD>
             </TR>
             <TR vAlign='top'>
-              <TD width='50%' class='texto_pagina'>".ucwords($_SESSION[forma_envio])."</TD>
+              <TD width='50%' class='texto_pagina'>".ucwords($_SESSION['forma_envio'])."</TD>
               <TD width='50%' class='texto_pagina'>".ucwords($row_rs_cliente[endereco]).", ".ucwords($row_rs_cliente[complemento])."<BR>
                   ".ucwords($row_rs_cliente[bairro]).", ".ucwords($row_rs_cliente[cidade])." / $estado<BR>
                 CEP: $row_rs_cliente[cep]</TD>
@@ -809,7 +809,7 @@ Atendimento ".$nome_da_loja."<br>
 
 ////////
 ///////////////// ENVIA TUDO PARA O LOJISTA ///////////////
-$assunto = "Pedido No $_SESSION[compra] confirmado!";
+$assunto = "Pedido No $_SESSION['compra'] confirmado!";
 $mailLoja = $infoSite->email;
 $remetente = "$titulo <{$infoSite->email}>";
 $headers = "Content-Type: text/html; charset=iso-8859-1\n";  

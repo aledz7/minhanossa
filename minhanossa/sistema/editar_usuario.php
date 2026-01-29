@@ -5,7 +5,7 @@ include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
 
-if($_POST[acao] == 'editarUsuario') {
+if($_POST['acao'] == 'editarUsuario') {
 	$updateSQL = sprintf("UPDATE tbl_admin SET meta=%s, comissao=%s, login=%s, senha=%s, nome=%s, email=%s, status=%s WHERE id=%s",
                        GetSQLValueString(valorCalculavel($_POST['meta']), "text"),
                        GetSQLValueString(valorCalculavel($_POST['comissao']), "text"),
@@ -185,9 +185,9 @@ body,td,th {
                                  
                                  <?php do { ?>
                                  <div class="col-md-4">
-                                   <input type="checkbox" name="id_acesso[]" value="<?=$row_rs_acessos['id'];?>" <?php if($row_rs_acessos['temAcesso'] > 0) { echo 'checked'; } ?> /> <?=$row_rs_acessos['nome'];?>
+                                   <input type="checkbox" name="id_acesso[]" value="<?php echo $row_rs_acessos['id'];?>" <?php if($row_rs_acessos['temAcesso'] > 0) { echo 'checked'; } ?> /> <?php echo $row_rs_acessos['nome'];?>
                                 </div>
-                                <? } while($row_rs_acessos = mysql_fetch_assoc($rs_acessos)); ?>
+                                <?php } while($row_rs_acessos = mysql_fetch_assoc($rs_acessos)); ?>
                                
                                 </fieldset>
                                 </div>

@@ -3,7 +3,7 @@ include('Connections/conexao.php');
 include('funcoes.php');
 include('../class/info-site.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 //print_r($_POST);
 
 function scriptTotalFrete($valorFrete, $uf) {
@@ -21,8 +21,8 @@ function scriptTotalFrete($valorFrete, $uf) {
 	
 	if($verifica_estado > 0) {
 		$valorFrete = 'Frete Grátis';
-		$_SESSION[forma_envio] = 'Frete Grátis';
-		$_SESSION[total_frete] = 0;
+		$_SESSION['forma_envio'] = 'Frete Grátis';
+		$_SESSION['total_frete'] = 0;
 	} else {
 		$valorFrete = 'R$ '.number_format($valorFrete,2,',','.');
 	}
@@ -58,8 +58,8 @@ $totalRows_rs_valorSedex = mysql_num_rows($rs_valorSedex);
 //print_r($row_rs_valorSedex); exit;
 
 if($totalRows_rs_valorSedex > 0 and $row_rs_valorSedex['valor'] > 0) {	
-	$_SESSION[forma_envio] = 'Sedex';
-	$_SESSION[total_frete] = $row_rs_valorSedex[valor];
+	$_SESSION['forma_envio'] = 'Sedex';
+	$_SESSION['total_frete'] = $row_rs_valorSedex[valor];
 	$valor = $row_rs_valorSedex[valor];
 	$uf_cep_destino = $row_rs_valorSedex[uf_cep_destino];
 } else {
@@ -138,8 +138,8 @@ if($totalRows_rs_valorSedex > 0 and $row_rs_valorSedex['valor'] > 0) {
 		mysql_select_db($database_conexao, $conexao);
 		$Result1 = mysql_query($insertSQL, $conexao) or die(mysql_error());
 	
-		$_SESSION[forma_envio] = 'Sedex';
-		$_SESSION[total_frete] = $valor;
+		$_SESSION['forma_envio'] = 'Sedex';
+		$_SESSION['total_frete'] = $valor;
 	}
 }
 

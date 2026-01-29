@@ -5,7 +5,7 @@ $conteudos = Conteudos::getInstance(Conexao::getInstance());
 $servicos = $conteudos->rsDados('26');
 foreach($servicos as $servico) { ?>
 	<li><a href="servicos.php?nome=<?=texto($servico->titulo);?>&id=<?=$servico->id;?>"><?=texto($servico->titulo);?></a></li>
-<? } ?>
+<?php } ?>
 
 <?php
 include('class/produtos.php');

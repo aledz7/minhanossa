@@ -116,7 +116,7 @@ body,td,th {
                             <li class="filesearch">
                             		<div class="input-prepend">
                                       <span class="add-on">Data de Utiliza&ccedil;&atilde;o</span>
-                                      <input id="dataEvento" type="text" name="dataEvento" class="input-small datepicker" style="padding:5px;" value="<?=$_GET['dataEvento'];?>" />                                    </div>
+                                      <input id="dataEvento" type="text" name="dataEvento" class="input-small datepicker" style="padding:5px;" value="<?php echo $_GET['dataEvento'];?>" />                                    </div>
                                    
                                    
                                    
@@ -127,8 +127,8 @@ body,td,th {
                                       <select name="id_produto" id="id_produto" style="height:32px;" >
                                       	<option value=""></option>
 										<?php do { ?>
-                                        <option value="<?=$row_rs_produtos['id'];?>" <?php if($row_rs_produtos['id'] == $_GET['id_produto']) { echo 'selected'; } ?>><?=$row_rs_produtos['nome'];?></option>
-                                        <? } while($row_rs_produtos = mysql_fetch_assoc($rs_produtos)); ?>
+                                        <option value="<?php echo $row_rs_produtos['id'];?>" <?php if($row_rs_produtos['id'] == $_GET['id_produto']) { echo 'selected'; } ?>><?php echo $row_rs_produtos['nome'];?></option>
+                                        <?php } while($row_rs_produtos = mysql_fetch_assoc($rs_produtos)); ?>
                                       </select>
                                    </div>
                                       
@@ -164,7 +164,7 @@ body,td,th {
 				$totalRows_rs_nome_cliente = mysql_num_rows($rs_nome_cliente); 
 		     ?>
               <tr>
-                <td><? if($row_rs_provas['id_cliente'] <> ''){ echo $row_rs_nome_cliente['nome'];} else echo 'Lavanderia'?></td>
+                <td><?php if($row_rs_provas['id_cliente'] <> ''){ echo $row_rs_nome_cliente['nome'];} else echo 'Lavanderia'?></td>
                 <td style="text-align:center"><?php echo $row_rs_provas['quantidade_produto'];?></td>
                 <td><?php echo formataData($row_rs_provas['data_retirada']);?></td>
                 <td><?php echo formataData($row_rs_provas['data_devolucao']);?></td>
@@ -179,11 +179,11 @@ body,td,th {
               
             </tbody>
           </table>
-          <? 
+          <?php 
 		  } else { 
 		  	?>
             <div align="center" style="margin-bottom:27px; font-size:15px; color:#00724C">Produto / Traje dispon&iacute;vel.</div>
-            <?
+            <?php
 		  }
 		  ?>
           

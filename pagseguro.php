@@ -1,7 +1,7 @@
 <?php 
 include('Connections/conexao.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 include('PagSeguroLibrary/PagSeguroLibrary.php');
 include('funcoes.php');
 

@@ -137,10 +137,10 @@ $totalRows_rs_fornecedores = mysql_num_rows($rs_fornecedores);
                               <a href="desativar-marca.php?id=<?php echo $row_rs_fornecedores['id']; ?>" class="btn btn-danger btn-mini" style="font-size:10px; margin-left:7px;"> <i class="iconfa-remove"></i> Desativar
                               </a>
 
-                            <? } elseif ($row_rs_fornecedores['status'] == 'I') { ?>
+                            <?php } elseif ($row_rs_fornecedores['status'] == 'I') { ?>
                               <a href="reativar-marca.php?id=<?php echo $row_rs_fornecedores['id']; ?>" class="btn btn-success btn-mini" style="font-size:10px; margin-left:7px;"> <i class="iconfa-check"></i> Ativar
                               </a>
-                            <? } ?>
+                            <?php } ?>
                           </td>
                           <td class="centeralign">
                             <a href="editar-fornecedores.php?id=<?php echo $row_rs_fornecedores['id']; ?>" class="btn btn-primary btn-mini"> <i class="icon-pencil"></i> &nbsp; Editar
@@ -158,7 +158,7 @@ $totalRows_rs_fornecedores = mysql_num_rows($rs_fornecedores);
 
                   </tbody>
                 </table>
-              <?
+              <?php
               } else {
                 $HTML->nenhumRegistro();
               } ?>

@@ -63,7 +63,7 @@ $totalRows_rs_fotos = mysql_num_rows($rs_fotos);
 ?>
 <!doctype html>
 <html class="no-js" lang="">
-  <? include('head.php'); ?>
+  <?php include('head.php'); ?>
     <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -71,7 +71,7 @@ $totalRows_rs_fotos = mysql_num_rows($rs_fotos);
         <!-- Add your site or application content here -->
         <!-- start header_area
 		============================================ -->
-        <? include('header.php'); ?>
+        <?php include('header.php'); ?>
         <!-- end header_area
 		============================================ -->
         <!-- start main_slider_area
@@ -107,7 +107,7 @@ $totalRows_rs_fotos = mysql_num_rows($rs_fotos);
               <div class="s_big">
                <div>
                 <div class="tab-content">
-                <? if($row_rs_desc_produtos['foto'] <> '' ) { ?>
+                <?php if($row_rs_desc_produtos['foto'] <> '' ) { ?>
                  <div id="image1" class="tab-pane fade in active">
                   <div class="simpleLens-big-image-container">
                    <a class="simpleLens-lens-image" data-lens-image="../img_noticias/<?php echo $row_rs_desc_produtos['foto'] ?>">
@@ -115,7 +115,7 @@ $totalRows_rs_fotos = mysql_num_rows($rs_fotos);
                    </a>
                   </div>
                  </div>
-                <? } ?>
+                <?php } ?>
                  <?php do { ?>
                  <div id="image2" class="tab-pane fade">
                   <div class="simpleLens-big-image-container">
@@ -124,7 +124,7 @@ $totalRows_rs_fotos = mysql_num_rows($rs_fotos);
                    </a>
                   </div>
                  </div>
-                <? } while($row_rs_fotos = mysql_fetch_assoc($rs_fotos));
+                <?php } while($row_rs_fotos = mysql_fetch_assoc($rs_fotos));
 				
 				mysql_select_db($database_conexao, $conexao);
 $query_rs_fotos = "select * from tbl_fotos where tipo = 'Produtos{$_GET['id-produto']}'";
@@ -152,7 +152,7 @@ $totalRows_rs_fotos = mysql_num_rows($rs_fotos);
                     <img alt="" src="../img_noticias/<?php echo $row_rs_fotos['foto'] ?>" >
                    </a>
                   </li>
-                  <? 
+                  <?php 
 				  } while($row_rs_fotos = mysql_fetch_assoc($rs_fotos));
 				  }?>
                
@@ -217,7 +217,7 @@ $totalRows_rs_fotos = mysql_num_rows($rs_fotos);
                <p>Veja outros produtos da mesma categoria</p>
                 <div class=" content_top content_all indicator-style">
                  <div class="ma-box-content-all">
-                 <? do { ?>
+                 <?php do { ?>
                   <div class="ma-box-content"  style="margin-bottom:10px; border-bottom:hsla(0,0%,82%,1.00) dashed 1px; float:left;">
                    <div class="product-img-right" style="margin-left:5px; margin-right:12px; width:90px;">
                      <a href="desc-produtos.php?id-produto=<?php echo $row_rs_produtos_relacionados['id'] ?>">
@@ -238,7 +238,7 @@ $totalRows_rs_fotos = mysql_num_rows($rs_fotos);
                      </div>
                     </div>
                    </div>
-                 <? } while($row_rs_produtos_relacionados = mysql_fetch_assoc($rs_produtos_relacionados)); ?>
+                 <?php } while($row_rs_produtos_relacionados = mysql_fetch_assoc($rs_produtos_relacionados)); ?>
                  </div>
                 </div>
                </div>
@@ -262,12 +262,12 @@ $totalRows_rs_fotos = mysql_num_rows($rs_fotos);
             <div class="row">
              <div class="UpSell indicator-style">
              
-			 <? do { ?>
+			 <?php do { ?>
               <div class=" col-md-3">
                <div class="single-product">
-                <? if($row_rs_outros_produtos['promocao'] == 'S') { ?>
+                <?php if($row_rs_outros_produtos['promocao'] == 'S') { ?>
                 <span class="sale-text">Oferta!</span>
-                <? } ?>
+                <?php } ?>
                  <div class="product-img">
                   <a href="desc-produtos.php?id-produto=<?php echo $row_rs_outros_produtos['id'] ?>">
                    <img class="primary-image" src="../img_noticias/<?php echo $row_rs_outros_produtos['foto'] ?>" alt="" />
@@ -278,11 +278,11 @@ $totalRows_rs_fotos = mysql_num_rows($rs_fotos);
                    <span class="special-price">
                     R$<?php echo number_format($row_rs_outros_produtos['preco_por'], 2, ',','.') ?>
                    </span>
-                   <? if($row_rs_outros_produtos['promocao'] == 'S') { ?>
+                   <?php if($row_rs_outros_produtos['promocao'] == 'S') { ?>
                    <span class="old-price">
                     R$<?php echo number_format($row_rs_outros_produtos['preco_de'], 2, ',', '.') ?> 
                    </span>
-                   <? } ?>
+                   <?php } ?>
                   </div>
                   <h2 class="product-name">
                    <a href="desc-produtos.php?id-produto=<?php echo $row_rs_outros_produtos['id'] ?>">
@@ -297,7 +297,7 @@ $totalRows_rs_fotos = mysql_num_rows($rs_fotos);
                 </div>
                </div>
               </div>
-             <? } while($row_rs_outros_produtos = mysql_fetch_assoc($rs_outros_produtos)); ?>
+             <?php } while($row_rs_outros_produtos = mysql_fetch_assoc($rs_outros_produtos)); ?>
             </div>
            </div>
           </div>
@@ -305,7 +305,7 @@ $totalRows_rs_fotos = mysql_num_rows($rs_fotos);
         </div>
        </section>
        
-	   <? include('footer.php'); ?>
+	   <?php include('footer.php'); ?>
 
         <!-- end footer-address
 		============================================ -->

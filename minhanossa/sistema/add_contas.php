@@ -1,6 +1,6 @@
 <?php 
 include('Connections/conexao.php');
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 include('restrito.php');
 include('funcoes.php');
@@ -88,7 +88,7 @@ body,td,th {
         <ul class="breadcrumbs">
             <li><a href="."><i class="iconfa-home"></i></a> <span class="separator"></span></li>
             <li><a href="">Contas</a> <span class="separator"></span></li>
-            <li>Adicionar Contas a <?=($_GET['tipo'] == 'D') ? 'Pagar' : 'Receber';?></li>
+            <li>Adicionar Contas a <?php echo ($_GET['tipo'] == 'D') ? 'Pagar' : 'Receber';?></li>
         </ul>
         <div class="maincontent">
             <div class="maincontentinner">
@@ -161,7 +161,7 @@ body,td,th {
                              <a href="contas_receber.php" class="btn btn-danger btn-mini"> <i class="iconfa-remove"></i>&nbsp; Cancelar</a>
                         </div>
                       </div>
-                      <input type="hidden" name="tipo" value="<?=$_GET['tipo'];?>">
+                      <input type="hidden" name="tipo" value="<?php echo $_GET['tipo'];?>">
                    <input type="hidden" name="MM_insert" id="MM_insert" value="formAddContrato">
                 </form>
            

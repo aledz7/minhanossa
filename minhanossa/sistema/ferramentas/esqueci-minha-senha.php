@@ -30,14 +30,14 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 mysql_select_db($database_conexao, $conexao);
-$query_rs_email = "SELECT * FROM tbl_users WHERE email = '$_POST[email]'";
+$query_rs_email = "SELECT * FROM tbl_users WHERE email = '$_POST['email']'";
 $rs_email = mysql_query($query_rs_email, $conexao) or die(mysql_error());
 $row_rs_email = mysql_fetch_assoc($rs_email);
 $totalRows_rs_email = mysql_num_rows($rs_email);
 
 include('config.php');
 
-if($_POST[email] <> '') {
+if($_POST['email'] <> '') {
 	if($totalRows_rs_email == 0) {
 		echo "	<script>
 				alert('E-mail não localizado em nossa base de dados.');
@@ -45,7 +45,7 @@ if($_POST[email] <> '') {
 				</script>";
 	} else {
 		/// Envia senha para o email do cliente
-		mail($_POST[email],"Sua senha","Olá conforme solicitado informamos que sua senha para acesso ao site é: $row_rs_email[senha]
+		mail($_POST['email'],"Sua senha","Olá conforme solicitado informamos que sua senha para acesso ao site é: $row_rs_email[senha]
 		
 		Qualquer dúvida não deixe de entrar em contato conosco utilizando nosso formulário de contato.
 		Muito obrigado.

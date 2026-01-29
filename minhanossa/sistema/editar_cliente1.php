@@ -1,6 +1,6 @@
 <?php require_once('Connections/conexao.php'); ?>
 <?php
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {

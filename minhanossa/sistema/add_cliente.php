@@ -3,7 +3,7 @@ include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 mysql_select_db($database_conexao, $conexao);
 $query_rs_estado = "SELECT * FROM dados_estados ORDER BY nome ASC";
@@ -306,7 +306,7 @@ body,td,th {
                                 <div class="col-md-3">
                                     CPF<br>
                                     <div class="input-prepend">
-                                    	<input name="cpf" type="text" required="required" class="input-medium" placeholder="Informe um CPF válido" value="<?=$_GET['cpf'];?>" />
+                                    	<input name="cpf" type="text" required="required" class="input-medium" placeholder="Informe um CPF válido" value="<?php echo $_GET['cpf'];?>" />
                                 		<span class="add-on"><i class="iconfa-credit-card"></i></span>
                                     </div>
                                 </div>
@@ -725,7 +725,7 @@ body,td,th {
                         </div>
                       </div>
                    <input type="hidden" name="MM_insert" id="MM_insert" value="formAddCLiente">
-                   <input type="hidden" name="acao" value="<?=$_GET['acao'];?>">
+                   <input type="hidden" name="acao" value="<?php echo $_GET['acao'];?>">
                 </form>
            
             </div><!--widgetcontent-->

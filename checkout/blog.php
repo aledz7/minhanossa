@@ -45,7 +45,7 @@ $totalRows_rs_blog_antigo = mysql_num_rows($rs_blog_antigo);
 ?>
 <!doctype html>
 <html class="no-js" lang="">
-    <? include('head.php'); ?>
+    <?php include('head.php'); ?>
     <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -53,7 +53,7 @@ $totalRows_rs_blog_antigo = mysql_num_rows($rs_blog_antigo);
         <!-- Add your site or application content here -->
         <!-- start header_area
 		============================================ -->
-         <? include('header.php'); ?>
+         <?php include('header.php'); ?>
         <!-- end header_area
 		============================================ -->
         <!-- start main_shop_area
@@ -86,7 +86,7 @@ $totalRows_rs_blog_antigo = mysql_num_rows($rs_blog_antigo);
             <div class="container">
                 <div class="row">
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                   <? do { ?>
+                   <?php do { ?>
                     <div class="single-bolg">
                      <div class="post-format-area">
                       <div class="b-slide-all">
@@ -122,7 +122,7 @@ $totalRows_rs_blog_antigo = mysql_num_rows($rs_blog_antigo);
                         </a>
                     </div>
                 </div>
-               <? } while($row_rs_blog = mysql_fetch_assoc($rs_blog)); ?>
+               <?php } while($row_rs_blog = mysql_fetch_assoc($rs_blog)); ?>
               </div>
                     <div class="col-md-3 col-sm-3 col-xs-12">
                         <div class="blog-right-sidebar">
@@ -130,14 +130,14 @@ $totalRows_rs_blog_antigo = mysql_num_rows($rs_blog_antigo);
                                 <h3 class="sp-module-title">
                                     <span>Últimos Post's</span>
                                 </h3>
-                                <? do { ?>
+                                <?php do { ?>
                                 <div class="single-l-post">
                                     <a href="desc-blog.php?id-blog=<?php echo $row_rs_blog_antigo['id'] ?>">
 									 <?php echo $row_rs_blog_antigo['titulo'] ?>
                                     </a>
                                     <p><?php echo date('d/m/Y', strtotime($row_rs_blog_antigo['data'])); ?></p>
                                 </div>
-                                <? } while($row_rs_blog_antigo = mysql_fetch_assoc($rs_blog_antigo)); ?>
+                                <?php } while($row_rs_blog_antigo = mysql_fetch_assoc($rs_blog_antigo)); ?>
                             </div>
                         </div>
                     </div>
@@ -149,7 +149,7 @@ $totalRows_rs_blog_antigo = mysql_num_rows($rs_blog_antigo);
 		============================================ -->
         <!-- start tweets_area
 		============================================ -->
-         <? include('footer.php'); ?>
+         <?php include('footer.php'); ?>
         <!-- end tweets_area
 		============================================ -->
         <!-- start scrollUp

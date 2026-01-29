@@ -101,7 +101,7 @@ $queryString_rs_provas = sprintf("&totalRows_rs_provas=%d%s", $totalRows_rs_prov
 <head>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agenda > <?= $_GET['tipo']; ?></title>
+  <title>Agenda > <?php echo  $_GET['tipo']; ?></title>
 
   <link rel="stylesheet" href="css/style.default.css" type="text/css" />
   <link rel="stylesheet" href="css/bootstrap-fileupload.min.css" type="text/css" />
@@ -109,7 +109,7 @@ $queryString_rs_provas = sprintf("&totalRows_rs_provas=%d%s", $totalRows_rs_prov
 
   <script type="text/javascript" src="jquery.js"></script>
   <script type="text/javascript" src="load.js"></script>
-  <? include('dialog-jquery/inc-abre-janela.php'); ?>
+  <?php include('dialog-jquery/inc-abre-janela.php'); ?>
 
   <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
   <script type="text/javascript" src="js/jquery-migrate-1.1.1.min.js"></script>
@@ -160,7 +160,7 @@ $queryString_rs_provas = sprintf("&totalRows_rs_provas=%d%s", $totalRows_rs_prov
     <div class="rightpanel">
       <ul class="breadcrumbs">
         <li><a href="."><i class="iconfa-home"></i></a> <span class="separator"></span></li>
-        <li><a href="provas.php"><?= $_GET['tipo']; ?></a></li>
+        <li><a href="provas.php"><?php echo  $_GET['tipo']; ?></a></li>
 
       </ul>
       <div class="pageheader">
@@ -170,7 +170,7 @@ $queryString_rs_provas = sprintf("&totalRows_rs_provas=%d%s", $totalRows_rs_prov
         <div class="pageicon"><span class="iconfa-edit"></span></div>
         <div class="pagetitle">
           <h5>Agenda</h5>
-          <h1><?= $_GET['tipo']; ?></h1>
+          <h1><?php echo  $_GET['tipo']; ?></h1>
         </div>
 
 
@@ -180,7 +180,7 @@ $queryString_rs_provas = sprintf("&totalRows_rs_provas=%d%s", $totalRows_rs_prov
       <div class="maincontent">
         <div class="maincontentinner">
           <div class="widget">
-            <h4 class="widgettitle"><span class="icon-calendar"></span>Agenda de <?= $_GET['tipo']; ?></h4>
+            <h4 class="widgettitle"><span class="icon-calendar"></span>Agenda de <?php echo  $_GET['tipo']; ?></h4>
             <div class="widgetcontent">
 
 
@@ -190,12 +190,12 @@ $queryString_rs_provas = sprintf("&totalRows_rs_provas=%d%s", $totalRows_rs_prov
                     <li class="filesearch">
                       <?php /*?>    		  <div class="input-prepend">
                                       <span class="add-on">Data de In&iacute;cio</span>
-                                      <input id="dataInicio" type="text" name="dataInicio" class="input-small datepicker" style="padding:4px;" value="<?=$_GET['dataInicio'];?>" />                                    </div>
+                                      <input id="dataInicio" type="text" name="dataInicio" class="input-small datepicker" style="padding:4px;" value="<?php echo $_GET['dataInicio'];?>" />                                    </div>
                                    
                                    
                                       <div class="input-prepend">
                                       <span class="add-on">Data Final</span>
-                                      <input id="dataFim" value="<?=$_GET['dataFim'];?>" style="padding:4px;" type="text" name="dataFim" class="input-small datepicker" />                                    
+                                      <input id="dataFim" value="<?php echo $_GET['dataFim'];?>" style="padding:4px;" type="text" name="dataFim" class="input-small datepicker" />                                    
 								   </div>
 								
 								
@@ -204,8 +204,8 @@ $queryString_rs_provas = sprintf("&totalRows_rs_provas=%d%s", $totalRows_rs_prov
                                       <select name="id_produto" id="id_produto">
                                       	<option value=""></option>
 										<?php do { ?>
-                                        	<option value="<?=$row_rs_produtos['id'];?>" <?php if($row_rs_produtos['id'] == $_GET['id_produto']) { echo 'selected'; } ?>><?=utf8_decode($row_rs_produtos['nome']);?> (Tam.: <?=$row_rs_produtos['numeracao'];?> - Cor: <?=utf8_decode($row_rs_produtos['nome_cor']);?>)</option>
-                                        <? } while($row_rs_produtos = mysql_fetch_assoc($rs_produtos)); ?>
+                                        	<option value="<?php echo $row_rs_produtos['id'];?>" <?php if($row_rs_produtos['id'] == $_GET['id_produto']) { echo 'selected'; } ?>><?php echo utf8_decode($row_rs_produtos['nome']);?> (Tam.: <?php echo $row_rs_produtos['numeracao'];?> - Cor: <?php echo utf8_decode($row_rs_produtos['nome_cor']);?>)</option>
+                                        <?php } while($row_rs_produtos = mysql_fetch_assoc($rs_produtos)); ?>
                                       </select>
 									</div><?php */ ?>
 
@@ -247,7 +247,7 @@ $queryString_rs_provas = sprintf("&totalRows_rs_provas=%d%s", $totalRows_rs_prov
                       <a href="javascript:;" onClick="document.getElementById('formProvas').submit()" class="btn btn-primary" style="padding: 6px;margin-left: 88px; margin-top: 0px;">Pesquisar</a>
                     </li>
                   </ul>
-                  <input type="hidden" name="tipo" value="<?= $_GET['tipo']; ?>">
+                  <input type="hidden" name="tipo" value="<?php echo  $_GET['tipo']; ?>">
                 </form>
                 <span class="clearall"></span>
               </div>
@@ -296,7 +296,7 @@ $queryString_rs_provas = sprintf("&totalRows_rs_provas=%d%s", $totalRows_rs_prov
 
                   </tbody>
                 </table>
-              <?
+              <?php
               } else {
                 $HTML->nenhumRegistro();
               }
@@ -306,19 +306,19 @@ $queryString_rs_provas = sprintf("&totalRows_rs_provas=%d%s", $totalRows_rs_prov
                 <tr>
                   <td>
                     <div>
-                      <? if ($totalRows_rs_provas > $qtd_produtos) { ?>
+                      <?php if ($totalRows_rs_provas > $qtd_produtos) { ?>
                         <table border="0" cellpadding="0" cellspacing="0" class="texto_menus">
                           <tr>
                             <td>
                               <span class="BuscaTexto1">P&aacute;ginas de resultados:</span><span class="texto1 style1">
-                                <?
-                                $pag = $_GET[pageNum_rs_provas];
+                                <?php
+                                $pag = $_GET['pageNum_rs_provas'];
 
                                 $totalPages_rs_provas++;
                                 for ($i = 0; $i < $totalPages_rs_provas; $i = $i + 1) {
                                   $a = $a + 1;
                                   if ($n == $i) {
-                                    echo "<A href=?pageNum_rs_provas=" . $_GET['pageNum_rs_provas='] . '0' . "&totalRows_rs_provas=" . $totalRows_rs_provas . "&tipo=" . $_GET[tipo] . "&dataInicio=" . $_GET[dataInicio] . "&dataFim=" . $_GET[dataFim] . "&id_produto=" . $_GET[id_produto] . "&id_cliente=" . $_GET[id_cliente] . " style='color:rgba(0,0,0,1.00)'><B>" . $a . "</B></A><strong>&nbsp;&nbsp;| </strong>";
+                                    echo "<A href=?pageNum_rs_provas=" . $_GET['pageNum_rs_provas='] . '0' . "&totalRows_rs_provas=" . $totalRows_rs_provas . "&tipo=" . $_GET['tipo'] . "&dataInicio=" . $_GET['dataInicio'] . "&dataFim=" . $_GET['dataFim'] . "&id_produto=" . $_GET['id_produto'] . "&id_cliente=" . $_GET['id_cliente'] . " style='color:rgba(0,0,0,1.00)'><B>" . $a . "</B></A><strong>&nbsp;&nbsp;| </strong>";
                                   } else {
                                     $p = $a - 1;
 
@@ -328,7 +328,7 @@ $queryString_rs_provas = sprintf("&totalRows_rs_provas=%d%s", $totalRows_rs_prov
                                       $estilo = "style='color:rgba(0,0,0,1.00)'";
                                     }
 
-                                    echo "<A href=?pageNum_rs_provas=" . $_GET['pageNum_rs_provas='] . $p . "&totalRows_rs_provas=" . $totalRows_rs_provas . "&tipo=" . $_GET[tipo] . "&dataInicio=" . $_GET[dataInicio] . "&dataFim=" . $_GET[dataFim] . "&id_produto=" . $_GET[id_produto] . "&id_cliente=" . $_GET[id_cliente] . " {$estilo}><b> " . $a . " </b></A>&nbsp;|";
+                                    echo "<A href=?pageNum_rs_provas=" . $_GET['pageNum_rs_provas='] . $p . "&totalRows_rs_provas=" . $totalRows_rs_provas . "&tipo=" . $_GET['tipo'] . "&dataInicio=" . $_GET['dataInicio'] . "&dataFim=" . $_GET['dataFim'] . "&id_produto=" . $_GET['id_produto'] . "&id_cliente=" . $_GET['id_cliente'] . " {$estilo}><b> " . $a . " </b></A>&nbsp;|";
                                   }
                                 }
                                 $totalPages_rs_provas--;
@@ -342,7 +342,7 @@ $queryString_rs_provas = sprintf("&totalRows_rs_provas=%d%s", $totalRows_rs_prov
                             </td>
                           </tr>
                         </table>
-                      <? } ?>
+                      <?php } ?>
                     </div>
                   </td>
                 </tr>

@@ -28,7 +28,7 @@ return $nextFil;
 //print_r(searchImage('Benfeitorias'));
 ?>
 <img src="<?=searchImage('Sindico')[2];?>" alt="">
-<?
+<?php
 exit;*/
 
  class wwwebbot{

@@ -11,6 +11,20 @@
 </IfModule>
 
 RewriteEngine On
-RewriteCond %{HTTP:X-Forwarded-Proto} !https
-RewriteCond %{HTTPS} off
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+#RewriteCond %{HTTP:X-Forwarded-Proto} !https
+#RewriteCond %{HTTPS} off
+#RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# PHP Compatibility Settings
+<IfModule mod_php5.c>
+    php_value auto_prepend_file "/var/www/html/minhanossa/php_compat.php"
+    php_flag short_open_tag on
+</IfModule>
+<IfModule mod_php7.c>
+    php_value auto_prepend_file "/var/www/html/minhanossa/php_compat.php"
+    php_flag short_open_tag on
+</IfModule>
+<IfModule mod_php.c>
+    php_value auto_prepend_file "/var/www/html/minhanossa/php_compat.php"
+    php_flag short_open_tag on
+</IfModule>

@@ -2,7 +2,7 @@
 include('restrito.php');
 include('Connections/conexao.php');
 include('funcoes.php');
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 
 mysql_select_db($database_conexao, $conexao);
@@ -44,14 +44,14 @@ $totalRows_rs_vendedor = mysql_num_rows($rs_vendedor);
 <body>
 <table width="100%" style="border:solid 1px #CCCCCC" border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="50%" height="50" style="padding-left:8px;" ><strong><?=$row_rs_loja['nome'];?></strong></td>
-    <td width="50%" align="right" valign="top"  style="padding-top:5px; padding-bottom:5px; padding-right:5px;"><?=$row_rs_loja['logradouro'];?> <br />
-     <?//=$row_rs_loja['cidade'];?>  <?//=$row_rs_loja['estado'];?>  Fone: <?=$row_rs_loja['telefone1'];?><br />
-      <?=$row_rs_loja['cnpj'];?></td>
+    <td width="50%" height="50" style="padding-left:8px;" ><strong><?php echo $row_rs_loja['nome'];?></strong></td>
+    <td width="50%" align="right" valign="top"  style="padding-top:5px; padding-bottom:5px; padding-right:5px;"><?php echo $row_rs_loja['logradouro'];?> <br />
+     <?//=$row_rs_loja['cidade'];?>  <?//=$row_rs_loja['estado'];?>  Fone: <?php echo $row_rs_loja['telefone1'];?><br />
+      <?php echo $row_rs_loja['cnpj'];?></td>
   </tr>
 </table>
 <div align="center" style="font-family:Arial, Helvetica, sans-serif; margin:5px; font-weight:bold; letter-spacing:1px;"> ALUGUEL N°
-  <?=$_GET['id'];?>
+  <?php echo $_GET['id'];?>
 </div>
 <table width="100%"  border="0" cellpadding="0" cellspacing="0">
   <tr>
@@ -81,23 +81,23 @@ $totalRows_rs_vendedor = mysql_num_rows($rs_vendedor);
 <!--Imprimir Produtos-->
 <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border:solid 1px #CCCCCC; padding:5px">
   <tr>
-    <td colspan="4">Id Produto: <strong><?=$row_rs_itens_produtos['id'];?></strong></td>
+    <td colspan="4">Id Produto: <strong><?php echo $row_rs_itens_produtos['id'];?></strong></td>
   </tr>
    <tr>
-    <td colspan="2">Produto: <strong><?=$row_rs_itens_produtos['nome'];?></strong></td>
-	   <td colspan="2">Cor: <strong><?=$row_rs_mostrar_cor['nome'];?></strong></td>
+    <td colspan="2">Produto: <strong><?php echo $row_rs_itens_produtos['nome'];?></strong></td>
+	   <td colspan="2">Cor: <strong><?php echo $row_rs_mostrar_cor['nome'];?></strong></td>
      
   </tr>
 	<tr>
-	<td colspan="2">Tamanho: <strong><?=$row_rs_itens_produtos['numeracao'];?></strong></td>
+	<td colspan="2">Tamanho: <strong><?php echo $row_rs_itens_produtos['numeracao'];?></strong></td>
      <td colspan="2">Valor: <strong>R$<?php echo number_format($row_rs_itens_produtos['valor_venda'],2,",",".");?></strong></td>
 	</tr>
   <tr>
-    <td colspan="2">Data do Retirada: <strong><?=formataData($row_rs_editar_item['data_retirada']);?></strong></td>
-    <td colspan="2">Data da Devolução: <strong><?=formataData($row_rs_editar_item['data_devolucao']);?></strong></td>
+    <td colspan="2">Data do Retirada: <strong><?php echo formataData($row_rs_editar_item['data_retirada']);?></strong></td>
+    <td colspan="2">Data da Devolução: <strong><?php echo formataData($row_rs_editar_item['data_devolucao']);?></strong></td>
   </tr>
   <tr>   
-    <td colspan="2">Quantidade: <strong><?=$row_rs_editar_item['quantidade_produto'];?></strong></td>
+    <td colspan="2">Quantidade: <strong><?php echo $row_rs_editar_item['quantidade_produto'];?></strong></td>
     <!-- <td colspan="2">Pontua&ccedil;&atilde;o: <strong>teste<?php echo $row_rs_itens_produtos['pontuacao'];?></strong></td> -->
   </tr>
  
@@ -118,7 +118,7 @@ $totalRows_rs_vendedor = mysql_num_rows($rs_vendedor);
 <?php }while($row_rs_editar_item = mysql_fetch_assoc($rs_editar_item));?>
 <table width="100%"  border="0" cellpadding="0" cellspacing="0">
  <?php /*?> <tr>
-    <td colspan="2" style="border:solid 1px #CCCCCC; padding:5px" >Comentário: <strong><?=$row_rs_contrato['comentario'];?></strong></td>
+    <td colspan="2" style="border:solid 1px #CCCCCC; padding:5px" >Comentário: <strong><?php echo $row_rs_contrato['comentario'];?></strong></td>
   </tr><?php */?>
    <tr>
     <!-- <td  style="border:solid 1px #CCCCCC; padding:5px" ><strong>Total de <?php echo $somaPontuacao;?> pontos.</strong></td> -->
@@ -153,7 +153,7 @@ Obs.: <?php echo $row_rs_contrato['comentario']; ?>
  <script>
 print();
 //  function redireciona() {
-//  	window.location='editar_contrato.php?id=<?=$_GET['id'];?>';
+//  	window.location='editar_contrato.php?id=<?php echo $_GET['id'];?>';
 //  }
 setTimeout(function(){ redireciona(); }, 1000);
 </script>

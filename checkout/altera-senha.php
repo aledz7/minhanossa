@@ -1,8 +1,8 @@
-﻿<? 
+﻿<?php 
 include('Connections/conexao.php');
 include('funcoes.php');
 
-if($_POST[tipo] == 'altera_senha') {
+if($_POST['tipo'] == 'altera_senha') {
 	$updateSQL = sprintf("UPDATE tbl_users SET senha=%s WHERE id=%s",
                        GetSQLValueString($_POST['senha'], "text"),
 					   GetSQLValueString($_POST['id'], "text")); 

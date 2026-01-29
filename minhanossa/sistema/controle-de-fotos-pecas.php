@@ -13,7 +13,7 @@ if (isset($_GET['pageNum_rs_fotos'])) {
 $startRow_rs_fotos = $pageNum_rs_fotos * $maxRows_rs_fotos;
 
 mysql_select_db($database_conexao, $conexao);
-$query_rs_fotos = "SELECT * FROM tbl_fotos where id_galeria = '$_GET[id]' and tipo = '$_GET[tipo]' order by id desc";
+$query_rs_fotos = "SELECT * FROM tbl_fotos where id_galeria = '$_GET['id']' and tipo = '$_GET['tipo']' order by id desc";
 $query_limit_rs_fotos = sprintf("%s LIMIT %d, %d", $query_rs_fotos, $startRow_rs_fotos, $maxRows_rs_fotos);
 $rs_fotos = mysql_query($query_limit_rs_fotos, $conexao) or die(mysql_error());
 $row_rs_fotos = mysql_fetch_assoc($rs_fotos);
@@ -42,7 +42,7 @@ if (!empty($_SERVER['QUERY_STRING'])) {
 }
 $queryString_rs_fotos = sprintf("&totalRows_rs_fotos=%d%s", $totalRows_rs_fotos, $queryString_rs_fotos);
 
-if($_POST[id_galeria] <> '') {
+if($_POST['id_galeria'] <> '') {
 
 /// UPLOAD
 function getmicrotime()
@@ -54,7 +54,7 @@ $tmp = getmicrotime();
 
 
 $n=0;
-for ($i=0; $i< $_POST[opcoes]; $i++) 
+for ($i=0; $i< $_POST['opcoes']; $i++) 
 {
 $n++;
 
@@ -78,7 +78,7 @@ $insertSQL = sprintf("INSERT INTO tbl_fotos (id_galeria, tipo, descricao, foto) 
 
 
 echo "	<script>
-		window.location='controle-de-fotos-pecas.php?id=$_POST[id_galeria]&tipo=$_POST[tipo]';
+		window.location='controle-de-fotos-pecas.php?id=$_POST['id_galeria']&tipo=$_POST['tipo']';
 		</script>";
 }
 ?>
@@ -175,35 +175,35 @@ if(document.getElementById('titulo').value == '') {
                   	<strong>Quantidade:</strong>
                   </td>
                   <td width="4%">
-                  	<input name="opcoes" type="text" class="input-small" id="opcoes" value="<? if($_GET[opcoes] == '') { echo 1; } else { echo $_GET[opcoes]; } ?>" size="2" style="height:19px; text-align:center">
+                  	<input name="opcoes" type="text" class="input-small" id="opcoes" value="<?php if($_GET['opcoes'] == '') { echo 1; } else { echo $_GET['opcoes']; } ?>" size="2" style="height:19px; text-align:center">
                   </td>
                   <td width="86%">
-                  	<a href="javascript:;" onClick="window.location='controle-de-fotos-pecas.php?tipo=<?=texto($_GET[tipo]);?>&id=<?=$_GET[id];?>&opcoes=' + document.getElementById('opcoes').value" class="btn btn-mini btn-success" style="float:left; margin-left:7px; margin-top: 10px; " >Avan&ccedil;ar</a>
-                  	<input name="id" type="hidden" id="id" value="<?=$_GET[id];?>">
+                  	<a href="javascript:;" onClick="window.location='controle-de-fotos-pecas.php?tipo=<?php echo texto($_GET['tipo']);?>&id=<?php echo $_GET['id'];?>&opcoes=' + document.getElementById('opcoes').value" class="btn btn-mini btn-success" style="float:left; margin-left:7px; margin-top: 10px; " >Avan&ccedil;ar</a>
+                  	<input name="id" type="hidden" id="id" value="<?php echo $_GET['id'];?>">
                   </td>
                 </tr>
               </table>	
           
             <form action="?pg=controle-de-fotos" method="post" enctype="multipart/form-data" id="form1" name="form1">
-            <?
+            <?php
 $n=0;
-for ($i=0; $i< $_GET[opcoes]; $i++) 
+for ($i=0; $i< $_GET['opcoes']; $i++) 
 {
 $n++;
 ?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top:5px;">
 	<tr>
-		<td width="9%" align="right" nowrap class="texto_preto"><strong>Nova foto <?=$n;?>:&nbsp;</strong></td>
-		<td width="91%"><input name="foto_<?=$n;?>" type="file" class="txtbox2" id="foto_<?=$n;?>"></td>
+		<td width="9%" align="right" nowrap class="texto_preto"><strong>Nova foto <?php echo $n;?>:&nbsp;</strong></td>
+		<td width="91%"><input name="foto_<?php echo $n;?>" type="file" class="txtbox2" id="foto_<?php echo $n;?>"></td>
 	</tr>
 </table>
 <span class="texto_preto">   
-<? } 
-if ($_GET[opcoes] <> '') {?>
+<?php } 
+if ($_GET['opcoes'] <> '') {?>
 <br>
-	<input name="id_galeria" type="hidden" id="id_galeria" value="<?=$_GET[id];?>">
-	<input name="opcoes" type="hidden" id="opcoes" value="<?=$_GET[opcoes];?>" />
-	<input name="tipo" type="hidden" id="tipo" value="<?=texto($_GET[tipo]);?>" />
+	<input name="id_galeria" type="hidden" id="id_galeria" value="<?php echo $_GET['id'];?>">
+	<input name="opcoes" type="hidden" id="opcoes" value="<?php echo $_GET['opcoes'];?>" />
+	<input name="tipo" type="hidden" id="tipo" value="<?php echo texto($_GET['tipo']);?>" />
 </span>
               <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -213,7 +213,7 @@ if ($_GET[opcoes] <> '') {?>
     </td>
   </tr>
 </table>
-<? } ?>
+<?php } ?>
             </form>
           <div class="row">
             <?php if ($totalRows_rs_fotos > 0) { // Show if recordset not empty ?>
@@ -221,7 +221,7 @@ if ($_GET[opcoes] <> '') {?>
    <div class="col-md-3">
    <img src="../img_noticias/<?php echo $row_rs_fotos['foto']; ?>" width="150" style="margin-bottom:5px;"><br>
 
-<a href="javascript:;" class="btn btn-mini btn-danger" style="text-align:left; margin-left:37px;" onClick="MM_openBrWindow('excluir-foto.php?volta=<?=$_GET[tipo];?>&id=<?php echo $row_rs_fotos['id']; ?>&idGaleria=<?=$_GET['id'];?>&tbl=tbl_fotos','excluir','status=yes,width=300,height=130')">Excluir</a>
+<a href="javascript:;" class="btn btn-mini btn-danger" style="text-align:left; margin-left:37px;" onClick="MM_openBrWindow('excluir-foto.php?volta=<?php echo $_GET['tipo'];?>&id=<?php echo $row_rs_fotos['id']; ?>&idGaleria=<?php echo $_GET['id'];?>&tbl=tbl_fotos','excluir','status=yes,width=300,height=130')">Excluir</a>
 
     </div>
     <?php } while ($row_rs_fotos = mysql_fetch_assoc($rs_fotos)); ?>

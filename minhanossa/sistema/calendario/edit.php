@@ -4,7 +4,7 @@ include("php/functions.php");
 include("../funcoes.php");
 include("../../Connections/conexao.php");
 
-session_start();
+if (!isset($_SESSION)) { session_start(); }
 
 function getCalendarByRange($id){
 	try{
@@ -121,7 +121,7 @@ if($_GET["id"]){
             $("#Closebtn").click(function() { CloseModelWindow(); });
             $("#Deletebtn").click(function() {
                  if (confirm("Tem certeza que deseja excluir este compromisso?")) {  
-                    var param = [{ "name": "calendarId", value: <?=($_GET['id'] <> '') ? $_GET['id'] : 0;?>}];                
+                    var param = [{ "name": "calendarId", value: <?php echo ($_GET['id'] <> '') ? $_GET['id'] : 0;?>}];                
                     $.post(DATA_FEED_URL + "?method=remove",
                         param,
                         function(data){
@@ -218,11 +218,11 @@ if($_GET["id"]){
           <span class="Delete" title="Excluir compromisso.">Excluir</span>                
         </a>  
         
-        <a class="imgbtn" href="../arquivos-agenda.php?id=<?=$_GET['id'];?>">                    
+        <a class="imgbtn" href="../arquivos-agenda.php?id=<?php echo $_GET['id'];?>">                    
           <span class="arquivos" title="Ver ou incluir arquivos.">Arquivos</span>                
         </a>  
         
-        <a  class="imgbtn" href="javascript:void(0);" onclick="parent.parent.parent.abreJanelaJquery('enviar-email.php?id=<?=$_GET['id'];?>&tipo=agenda', 'Enviar para o E-mail', '', '380px', '215', parent.parent.rand(1,9999))">                    
+        <a  class="imgbtn" href="javascript:void(0);" onclick="parent.parent.parent.abreJanelaJquery('enviar-email.php?id=<?php echo $_GET['id'];?>&tipo=agenda', 'Enviar para o E-mail', '', '380px', '215', parent.parent.rand(1,9999))">                    
           <span class="enviarEmail" title="Enviar este compromisso por e-mail.">Enviar por E-mail</span>                
         </a>            
         <?php } ?>            

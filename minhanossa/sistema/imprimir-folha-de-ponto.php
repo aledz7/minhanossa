@@ -51,20 +51,20 @@ include('rs-ponto.php');
              
             <?php }while($row_rs_ponto = mysql_fetch_assoc($rs_ponto)); ?>
              
-              <?
+              <?php
 			}
 			?>
               
             </tbody>
           </table>
-          <? 
+          <?php 
 		  } else { 
 		  	$HTML->nenhumRegistro("Nenhum registro encontrado. Por favor, realize uma busca.");
 		  }
 		  ?>
 <script>
 print();
-setTimeout(function(){ parent.window['temp_' + <?=$_GET[janela];?>].close(); }, 1000);
+setTimeout(function(){ parent.window['temp_' + <?php echo $_GET['janela'];?>].close(); }, 1000);
 </script>
 </body>
 </html>
