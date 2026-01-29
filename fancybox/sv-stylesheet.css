@@ -1,0 +1,42 @@
+.container {
+width: 960px;
+margin: 10px auto;
+padding: 0 20px;
+padding-bottom: 40px;
+font-family: 'Calibri', 'CalibriRegular', Verdana, Arial, Helvetica, sans-serif;
+}
+.gallery {
+}
+.gallery .previews, .gallery .full, .gallery .desc {
+float: left;
+margin-right: 10px;
+padding-bottom: 21px;
+}
+.gallery .desc, .gallery .full {
+width: 428px;
+font-size: 12px;
+}
+.gallery .desc h2 {
+margin-top: 0;
+}
+.gallery .previews a {
+display: block;
+margin-bottom: 10px;
+}
+/*.gallery .full, .gallery .full img {}*/
+.gallery .previews a, .gallery .full {
+border: 4px solid #31bbac8c;
+}
+.gallery .previews a:hover, .gallery .previews a.selected {
+border: 4px solid #f8abb2;
+}
+.gallery .full img:hover {
+cursor: pointer;
+}
+.clearfix:after {
+content: ".";
+visibility: hidden;
+display: block;
+height: 0;
+clear: both;
+}

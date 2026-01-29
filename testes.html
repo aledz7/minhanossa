@@ -1,0 +1,127 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+
+
+
+<style>
+	
+ul {
+    list-style:none;
+}
+li {
+    display:inline-block;
+}
+.branding {
+    height:100px;
+    margin:10px;
+    padding:10px;
+    width:200px;
+    background-color:#000;
+    float:left!important;
+    position:relative;
+    display:block;
+    top:100px;
+    color:#fff;
+}
+.advertise {
+    height:100px;
+    width:200px;
+    padding:10px;
+    background-color:#000;
+    margin:10px;
+    float:left!important;
+    position:relative;
+    display:block;
+    top:100px;
+    color:#fff;
+}
+.print {
+    height:100px;
+    width:200px;
+    background-color:#000;
+    float:left!important;
+    position:relative;
+    display:block;
+    margin:10px;
+    padding:10px;
+    top:100px;
+    color:#fff;
+}
+
+</style>
+
+
+
+<ul class="nav nav-pills nav-justified nav-tabss">
+    <li class="active"> <a data-filter="all" class="trigger" href="#">All</a>
+
+    </li>
+    <li> <a data-filter="branding" class="trigger" href="#">Branding</a>
+
+    </li>
+    <li> <a data-filter="advertise" class="trigger" href="#">Advertise</a>
+
+    </li>
+    <li> <a data-filter="print" class="trigger" href="#">Print</a>
+
+    </li>
+</ul>
+<div class="branding" data-filter="branding">brandinge</div>
+<div class="advertise">advertise</div>
+<div class="print">print</div>          <script src="js/jquery-3.2.1.min.js"></script>
+
+
+
+
+
+<script>
+	
+$('.trigger').click(function(e) {
+
+  e.preventDefault();
+
+  var branding = $(e.target).data('filter');
+  console.log(branding);
+
+  switch (branding) {
+
+    case "branding":
+      $('.branding').show();
+      $('.advertise').hide();
+      $('.print').hide();
+      break;
+
+    case "advertise":
+      $('.advertise').show();
+      $('.branding').hide();
+      $('.print').hide();
+
+      break;
+
+    case "print":
+      $('.advertise').hide();
+      $('.branding').hide();
+      $('.print').show();
+      break;
+
+    case "all":
+      $('.advertise').show();
+      $('.branding').show();
+      $('.print').show();
+      break;
+
+    default:
+      $('.branding').show();
+      $('.advertise').show();
+      $('.print').show();
+
+  }
+
+
+});
+
+
+</script>

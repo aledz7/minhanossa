@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rs_incTexto" value="name:id;datatype:int,name:data;datatype:string,name:titulo;datatype:string,name:tipo;datatype:string,name:textos;datatype:blob,name:foto;datatype:string,name:nome;datatype:string,name:palavra_chave;datatype:blob,name:editorDeTexto;datatype:string,name:mostraDescricao;datatype:string,name:mostraKeywords;datatype:string,name:mostraFotoPrincipal;datatype:string,name:mostraConstroleImagens;datatype:string" />
+</info>

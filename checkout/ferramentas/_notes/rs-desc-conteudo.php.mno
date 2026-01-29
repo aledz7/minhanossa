@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rs_conteudo" value="name:id;datatype:int,name:titulo;datatype:string,name:data;datatype:date,name:noticia;datatype:blob,name:categoria;datatype:string,name:foto;datatype:string,name:destaque;datatype:string,name:arquivo;datatype:string,name:dt_fim;datatype:string,name:horario_inc;datatype:string,name:horario_fim;datatype:string,name:tipo;datatype:string,name:principal;datatype:string,name:principal2;datatype:string,name:legenda;datatype:string,name:de;datatype:real,name:por;datatype:real,name:breve;datatype:blob,name:link;datatype:string,name:breve2;datatype:blob,name:ordem;datatype:int" />
+</info>

@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rs_userLogado" value="name:id;datatype:int,name:sexo;datatype:string,name:nome;datatype:string,name:sobrenome;datatype:string,name:data_de_nascimento;datatype:string,name:email;datatype:string,name:bairro;datatype:string,name:cep;datatype:string,name:cidade;datatype:string,name:estado;datatype:string,name:pais;datatype:string,name:telefone;datatype:string,name:newsletter;datatype:string,name:senha;datatype:string,name:cpf;datatype:string,name:rg;datatype:string,name:endereco;datatype:string,name:complemento;datatype:string,name:celular;datatype:string,name:ddd_telefone;datatype:string,name:msn;datatype:string,name:ddd_celular;datatype:string,name:ativo;datatype:string,name:conf_senha;datatype:string,name:valor_desconto;datatype:real,name:ativar_cadastro;datatype:string,name:foto;datatype:string,name:mostrar_foto;datatype:string,name:apelido;datatype:string,name:plano;datatype:string" />
+</info>

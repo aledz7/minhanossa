@@ -1,0 +1,151 @@
+/*---------------PortFolio Page Start---------------*/
+#grid {
+	padding-bottom: 50px;
+}
+.eco_filter {
+	float: left;
+	width: 100%;
+	text-align: center;
+	padding: 30px 0px 20px;
+}
+.eco-page-portfolio-categories a {
+	font-size: 16px;
+	margin-top: 5px;
+	color: #fff !important;
+	text-transform: capitalize;
+	bottom: 0px;
+	position: absolute;
+	margin: 30px;
+	text-transform: uppercase;
+}
+ul.eco_filter_title {
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+}
+ul.eco_filter_title li {
+	float: left;
+	list-style: none;
+	margin: 4px 0px;
+}
+ul.eco_filter_title li a {
+	float: left;
+	list-style: none;
+	text-align: center;
+	font-size: 12px;
+	color: #333;
+	
+	margin-right: 10px;
+	padding: 8px 15px;
+	background: #ECF0F1;
+	display: inline-block;
+	-webkit-transition: all 0.25s ease-in-out;
+	-moz-transition: all 0.25s ease-in-out;
+	-o-transition: all 0.25s ease-in-out;
+	-ms-transition: all 0.25s ease-in-out;
+	transition: all 0.25s ease-in-out;
+}
+ul.eco_filter_title li a:hover, ul.eco_filter_title li a.active {
+	text-decoration: none;
+	background: #f05b66;
+	color: #fff;
+	text-decoration: none;
+}
+#grid .mix {
+	opacity: 0;
+	display: none;
+}
+.eco_mix_grid .eco_port_one_third {
+	float: left;
+	width: 33%;
+}
+.eco_port_recentimage .eco_port_overdefult {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	margin-top: 0px;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	-webkit-transition: all 0.25s ease-in-out;
+	-moz-transition: all 0.25s ease-in-out;
+	-o-transition: all 0.25s ease-in-out;
+	-ms-transition: all 0.25s ease-in-out;
+	transition: all 0.25s ease-in-out;
+	cursor: pointer;
+}
+.eco_port_recentdescription {
+	width: 100%;
+	color: #fff;
+	cursor: pointer;
+}
+.eco_port_recentdescription h3:hover, .eco-page-portfolio-categories a:hover {
+	text-decoration: underline;
+}
+.eco_port_recentdescription h5 {
+	cursor: pointer;
+	font-size: 18px !important;
+	color: #fff !important;
+	text-transform: uppercase;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+	display: inline-block;
+	padding: 8px 12px;
+	margin: 30px;
+}
+.eco_port_recentdescription h5:hover {
+	text-decoration: none !important;
+	background: rgba(255,255,255,0.2);
+}
+.eco_show_overlay {
+	position: relative;
+}
+.eco_port_recentimage .eco_port_overdefult {
+	background: rgba(148,187,84,0.85);
+}
+.eco_show_overlay:hover .eco_port_overdefult {
+	opacity: 1;
+}
+.eco_port_image {
+	float: left;
+	width: 100%;
+}
+/*---------------PortFolio Page End---------------*/
+
+/*---------------PortFolio uneven Page End---------------*/
+/*---------------PortFolio 3column Page Start---------------*/
+.eco_port_one_third_3cl {
+	float: left;
+	width: 32%;
+	margin: 0px 14px 14px 0;
+	padding: 0px 0px 20px;
+}
+.eco-page-portfolio-categories-3cl {
+	color: #fff;
+	float: left;
+	width: 100%;
+	text-align: center;
+	height: auto;
+	position: absolute;
+	top: 43%;
+}
+.eco-page-portfolio-categories-3cl a, .eco-page-portfolio-categories-3cl a:hover {
+	color: #fff;
+}
+p.eco_port_min_title {
+	float: left;
+	width: 100%;
+	padding: 20px 0;
+}
+h5.eco_port_min_title {
+	width: 100%;
+	float: left;
+	font-family: inherit;
+}
+/*---------------PortFolio 3column Page End---------------*
+/*---------------PortFolio 4column Page End---------------*/
+.eco_port_min_title {
+	float: left;
+	width: 100%;
+}
+/*---------------PortFolio 4column Page End---------------*/
+/*---------------PortFolio single page start---------------*/
